@@ -1,86 +1,87 @@
-/* Footer base styles */
+/* Base styling for footer */
 .footer {
-    background-color: var(--deep-space-blue); /* Primary dark blue for the background */
-    color: var(--off-white); /* Light text for readability */
-    padding: 30px 50px;
+    width: 100%;
+    background: #0d121c;
+    color: #fff;
     font-family: 'Open Sans', sans-serif;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    padding: 40px 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    font-size: 14px;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
-    max-width: 1200px; /* Limit content width for better alignment */
-    margin: 0 auto; /* Centering content */
+    justify-content: space-around; /* Adjusted for better spacing between sections */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .footer-section {
-    margin: 10px;
-    flex: 1 1 200px; /* Responsive flexibility with a min-width */
-}
-
-.footer-logo {
-    width: 150px; /* Slightly larger logo */
-    margin-bottom: 5px;
+    flex: 1 1 200px; /* Allows flexible growth and better spacing */
+    padding: 10px;
+    display: flex; /* Makes footer sections more flexible */
+    flex-direction: column; /* Organizes content vertically */
+    align-items: center; /* Centers items in each section for a neater appearance */
 }
 
 .tagline {
-    font-size: 16px; /* Larger font size for readability */
-    color: var(--sunrise-gold); /* Use accent color for emphasis */
-    font-weight: 500; /* Slightly bolder */
+    font-size: 16px;
+    opacity: 0.9; /* Slightly increased opacity for better readability */
+    margin-bottom: 15px; /* Provides spacing from logo to tagline */
 }
 
-/* Link styling */
-.links-section a,
-.contact-section a,
-.social-link {
-    color: var(--off-white);
+.footer-section a, .social-link {
+    color: #ccc;
     text-decoration: none;
-    margin-right: 20px;
-    font-size: 16px; /* Larger font for better readability */
-    transition: color 0.3s, transform 0.2s; /* Smoother transitions */
+    transition: color 0.3s, text-shadow 0.3s;
+    margin: 5px 0; /* Adds vertical spacing for better touch targets */
 }
 
-/* Hover effects for interactive elements */
-.links-section a:hover,
-.contact-section a:hover,
-.social-link:hover {
-    color: var(--sunrise-gold); /* Accent color for hover */
-    transform: translateY(-3px); /* Lift effect to enhance interactivity */
+.footer-section a:hover, .social-link:hover {
+    color: #fff;
+    text-shadow: 0 0 6px rgba(255,255,255,0.7); /* Glowing effect on hover */
 }
 
-/* Social media icons */
-.social-link {
-    font-size: 24px; /* Larger icons for better interaction */
-    display: inline-block; /* Align properly without additional div */
-}
-
-/* Newsletter and feedback forms */
 .newsletter-signup {
     display: flex;
-    align-items: center;
-    gap: 10px; /* Spacing between elements */
+    align-items: center; /* Ensures vertical alignment of form elements */
+    width: 100%; /* Full width to accommodate form elements */
+    margin-top: 15px; /* Additional top margin for spacing */
 }
 
-.newsletter-signup input[type="email"] {
-    padding: 10px;
-    border: 1px solid var(--sunrise-gold); /* Stylish border */
-    background-color: transparent;
-    color: var(--off-white);
+.newsletter-signup input {
+    flex-grow: 1; /* Allows the input to take up available space */
+    padding: 8px;
+    border: 2px solid rgba(255,255,255,0.5); /* Reflects theme with a stylish border */
+    background: transparent;
+    color: #fff;
+    border-radius: 5px;
 }
 
 .newsletter-signup button {
-    background-color: var(--earth-green);
+    margin-left: 10px; /* Ensures spacing between input and button */
+    background-color: #0585e4;
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 5px; /* Rounded corners for buttons */
+    transition: background-color 0.3s;
 }
 
-/* Responsive adjustments */
+.newsletter-signup button:hover {
+    background-color: dodgerblue;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.8;
+    border-top: 1px solid #444; /* Dimmed separator line for a more subtle effect */
+    padding-top: 10px; /* Spacing above the text for clarity */
+}
+
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
@@ -88,31 +89,17 @@
     }
 
     .footer-section {
-        align-items: center;
-        text-align: center; /* Ensure text is centered in mobile view */
-        margin: 20px 0;
-    }
-
-    .links-section a,
-    .contact-section a,
-    .social-link {
-        margin-right: 0; /* Remove margin for a cleaner layout */
-        margin-bottom: 10px; /* Add space between links */
+        text-align: center;
+        margin-bottom: 20px;
+        align-items: center; /* Center alignment for mobile */
     }
 
     .newsletter-signup {
-        flex-direction: column; /* Stack elements vertically */
+        flex-direction: column;
     }
 
-    .newsletter-signup input[type="email"],
-    .newsletter-signup button {
-        width: 100%; /* Full width for inputs and buttons on small screens */
+    .newsletter-signup input, .newsletter-signup button {
+        width: 100%; /* Full width on mobile for easier access */
+        margin: 5px 0; /* Adds space between input and button on mobile */
     }
-}
-
-.footer-bottom {
-    text-align: center;
-    font-size: 14px;
-    opacity: 0.9;
-    margin-top: 20px;
 }

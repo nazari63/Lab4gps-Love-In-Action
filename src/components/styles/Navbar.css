@@ -41,7 +41,7 @@
 }
 
 .nav-link:hover, .nav-link:focus {
-    color: deepskyblue; /* Interactive color for hover states */
+    color: #0585e4; /* Interactive color for hover states */
 }
 
 /* Dropdown Menu styling */
@@ -56,6 +56,12 @@
     color: #333;
     font-size: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.dropbtn .fa-caret-down {
+    margin-left: 5px;
 }
 
 .dropdown-content {
@@ -82,23 +88,36 @@
     background-color: #f1f1f1;
 }
 
-/* Get Started Button styling with added flexibility for positioning */
+/* Language Selector styling with blue border */
+.language-selector {
+    color: #333;
+    font-size: 16px;
+    padding: 8px 16px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 2px solid #0585e4; /* Added blue border */
+    margin-right: 40px; /* Adjust right margin for spacing */
+    cursor: pointer;
+}
+
+.language-selector:focus {
+    outline: none;
+}
+
+/* Get Started Button styling */
 .button-get-started {
-    background-color: deepskyblue;
+    background-color: #0585e4;
     color: white;
-    padding: 8px 16px; /* Optimized padding */
+    padding: 8px 16px;
     border-radius: 5px;
     border: none;
-    transition: background-color 0.3s, margin 0.3s ease-in-out;
-    margin-left: var(--button-start-margin, 30px); /* Initial margin set through CSS variable */
-    cursor: pointer; /* Indicates the button is clickable */
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
-/* Example hover effect to emphasize interactivity */
 .button-get-started:hover {
-    background-color: skyblue;
+    background-color: #0465b2; /* Darker shade on hover */
 }
-
 
 /* Logo Styling */
 .nav-logo img {
@@ -117,7 +136,7 @@
     .navbar {
         flex-direction: column;
         align-items: center;
-        padding: 10px 15px; /* Adjusted for mobile views */
+        padding: 10px 15px;
     }
 
     .nav-links {
@@ -129,14 +148,14 @@
     .nav-item {
         width: 100%;
         text-align: center;
-        margin: 10px 0; /* Increased space for tap targets */
+        margin: 10px 0;
     }
 
     .dropdown-content {
-        position: static; /* Full width dropdowns in mobile layout */
+        position: static;
     }
 
-    .button-get-started {
+    .button-get-started, .language-selector {
         width: 100%; /* Full width button for easier mobile access */
         margin-top: 10px;
     }
