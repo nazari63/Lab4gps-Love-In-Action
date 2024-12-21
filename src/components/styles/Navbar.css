@@ -10,14 +10,14 @@
     transition: background-color 0.3s ease;
     background-color: transparent;
     z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtler shadow */
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Solid background on scroll for better visibility */
+/* Even lighter background on scroll for minimal visibility */
 .navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    background-color: rgba(255, 255, 255, 0.75); /* Very light opacity for a minimal appearance */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Minimal shadow for better readability */
 }
 
 /* Navigation links styling */
@@ -69,7 +69,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.1); /* Light shadow for dropdown */
     z-index: 1;
 }
 

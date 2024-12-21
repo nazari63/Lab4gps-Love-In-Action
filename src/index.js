@@ -4,10 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Import your LangProvider from wherever you've placed it
+import { LangProvider } from './components/Context/LangContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* Wrap App in the LangProvider to enable global translation context */}
+    <LangProvider>
+      <App />
+    </LangProvider>
   </React.StrictMode>
 );
 

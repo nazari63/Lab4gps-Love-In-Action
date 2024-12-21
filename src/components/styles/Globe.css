@@ -1,0 +1,27 @@
+/* Make the cesium container relatively positioned */
+#cesiumContainer {
+    position: relative;
+}
+
+/* Container for the stop rotation button */
+.stop-rotation-button-container {
+    position: absolute;
+    top: 280px; /* Increased value to move the button further down */
+    right: 10px;
+    z-index: 9999; /* Ensures it stays on top of the globe but within its container */
+}
+
+/* Button styling */
+.stop-rotation-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #0585e4; /* A color for better visibility */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.stop-rotation-button:hover {
+    background-color: #0465b2; /* Darker shade on hover */
+}

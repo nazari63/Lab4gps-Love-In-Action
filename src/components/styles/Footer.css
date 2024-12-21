@@ -1,67 +1,66 @@
 /* Base styling for footer */
 .footer {
     width: 100%;
-    background: #0d121c;
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0.75); /* Light opacity for a minimal appearance like the navbar */
+    color: #0d121c; /* Deep Space Blue for text, ensuring readability on light background */
     font-family: 'Open Sans', sans-serif;
     padding: 40px 20px;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05); /* Softer shadow for consistency with the navbar */
     font-size: 14px;
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Adjusted for better spacing between sections */
+    justify-content: space-around;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .footer-section {
-    flex: 1 1 200px; /* Allows flexible growth and better spacing */
+    flex: 1 1 200px; /* Responsive flex settings */
     padding: 10px;
-    display: flex; /* Makes footer sections more flexible */
-    flex-direction: column; /* Organizes content vertically */
-    align-items: center; /* Centers items in each section for a neater appearance */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alignment for neat appearance */
 }
 
 .tagline {
     font-size: 16px;
-    opacity: 0.9; /* Slightly increased opacity for better readability */
-    margin-bottom: 15px; /* Provides spacing from logo to tagline */
+    margin-bottom: 15px;
+    color: #333; /* Darker text for contrast */
 }
 
 .footer-section a, .social-link {
-    color: #ccc;
+    color: #333; /* Darker color for readability on light background */
     text-decoration: none;
     transition: color 0.3s, text-shadow 0.3s;
-    margin: 5px 0; /* Adds vertical spacing for better touch targets */
 }
 
 .footer-section a:hover, .social-link:hover {
-    color: #fff;
-    text-shadow: 0 0 6px rgba(255,255,255,0.7); /* Glowing effect on hover */
+    color: Deep Space Blue; /* Primary color for interactive states */
+    text-shadow: 0 0 6px rgba(0, 72, 105, 0.7); /* Subtle glow effect on hover */
 }
 
 .newsletter-signup {
     display: flex;
-    align-items: center; /* Ensures vertical alignment of form elements */
-    width: 100%; /* Full width to accommodate form elements */
-    margin-top: 15px; /* Additional top margin for spacing */
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
 }
 
 .newsletter-signup input {
-    flex-grow: 1; /* Allows the input to take up available space */
+    flex-grow: 1;
     padding: 8px;
-    border: 2px solid rgba(255,255,255,0.5); /* Reflects theme with a stylish border */
+    border: 2px solid #0585e4; /* Blue border for input, matching button */
     background: transparent;
-    color: #fff;
+    color: #333;
     border-radius: 5px;
 }
 
 .newsletter-signup button {
-    margin-left: 10px; /* Ensures spacing between input and button */
-    background-color: #0585e4;
+    margin-left: 10px;
+    background-color: #0585e4; /* Consistent with other CTA buttons */
     border: none;
     color: white;
     padding: 10px 20px;
@@ -71,15 +70,15 @@
 }
 
 .newsletter-signup button:hover {
-    background-color: dodgerblue;
+    background-color: #0465b2; /* Darker blue on hover */
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
-    opacity: 0.8;
-    border-top: 1px solid #444; /* Dimmed separator line for a more subtle effect */
-    padding-top: 10px; /* Spacing above the text for clarity */
+    color: #666; /* Lighter text for less emphasis on bottom text */
+    border-top: 1px solid #e0e0e0; /* Lighter line for subtlety */
+    padding-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -91,7 +90,6 @@
     .footer-section {
         text-align: center;
         margin-bottom: 20px;
-        align-items: center; /* Center alignment for mobile */
     }
 
     .newsletter-signup {
@@ -99,7 +97,7 @@
     }
 
     .newsletter-signup input, .newsletter-signup button {
-        width: 100%; /* Full width on mobile for easier access */
-        margin: 5px 0; /* Adds space between input and button on mobile */
+        width: 100%; /* Full width for easier interaction on mobile */
+        margin: 5px 0;
     }
 }

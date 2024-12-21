@@ -1,28 +1,94 @@
+/* Base layout styles */
 .home {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Open Sans', sans-serif; /* Consistent body font */
 }
 
 .home-content {
   flex: 1;
   padding: 20px;
-  background: #f4f4f4; /* Light grey background for content area */
-  margin-top: 60px; /* Adjust this value based on your navbar's height */
+  background-color: transparent; /* Ensure content area is fully transparent */
+  margin-top: 16px; /* Adjust based on navbar height */
 }
 
+/* Section styles */
 .intro, .features {
   margin: 20px;
   padding: 20px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: transparent !important; /* Ensuring background is fully transparent */
+  border: none; /* Removing any borders */
+  box-shadow: none; /* Removing box shadows for a flat design */
+  color: #333; /* Deep Space Blue for text */
 }
 
-.intro h1, .features h2 {
+/* Typography settings */
+.intro p, .features p {
+  line-height: 1.6;
+  color: #333; /* Text color for better contrast */
+  font-size: 16px; /* Slightly larger for readability */
+}
+
+/* Styling for headers and titles - removed headers for cleaner design */
+.features h2 {
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  color: Earth Green; /* Secondary color for headers in features */
+}
+
+/* Button and interactive elements styling */
+.button {
+  padding: 10px 20px;
+  background-color: Earth Green; /* Vibrant CTA button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: Sunrise Gold; /* Accent color for hover state */
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 10px;
+  }
+
+  .intro p, .features p {
+    font-size: 16px; /* Adjust text size for mobile */
+  }
+}
+
+/* Ensure global elements are included */
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f4f4f8; /* Consistent background across the app */
   color: #333;
 }
 
-.intro p, .features p {
-  color: #666;
+
+
+/* Styles for the link in the features section */
+.features-link {
+  color: #0585e4; /* Primary interactive color */
+  text-decoration: none; /* No underline to keep it clean */
+  font-weight: bold; /* Makes the link stand out */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.features-link:hover {
+  color: #0465b2; /* Darker shade on hover */
+  text-decoration: underline; /* Adds underline on hover for clarity */
 }
