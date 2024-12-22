@@ -1,0 +1,43 @@
+{
+    "navbar": {
+      "home": "Home",
+      "about": "About",
+      "aboutPurpose": "Purpose",
+      "aboutMission": "Mission",
+      "aboutVision": "Vision",
+      "aboutCoreValues": "Core Values",
+      "aboutWhoWeAre": "Who We Are",
+      "problemSolver": "Problem Solver",
+      "submitProblem": "Submit a Problem",
+      "solveProblem": "Solve a Problem",
+      "viewActiveProblems": "View Active Problems",
+      "problemMap": "Problem Map",
+      "myContributions": "My Contributions",
+      "howItWorks": "How It Works",
+      "getInvolved": "Get Involved",
+      "successStories": "Success Stories",
+      "solutions": "Solutions",
+      "solutionLibrary": "Solution Library",
+      "contributeSolution": "Contribute a Solution",
+      "collaborativeProjects": "Collaborative Projects",
+      "volunteerOpportunities": "Volunteer Opportunities",
+      "impactStories": "Impact Stories",
+      "startups": "Startups",
+      "sponsorship": "Sponsorship",
+      "becomeSponsor": "Become a Sponsor",
+      "sponsorshipLevels": "Sponsorship Levels",
+      "corporatePartnerships": "Corporate Partnerships",
+      "featuredSponsors": "Featured Sponsors",
+      "sponsorshipImpact": "Sponsorship Impact",
+      "howToApply": "Apply For Sponsorship",
+      "faqsSponsors": "FAQs for Sponsors",
+      "memberFeatures": "Member Features",
+      "english": "English",
+      "korean": "한국어"
+    },
+    "homePage": {
+      "introParagraph": "Explore real-time global problems on our interactive globe and join our mission to spread love by solving one another's problems, inspired by Jesus's teachings of love. \"A new command I give you: Love one another. As I have loved you, so you must love one another.\" - John 13:34. A simple click on the blinking beacon \"problem alert\" on the globe not only zooms into the precise longitude and latitude of the specific place but also provides detailed information about the specific problem and location, down to the neighborhood experiencing the crisis.",
+      "solutionsLink": "Discover innovative solutions addressing global problems."
+    }
+  }
+  

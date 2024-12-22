@@ -106,7 +106,7 @@ const Globe = () => {
 
         // Continuous rotation
         const rotateEarth = () => {
-          const spinRate = 0.01;
+          const spinRate = 0.05;
           const delta = spinRate / 60; // 60 FPS assumption
           viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
           animationIdRef.current = requestAnimationFrame(rotateEarth);

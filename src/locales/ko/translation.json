@@ -1,0 +1,43 @@
+{
+    "navbar": {
+      "home": "홈",
+      "about": "소개",
+      "aboutPurpose": "목적",
+      "aboutMission": "사명",
+      "aboutVision": "비전",
+      "aboutCoreValues": "핵심 가치",
+      "aboutWhoWeAre": "우리는 누구인가",
+      "problemSolver": "문제 해결사",
+      "submitProblem": "문제 등록",
+      "solveProblem": "문제 해결",
+      "viewActiveProblems": "진행 중인 문제 보기",
+      "problemMap": "문제 지도",
+      "myContributions": "내 기여",
+      "howItWorks": "작동 원리",
+      "getInvolved": "참여하기",
+      "successStories": "성공 사례",
+      "solutions": "해결책",
+      "solutionLibrary": "해결책 라이브러리",
+      "contributeSolution": "해결책 제안",
+      "collaborativeProjects": "협업 프로젝트",
+      "volunteerOpportunities": "봉사 기회",
+      "impactStories": "영향 사례",
+      "startups": "스타트업",
+      "sponsorship": "후원",
+      "becomeSponsor": "후원자 되기",
+      "sponsorshipLevels": "후원 등급",
+      "corporatePartnerships": "기업 파트너십",
+      "featuredSponsors": "주요 후원자",
+      "sponsorshipImpact": "후원의 영향",
+      "howToApply": "후원 신청",
+      "faqsSponsors": "후원 FAQ",
+      "memberFeatures": "멤버 기능",
+      "english": "영어",
+      "korean": "한국어"
+    },
+    "homePage": {
+      "introParagraph": "인터랙티브 지구본에서 실시간 글로벌 문제를 살펴보고, 서로의 문제를 사랑으로 해결하자는 사명에 동참하세요. 예수님의 사랑 가르침에서 영감을 받은 이 메시지: \"새 계명을 너희에게 주노니 서로 사랑하라. 내가 너희를 사랑한 것 같이 너희도 서로 사랑하라.\" (요한복음 13:34)을 실천합시다. 지구본에 깜박이는 \"문제 알림\"에 간단히 클릭하면 해당 장소의 위도와 경도로 확대될 뿐 아니라, 위기에 처한 지역과 구체적인 문제에 대한 자세한 정보를 볼 수 있습니다.",
+      "solutionsLink": "글로벌 문제에 대응하는 혁신적인 해결책을 만나보세요."
+    }
+  }
+  
