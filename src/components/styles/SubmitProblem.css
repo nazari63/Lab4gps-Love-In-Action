@@ -1,0 +1,190 @@
+/* SubmitProblem.css */
+
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;600&display=swap');
+
+/* CSS Variables for Theme Colors */
+:root {
+  --primary-color: #1B263B;      /* Deep Space Blue */
+  --secondary-color: #28A745;    /* Earth Green */
+  --accent-color: #FFD700;       /* Sunrise Gold */
+  --neutral-light: #F8F9FA;      /* Off-white */
+  --neutral-dark: #343A40;       /* Charcoal Gray */
+
+  /* Additional Variables */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  --border-radius: 8px;
+  --transition-speed: 0.3s;
+}
+
+/* Global Styles for the Submit Problem Container */
+.submit-problem-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background-color: var(--neutral-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-body);
+}
+
+/* Title Styling */
+.submit-problem-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Form Styling */
+.submit-problem-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+  padding: 12px 15px;
+  border: 1px solid #CED4DA;
+  border-radius: var(--border-radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="file"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* Location Fields Styling */
+.location-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.location-fields label {
+  margin-top: 0;
+}
+
+.map-selector-button {
+  grid-column: 1 / -1;
+  padding: 12px 15px;
+  background-color: var(--secondary-color);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.map-selector-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.coordinates-display {
+  grid-column: 1 / -1;
+  font-style: italic;
+  color: var(--neutral-dark);
+}
+
+/* Contact Information Group */
+.contact-info-group {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #DEE2E6;
+}
+
+.contact-info-group h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+.contact-info-group .form-group {
+  flex-direction: column;
+}
+
+/* Submit Button */
+.submit-problem-button {
+  padding: 15px 20px;
+  background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  align-self: center;
+  width: 50%;
+}
+
+.submit-problem-button:hover {
+  background: linear-gradient(45deg, #218838, #FFC107);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .location-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-problem-button {
+    width: 100%;
+  }
+}
+
+/* Additional Enhancements */
+
+/* Input file styling */
+.form-group input[type="file"] {
+  padding: 5px 12px;
+}
+
+/* Checkbox styling (if any) */
+.form-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+/* Radio button styling (if any) */
+.form-group input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}

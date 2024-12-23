@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SubmitProblem.css';
+import '../styles/SubmitProblem.css';
 
 const SubmitProblem = () => {
   const [problemTitle, setProblemTitle] = useState('');

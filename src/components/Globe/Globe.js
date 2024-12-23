@@ -1,12 +1,46 @@
 /* global Cesium */
-import React, { useEffect, useRef } from 'react';
-import { useLang } from '../Context/LangContext'; // Import your global language context
+import React, { useEffect, useRef, useState } from 'react';
+import { useLang } from '../Context/LangContext'; // Adjust the path based on your project structure
 import '../styles/Globe.css'; // Import the separate style file
+import useLocationInfo from '../hooks/useLocationInfo'; // Adjust the path based on your project structure
+import LocationInfoPanel from './LocationInfoPanel'; // Import the LocationInfoPanel component
+import PropTypes from 'prop-types';
+
+/**
+ * Function to perform reverse geocoding using OpenCage Geocoding API.
+ * In production, it's recommended to handle this on the backend to secure the API key.
+ *
+ * @param {string} latitude
+ * @param {string} longitude
+ * @param {string} language - Language code ('en' for English, 'ko' for Korean)
+ * @returns {Promise<string>} - Returns the formatted address in the desired language.
+ */
+const reverseGeocode = async (latitude, longitude, language = 'en') => {
+  const apiKey = process.env.REACT_APP_OPENCAGE_API_KEY; // Ensure this is set in .env
+  const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}&language=${language}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.results && data.results.length > 0) {
+      return data.results[0].formatted;
+    } else {
+      return 'Address not found';
+    }
+  } catch (error) {
+    console.error('Error in reverse geocoding:', error);
+    throw error;
+  }
+};
 
 const Globe = () => {
-  const globeRef = useRef(null);
-  const viewerRef = useRef(null);
-  const animationIdRef = useRef(null);
+  const globeRef = useRef(null); // Reference to the Cesium container div
+  const viewerRef = useRef(null); // Reference to the Cesium Viewer instance
+  const animationIdRef = useRef(null); // Reference to the animation frame ID
+
+  // State to manage rotation status
+  const [isRotating, setIsRotating] = useState(true);
 
   // Use the global language context to determine if text should be English or Korean
   const { language } = useLang();
@@ -15,20 +49,59 @@ const Globe = () => {
   const text = {
     en: {
       stopRotation: "Stop Rotation",
+      startRotation: "Start Rotation",
+      locationDetails: "Location Details",
+      address: "Address",
+      latitude: "Latitude",
+      longitude: "Longitude",
+      height: "Height",
+      zoomLevel: "Zoom Level",
+      unknown: "Unknown",
+      loading: "Loading...",
+      error: "Error",
     },
     ko: {
       stopRotation: "회전 중지",
+      startRotation: "회전 시작",
+      locationDetails: "위치 정보",
+      address: "주소",
+      latitude: "위도",
+      longitude: "경도",
+      height: "높이",
+      zoomLevel: "확대 수준",
+      unknown: "알 수 없음",
+      loading: "로딩 중...",
+      error: "오류",
     },
   };
 
   // Helper function to return the correct text based on the current language
   const t = (key) => text[language][key];
 
-  // Manual stop rotation button
-  const handleStopRotationClick = () => {
-    if (animationIdRef.current) {
-      cancelAnimationFrame(animationIdRef.current);
-      animationIdRef.current = null;
+  /**
+   * Function to handle rotation toggle.
+   * Starts or stops the Earth's rotation based on current state.
+   */
+  const handleRotationToggle = () => {
+    if (isRotating) {
+      // Stop rotation
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
+      }
+      setIsRotating(false);
+    } else {
+      // Start rotation
+      if (!animationIdRef.current && viewerRef.current) {
+        const rotateEarth = () => {
+          const spinRate = 0.01;
+          const delta = spinRate / 60; // Assuming 60 FPS
+          viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
+          animationIdRef.current = requestAnimationFrame(rotateEarth);
+        };
+        rotateEarth();
+      }
+      setIsRotating(true);
     }
   };
 
@@ -64,10 +137,10 @@ const Globe = () => {
     toggleElementsVisibility(isFullScreen);
   };
 
+  // Initialize Cesium Viewer and handle rotation controls
   useEffect(() => {
-    // Set your Cesium Ion access token
-    Cesium.Ion.defaultAccessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMWY1MGUyNC0wNjFkLTQ1YWMtYTBhNi1mYTRkMTAzNWYzOGEiLCJpZCI6MjYzODA1LCJpYXQiOjE3MzQ2Nzk0ODd9.OvjRSddy3Mt1P1rOGIFKOQQcxIqTX2i7sM1Ha4s7_qs';
+    // Set your Cesium Ion access token from environment variables
+    Cesium.Ion.defaultAccessToken = process.env.REACT_APP_CESIUM_ION_ACCESS_TOKEN;
 
     // Listen for the 'fullscreenchange' event on the document
     document.addEventListener('fullscreenchange', handleFullScreenChange);
@@ -76,22 +149,23 @@ const Globe = () => {
     if (globeRef.current && !viewerRef.current) {
       try {
         viewerRef.current = new Cesium.Viewer(globeRef.current, {
-          imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }),
+          terrainProvider: Cesium.createWorldTerrain(), // High-resolution terrain
+          imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }), // Example asset ID
           baseLayerPicker: false,
           geocoder: false,
           homeButton: false,
-          infoBox: false,
+          infoBox: false, // We'll handle info boxes manually
           navigationHelpButton: false,
           sceneModePicker: false,
           timeline: false,
           animation: false,
-          fullscreenButton: true,     // Enable the built-in fullscreen icon
+          fullscreenButton: true, // Enable fullscreen
           requestRenderMode: true,
           maximumRenderTimeChange: Infinity,
         });
 
-        // Set initial camera view (top-down perspective)
-        viewerRef.current.scene.camera.setView({
+        // Set initial camera view (New York coordinates as example)
+        viewerRef.current.camera.setView({
           destination: Cesium.Cartesian3.fromDegrees(
             -74.0707383,
             40.7117244,
@@ -123,12 +197,14 @@ const Globe = () => {
           if (animationIdRef.current) {
             cancelAnimationFrame(animationIdRef.current);
             animationIdRef.current = null;
+            setIsRotating(false);
           }
         };
 
         const startRotation = () => {
           if (!animationIdRef.current) {
             rotateEarth();
+            setIsRotating(true);
           }
         };
 
@@ -140,7 +216,7 @@ const Globe = () => {
         viewerRef.current.canvas.addEventListener('pointerup', startRotation);
         viewerRef.current.canvas.addEventListener('wheel', startRotation, {
           passive: true,
-          delay: 1000,
+          capture: true,
         });
       } catch (error) {
         console.error('Failed to initialize Cesium viewer:', error);
@@ -154,28 +230,69 @@ const Globe = () => {
         viewerRef.current.destroy();
         viewerRef.current = null;
       }
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
+      }
     };
-  }, []);
+  }, [language]); // Added 'language' as a dependency to refetch location info on language change
+
+  // Use the custom hook to manage location info, passing the current language
+  const { locationInfo, loading, error } = useLocationInfo(
+    viewerRef.current,
+    Cesium,
+    reverseGeocode,
+    language // Pass the selected language
+  );
 
   return (
     <>
-      {/* Button to manually stop rotation */}
-      <div className="stop-rotation-button-container">
-        <button
-          className="stop-rotation-button"
-          onClick={handleStopRotationClick}
-        >
-          {t("stopRotation")}
-        </button>
-      </div>
-
+      {/* Cesium Globe Container */}
       <div
         ref={globeRef}
         id="cesiumContainer"
         style={{ height: '100vh', width: '100vw' }}
-      />
+      >
+        {/* Controls */}
+        <div className="controls-container">
+          <div className="tabs" role="tablist" aria-label="Rotation Controls">
+            <button
+              className={`tab-button ${isRotating ? 'active' : ''}`}
+              onClick={handleRotationToggle}
+              aria-selected={isRotating}
+              role="tab"
+              aria-controls="start-rotation-panel"
+              id="start-rotation-tab"
+            >
+              {t("startRotation")}
+            </button>
+            <button
+              className={`tab-button ${!isRotating ? 'active' : ''}`}
+              onClick={handleRotationToggle}
+              aria-selected={!isRotating}
+              role="tab"
+              aria-controls="stop-rotation-panel"
+              id="stop-rotation-tab"
+            >
+              {t("stopRotation")}
+            </button>
+          </div>
+        </div>
+
+        {/* Location Details Panel */}
+        <LocationInfoPanel
+          locationInfo={locationInfo}
+          loading={loading}
+          error={error}
+          translate={t}
+        />
+      </div>
     </>
   );
+};
+
+Globe.propTypes = {
+  // Define prop types if necessary
 };
 
 export default Globe;
