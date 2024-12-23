@@ -1,4 +1,4 @@
-/* global Cesium */
+/* global window */
 import React, { useEffect, useRef, useState } from 'react';
 import { useLang } from '../Context/LangContext'; // Adjust the path based on your project structure
 import '../styles/Globe.css'; // Import the separate style file
@@ -96,7 +96,8 @@ const Globe = () => {
         const rotateEarth = () => {
           const spinRate = 0.01;
           const delta = spinRate / 60; // Assuming 60 FPS
-          viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
+          // Correctly reference Cesium via window.Cesium
+          viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
           animationIdRef.current = requestAnimationFrame(rotateEarth);
         };
         rotateEarth();
@@ -139,8 +140,14 @@ const Globe = () => {
 
   // Initialize Cesium Viewer and handle rotation controls
   useEffect(() => {
+    // Ensure Cesium is loaded
+    if (!window.Cesium) {
+      console.error('Cesium.js is not loaded. Please check your script tags.');
+      return;
+    }
+
     // Set your Cesium Ion access token from environment variables
-    Cesium.Ion.defaultAccessToken = process.env.REACT_APP_CESIUM_ION_ACCESS_TOKEN;
+    window.Cesium.Ion.defaultAccessToken = process.env.REACT_APP_CESIUM_ION_ACCESS_TOKEN;
 
     // Listen for the 'fullscreenchange' event on the document
     document.addEventListener('fullscreenchange', handleFullScreenChange);
@@ -148,9 +155,9 @@ const Globe = () => {
     // Initialize Cesium Viewer if it doesn't exist yet
     if (globeRef.current && !viewerRef.current) {
       try {
-        viewerRef.current = new Cesium.Viewer(globeRef.current, {
-          terrainProvider: Cesium.createWorldTerrain(), // High-resolution terrain
-          imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }), // Example asset ID
+        viewerRef.current = new window.Cesium.Viewer(globeRef.current, {
+          terrainProvider: window.Cesium.createWorldTerrain(), // High-resolution terrain
+          imageryProvider: new window.Cesium.IonImageryProvider({ assetId: 2 }), // Example asset ID
           baseLayerPicker: false,
           geocoder: false,
           homeButton: false,
@@ -164,16 +171,22 @@ const Globe = () => {
           maximumRenderTimeChange: Infinity,
         });
 
+        // Check if the Viewer was successfully created
+        if (!viewerRef.current || !viewerRef.current.scene) {
+          console.error('Cesium Viewer was not initialized correctly.');
+          return;
+        }
+
         // Set initial camera view (New York coordinates as example)
         viewerRef.current.camera.setView({
-          destination: Cesium.Cartesian3.fromDegrees(
+          destination: window.Cesium.Cartesian3.fromDegrees(
             -74.0707383,
             40.7117244,
             10000000
           ),
           orientation: {
-            heading: Cesium.Math.toRadians(0),
-            pitch: Cesium.Math.toRadians(-90),
+            heading: window.Cesium.Math.toRadians(0),
+            pitch: window.Cesium.Math.toRadians(-90),
             roll: 0.0,
           },
         });
@@ -182,7 +195,7 @@ const Globe = () => {
         const rotateEarth = () => {
           const spinRate = 0.01;
           const delta = spinRate / 60; // 60 FPS assumption
-          viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
+          viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
           animationIdRef.current = requestAnimationFrame(rotateEarth);
         };
 
@@ -235,12 +248,18 @@ const Globe = () => {
         animationIdRef.current = null;
       }
     };
-  }, [language]); // Added 'language' as a dependency to refetch location info on language change
+  }, []); // Removed 'language' from dependencies to prevent re-initialization
+
+  // Log to verify Cesium and viewer initialization
+  useEffect(() => {
+    console.log('Viewer:', viewerRef.current);
+    console.log('Cesium:', window.Cesium);
+  }, []);
 
   // Use the custom hook to manage location info, passing the current language
   const { locationInfo, loading, error } = useLocationInfo(
     viewerRef.current,
-    Cesium,
+    window.Cesium, // Explicitly reference the global Cesium object
     reverseGeocode,
     language // Pass the selected language
   );

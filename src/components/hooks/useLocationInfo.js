@@ -1,13 +1,12 @@
 // src/hooks/useLocationInfo.js
 import { useState, useEffect, useRef } from 'react';
 import { debounce } from 'lodash';
-import PropTypes from 'prop-types';
 
 /**
  * Custom hook to manage location information based on Cesium camera movements.
  *
  * @param {Cesium.Viewer} viewer - The Cesium Viewer instance.
- * @param {object} Cesium - The Cesium library.
+ * @param {object} Cesium - The Cesium library accessed via window.Cesium.
  * @param {Function} reverseGeocode - Function to perform reverse geocoding.
  * @param {string} language - Language code ('en' for English, 'ko' for Korean).
  * @returns {Object} - Contains locationInfo, loading, and error states.
@@ -33,15 +32,59 @@ const useLocationInfo = (viewer, Cesium, reverseGeocode, language = 'en') => {
     handleCameraMoveEnd.current = debounce(async () => {
       setLoading(true);   // Start loading
       setError(null);     // Reset any previous errors
+
       const camera = viewer.camera;
-      const ellipsoid = viewer.scene.globe.ellipsoid;
+      const ellipsoid = viewer.scene?.globe?.ellipsoid;
+
+      // Safety checks to ensure camera and ellipsoid are defined
+      if (!camera || !ellipsoid) {
+        console.error('Camera or ellipsoid is not defined.');
+        setError('Camera or ellipsoid not available');
+        setLocationInfo({
+          longitude: 'Unknown',
+          latitude: 'Unknown',
+          height: 'Unknown',
+          zoomLevel: 'Unknown',
+          address: 'Unknown',
+        });
+        setLoading(false);
+        return;
+      }
 
       try {
         // Get the current camera position in cartesian coordinates
         const cartesian = camera.positionWC;
 
+        if (!cartesian) {
+          console.error('Camera position is undefined.');
+          setError('Camera position not available');
+          setLocationInfo({
+            longitude: 'Unknown',
+            latitude: 'Unknown',
+            height: 'Unknown',
+            zoomLevel: 'Unknown',
+            address: 'Unknown',
+          });
+          setLoading(false);
+          return;
+        }
+
         // Convert cartesian coordinates to cartographic (longitude, latitude, height)
         const cartographic = Cesium.Cartographic.fromCartesian(cartesian, ellipsoid);
+
+        if (!cartographic) {
+          console.error('Failed to convert cartesian to cartographic.');
+          setError('Conversion error');
+          setLocationInfo({
+            longitude: 'Unknown',
+            latitude: 'Unknown',
+            height: 'Unknown',
+            zoomLevel: 'Unknown',
+            address: 'Unknown',
+          });
+          setLoading(false);
+          return;
+        }
 
         // Convert radians to degrees and format to fixed decimal places
         const longitude = Cesium.Math.toDegrees(cartographic.longitude).toFixed(6);
@@ -76,10 +119,10 @@ const useLocationInfo = (viewer, Cesium, reverseGeocode, language = 'en') => {
         console.error('Reverse geocoding failed:', err);
         setError('Failed to fetch address');
         setLocationInfo({
-          longitude: locationInfo?.longitude || 'Unknown',
-          latitude: locationInfo?.latitude || 'Unknown',
-          height: locationInfo?.height || 'Unknown',
-          zoomLevel: locationInfo?.zoomLevel || 'Unknown',
+          longitude: 'Unknown',
+          latitude: 'Unknown',
+          height: 'Unknown',
+          zoomLevel: 'Unknown',
           address: 'Unknown',
         });
       } finally {
@@ -102,19 +145,6 @@ const useLocationInfo = (viewer, Cesium, reverseGeocode, language = 'en') => {
 
   // Return the location information, loading status, and any errors
   return { locationInfo, loading, error };
-};
-
-// Define PropTypes for type checking and better maintainability
-useLocationInfo.propTypes = {
-  viewer: PropTypes.object.isRequired,
-  Cesium: PropTypes.object.isRequired,
-  reverseGeocode: PropTypes.func.isRequired,
-  language: PropTypes.string, // Language code ('en' or 'ko')
-};
-
-// Define default props in case the language is not provided
-useLocationInfo.defaultProps = {
-  language: 'en',
 };
 
 export default useLocationInfo;
