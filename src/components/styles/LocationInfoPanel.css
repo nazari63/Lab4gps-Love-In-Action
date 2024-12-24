@@ -1,0 +1,61 @@
+/* src/components/Globe/LocationInfoPanel.css */
+
+/* Location Info Panel Styling */
+.location-info-panel {
+    position: absolute;
+    top: 90px; /* Increased top value for more spacing from rotation tabs */
+    right: 20px;
+    max-width: 250px; /* Maintained reduced max-width */
+    padding: 10px 15px; /* Maintained reduced padding */
+    background-color: var(--neutral-light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-body);
+    z-index: 1000; /* Ensure it stays above the globe */
+    transition: opacity var(--transition-speed), transform var(--transition-speed);
+  }
+  
+  /* Heading Styling */
+  .location-info-panel h2 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem; /* Reduced font size */
+    color: var(--primary-color);
+    margin-bottom: 8px;
+  }
+  
+  /* Paragraph Styling */
+  .location-info-panel p {
+    margin: 4px 0;
+    color: var(--neutral-dark);
+    font-size: 0.85rem; /* Reduced font size */
+  }
+  
+  /* Strong Text Styling */
+  .location-info-panel strong {
+    color: var(--primary-color);
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    color: red;
+    font-size: 0.85rem; /* Consistent font size */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .location-info-panel {
+      top: 80px; /* Adjusted to be below the controls on smaller screens */
+      right: 15px;
+      max-width: 90%;
+      padding: 8px 12px;
+    }
+  
+    .location-info-panel h2 {
+      font-size: 1rem;
+    }
+  
+    .location-info-panel p {
+      font-size: 0.8rem;
+    }
+  }
+  

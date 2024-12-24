@@ -7,12 +7,17 @@
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Explore the globe and solve real-time global issues with Lab4GPS." />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap" />
+    
     <!-- Cesium CSS from CDN for styling the globe widgets and tools -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/cesium/1.87.1/Widgets/widgets.css" rel="stylesheet">
+    
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
     <title>Lab4GPS: Love In Action</title>
+    
     <style>
         body {
             margin: 0;
@@ -21,13 +26,16 @@
             color: #333;
         }
     </style>
+    
+    <!-- Cesium JS from CDN for using the globe functionality -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/cesium/1.87.1/Cesium.js"></script>
+    
+    <!-- Analytics or additional scripts can be added here -->
+    <script defer src="https://example.com/js/analytics.js"></script>
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- Analytics or additional scripts can be added here -->
-    <script src="https://example.com/js/analytics.js"></script>
-    <!-- Cesium JS from CDN for using the globe functionality -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cesium/1.87.1/Cesium.js"></script>
+    <!-- React scripts are injected by Create React App after this point -->
 </body>
 </html>
