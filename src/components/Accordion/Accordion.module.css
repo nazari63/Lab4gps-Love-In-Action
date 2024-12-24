@@ -1,0 +1,74 @@
+/* Accordion.module.css */
+
+.accordionItem {
+  width: 100%;
+  border-bottom: 1px solid rgba(20, 30, 63, 0.1);
+  margin-bottom: 1rem;
+}
+
+/********************************************
+  HEADER (3 columns on desktop)
+*********************************************/
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Left Column: Title */
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Middle Column: The SAME description container
+   toggles between truncated & full style */
+.truncatedDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+
+  /* 2-line clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3rem;  /* ~2 lines at 1.5 line-height = 3rem */
+}
+
+.fullDescription {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+  /* no clamp, text is fully shown */
+}
+
+/* Right Column: Toggle Button */
+.toggleButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem; 
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/********************************************
+  MOBILE: Hide the truncated desc by default
+*********************************************/
+@media (max-width: 768px) {
+  .header {
+    grid-template-columns: 1fr auto; /* Title + icon only */
+  }
+
+  .truncatedDescription,
+  .fullDescription {
+    display: none; /* hidden on mobile in the header row */
+  }
+}

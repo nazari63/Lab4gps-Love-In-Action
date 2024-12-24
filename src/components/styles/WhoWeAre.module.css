@@ -1,452 +1,120 @@
-/* WHO WE ARE PAGE CSS */
+/*******************************************************
+  WRAPPER
+********************************************************/
+.whoWeAreWrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  font-family: 'Inter', sans-serif;
+  color: #000;
+}
 
-/* Container for the entire page */
-.whoweare {
-    position: relative;
-    width: 100%;
-    display: flex;
+/*******************************************************
+  TOP SECTION (Intro)
+********************************************************/
+.topSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+}
+
+.imageContainer {
+  flex: 1;
+}
+
+.introImage {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.introContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* optional: align items left or center for smaller screens */
+}
+
+.heading {
+  font-size: 2rem;       /* e.g. ~32px, minor third scale */
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+  margin: 0;
+}
+
+.introText {
+  font-size: 1rem;       /* ~16px base */
+  line-height: 1.5;
+  color: rgba(20, 30, 63, 0.7);
+  margin: 0;
+}
+
+.joinButton {
+  background-color: #367162;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: start;
+}
+
+.joinButton:hover {
+  background-color: #285a4d;
+}
+
+/*******************************************************
+  TEAM SECTION
+********************************************************/
+.teamSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 1.6rem; /* minor third scale from 2rem, e.g. ~1.6 */
+  font-weight: 700;
+  color: #367162;
+  margin: 0 auto;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/*******************************************************
+  RESPONSIVE MEDIA QUERIES
+********************************************************/
+@media (max-width: 768px) {
+  .topSection {
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 24px;
-    text-align: left;
-    font-size: 20px;
-    color: #000;
-    font-family: Inter, sans-serif;
   }
-  
-  /* Top section container */
-  .whoweare1 {
-    width: 1132px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 24px;
-    font-size: 31px;
-  }
-  
-  /* The icon replacing your large “Who We Are” image */
-  .a4a8d6c6650cjpgIcon {
-    /* Adjust icon size/color as desired */
-    font-size: 6rem; 
-    color: #143E5C;
-    border-radius: 20px;
-    position: relative;
-    /* If you want a background behind it, uncomment:
-       background-color: #f2f2f7;
-       padding: 20px;
-    */
-  }
-  
-  /* Container for the “Who We Are” text block */
-  .whoWeAreParent {
-    width: 386px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 12px 0px;
-    box-sizing: border-box;
-    gap: 10px;
-  }
-  
-  /* Headline text */
-  .whoWeAre {
-    position: relative;
-    line-height: 37.2px;
-  }
-  
-  /* The text paragraphs under “Who We Are” */
-  .weAreAContainer {
-    width: 558px;
-    position: relative;
-    display: flex;
+
+  .introContent {
     align-items: center;
-    font-size: 20px;
+    text-align: center;
   }
-  
-  .weAreAContainer1 {
-    width: 100%;
+
+  .joinButton {
+    align-self: center;
+    width: auto;
   }
-  
-  .weAreACommunityUnitedByT {
-    margin: 0;
-  }
-  
-  .blankLine {
-    margin: 0;
-    font-size: 16px;
-  }
-  
-  .weAreA {
-    line-height: 24px;
-  }
-  
-  .span1 {
-    font-size: 18px;
-  }
-  
-  .span {
-    line-height: 25.6px;
-  }
-  
-  /* “Join Us” button area */
-  .sposoorUsContainer {
-    align-self: stretch;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 16px;
-  }
-  
-  .sponsorButton {
-    border-radius: 8px;
-    background-color: rgba(20, 30, 63, 0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 41px;
-  }
-  
-  .joinUs {
-    position: relative;
-    line-height: 25.6px;
-  }
-  
-  /* OUR TEAM headline */
-  .ourTeam {
-    position: relative;
-    font-size: 25px;
-    line-height: 30px;
-    color: #367162;
-  }
-  
-  /* Card layout container for the “Our Team” boxes */
-  .frameParent {
-    width: 1132px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 0px 2px;
-    box-sizing: border-box;
-    gap: 16px;
-  }
-  
-  /* Each Card (like IWL Partners, GPS Startups, etc.) */
-  .frameGroup {
-    width: 528px;
-    border-radius: 12px;
-    background-color: rgba(20, 30, 63, 0.1);
-    height: 288px;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 31px 4px;
-    box-sizing: border-box;
-    gap: 18px;
-  }
-  
-  /* For the taller cards (Lab4GPS Operation Team, Shared Service Center) */
-  .frameParent2 {
-    width: 528px;
-    border-radius: 12px;
-    background-color: rgba(20, 30, 63, 0.1);
-    height: 327px;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 31px 4px;
-    box-sizing: border-box;
-    gap: 18px;
-  }
-  
-  /* White circle wrapper for each icon */
-  .mdipartnershipOutlineWrapper {
-    width: 62px;
-    border-radius: 100px;
-    background-color: #fff;
-    height: 62px;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 2px;
-    box-sizing: border-box;
-  }
-  
-  /* The icon in each card (e.g. FaHandshake, FaRocket, etc.) */
-  .mdipartnershipOutlineIcon {
-    width: 40px;
-    height: 40px;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    color: #143E3F; /* adjust as needed */
-  }
-  
-  /* Card headlines (IWL Partners, GPS Startups, etc.) */
-  .iwlPartners {
-    position: relative;
-    line-height: 24px;
-  }
-  
-  /* Card description text */
-  .asThePrimary {
-    width: 436px;
-    position: relative;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgba(20, 30, 63, 0.5);
-    display: flex;
-    align-items: center;
-  }
-  
-  .aTeamOf,
-  .expertsWhoAssist,
-  .individualsWhoManage,
-  .aFutureCenter {
-    width: 414px; /* or override individually */
-    position: relative;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgba(20, 30, 63, 0.5);
-    display: flex;
-    align-items: center;
-  }
-  
-  /* GLOBAL COMMUNITY */
-  .whoWeAre1 {
-    width: 1132px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0px 3px;
-    box-sizing: border-box;
-  }
-  
-  .globalCommunityParent {
-    height: 268px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0px 12px;
-    box-sizing: border-box;
-    gap: 24px;
-  }
-  
-  .imagesParent {
-    width: 1106px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 0px 14px 0px 0px;
-    box-sizing: border-box;
-    font-size: 16px;
-    color: rgba(20, 30, 63, 0.5);
-  }
-  
-  .imagesIcon {
-    width: 374px;
-    height: 212px;
-    position: relative;
-    object-fit: cover;
-  }
-  
-  .lab4gpsPartnersWith {
-    width: 621px;
-    position: relative;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  
-  /* INDIVIDUAL SOLUTIONISTS */
-  .whoWeAre2 {
-    width: 1132px;
-    border-radius: 10px;
-    background-color: #f2f2f7;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 8px 4px 0px;
-    box-sizing: border-box;
-    gap: 24px;
-  }
-  
-  /* Container positioning for “GPS Startups” and “Individuals” text + images */
-  .frameParent4 {
-    width: 1128px;
-    position: relative;
-    height: 382px;
-    font-size: 16px;
-  }
-  
-  /* Left side (GPS Startups + Individuals text) */
-  .gpsStartupsParent {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 627px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0px 14px;
-    box-sizing: border-box;
-    gap: 12px;
-  }
-  
-  .individuals {
-    position: relative;
-    line-height: 25.6px;
-    font-weight: 900;
-  }
-  
-  .lab4gpsPartnersWith1 {
-    width: 612px;
-    position: relative;
-    line-height: 25.6px;
-    font-weight: 900;
-    color: rgba(20, 30, 63, 0.5);
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Right side (decoration + image placeholder) */
-  .images {
-    position: absolute;
-    top: 0px;
-    left: 658px;
-    width: 470px;
-    height: 353px;
-    font-size: 40px;
-    color: #fff;
-  }
-  
-  .decorationIcon {
-    position: absolute;
-    top: 29px;
-    left: 0px;
-    width: 210px;
-    height: 210px;
-    object-fit: cover;
-  }
-  
-  .holderImage {
-    position: absolute;
-    top: calc(50% - 161.5px);
-    left: calc(50% - 170px);
-    border-radius: 12px;
-    background-color: rgba(20, 30, 63, 0.2);
-    width: 392px;
-    height: 324px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 89px;
-    box-sizing: border-box;
-  }
-  
-  /* STAKEHOLDERS AND INVESTORS */
-  .whoWeAre3 {
-    width: 1132px;
-    height: 331px;
-    overflow: hidden;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0px 4px;
-    box-sizing: border-box;
-    gap: 85px;
-    font-size: 40px;
-    color: #fff;
-  }
-  
-  .images1 {
-    width: 416px;
-    position: relative;
-    height: 301px;
-  }
-  
-  .decorationIcon1 {
-    position: absolute;
-    top: 0.21px;
-    left: 189px;
-    width: 194px;
-    height: 194px;
-    object-fit: cover;
-  }
-  
-  .holderImage1 {
-    position: absolute;
-    top: 0px;
-    left: -6px;
-    border-radius: 12px;
-    background-color: rgba(20, 30, 63, 0.2);
-    width: 326px;
-    height: 301px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 89px;
-    box-sizing: border-box;
-  }
-  
-  .stakeholdersAndInvestorsParent {
-    width: 627px;
-    height: 301px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0px 14px;
-    box-sizing: border-box;
-    gap: 30px;
-    font-size: 20px;
-    color: #000;
-  }
-  
-  .weServeStakeholders {
-    width: 612px;
-    position: relative;
-    font-size: 16px;
-    line-height: 25.6px;
-    color: rgba(20, 30, 63, 0.5);
-    display: flex;
-    align-items: center;
-  }
-  
-  /* RESET / BASE STYLES */
-  body {
-    margin: 0;
-    line-height: normal;
-  }
-  
+}

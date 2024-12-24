@@ -7,7 +7,6 @@ const Globe = () => {
   const globeRef = useRef(null);
   const viewerRef = useRef(null);
   const animationIdRef = useRef(null);
-
   // Use the global language context to determine if text should be English or Korean
   const { language } = useLang();
 
@@ -106,10 +105,12 @@ const Globe = () => {
 
         // Continuous rotation
         const rotateEarth = () => {
-          const spinRate = 0.05;
-          const delta = spinRate / 60; // 60 FPS assumption
-          viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
-          animationIdRef.current = requestAnimationFrame(rotateEarth);
+          if (viewerRef.current && viewerRef.current.scene) {
+            const spinRate = 0.05;
+            const delta = spinRate / 60;
+            viewerRef.current.scene.camera.rotate(Cesium.Cartesian3.UNIT_Z, -delta);
+            animationIdRef.current = requestAnimationFrame(rotateEarth);
+          }
         };
 
         rotateEarth(); // Start rotation immediately

@@ -38,6 +38,72 @@
     "homePage": {
       "introParagraph": "Explore real-time global problems on our interactive globe and join our mission to spread love by solving one another's problems, inspired by Jesus's teachings of love. \"A new command I give you: Love one another. As I have loved you, so you must love one another.\" - John 13:34. A simple click on the blinking beacon \"problem alert\" on the globe not only zooms into the precise longitude and latitude of the specific place but also provides detailed information about the specific problem and location, down to the neighborhood experiencing the crisis.",
       "solutionsLink": "Discover innovative solutions addressing global problems."
+    },
+    "about": {
+    "pageTitle": "About Us",
+    "purposeTitle": "Our Purpose",
+    "purposeText": {
+      "part1": "Lab4GPS is a community dedicated to bringing innovation to local and global communities through education, research, and practice.",
+      "part2": "We transform the resolution of global problems into a scalable and sustainable business model,",
+      "part3": "enabling individuals to joyfully engage in altruistic endeavors."
+    },
+    "sloganSection": {
+      "title": "Slogan",
+      "slogan1": {
+        "title": "We solve global problems for others",
+        "description": "We Solve Global Problems for Others: Under the slogan \"We solve global problems for others,\" Lab4GPS is dedicated to addressing various global issues. Our goal is not just to solve problems but to contribute to creating a better world."
+      },
+      "slogan2": {
+        "title": "Love In Action",
+        "description": "\"Love in action\" is the principle at the heart of all activities"
+      },
+      "slogan3": {
+        "title": "Business As Love",
+        "description": "\"Business as love\" summarizes the business philosophy of Lab4GPS. We view business not just as a pursuit of profit but as a means of practicing love."
+      }
+    },
+    "imagePlaceholder": "Image",
+    "whoWeAre": "Who We Are",
+    "whoWeAreDescription": {
+      "part1": "We are a community united by the mission to solve global challenges through education, research, and action.",
+      "part2": "Guided by the belief that \"Helping others is love in action,\" we combine individual expertise and strengths to achieve together what no one can accomplish alone."
+    },
+    "joinUs": "Join Us",
+    "ourTeam": "Our Team",
+    "team": {
+      "iwlPartners": "IWL Partners",
+      "iwlPartnersTitle": "IWL Partners",
+      "iwlPartnersDescription": "As the primary sponsors of Lab4GPS, they provide the financial support necessary for our research and innovation projects. They support GPS in developing sustainable solutions and offer strategic direction for global problem-solving.",
+      "gpsStartups": "GPS Startups",
+      "gpsStartupsTitle": "GPS Startups",
+      "gpsStartupsDescription": "Purpose-driven companies founded by GPS who discover the secrets to solving the world's problems and transform them into business models. They lead the way in developing innovative and sustainable solutions to address social issues.",
+      "gpsPD": "GPS PD (Program Developer)",
+      "gpsPDTitle": "GPS PD (Program Developer)",
+      "gpsPDDescription": "A team of experts who develop GPS programs and train GPS. They design educational programs and training courses to help GPS acquire the necessary skills and knowledge.",
+      "gpsSpecialist": "GPS Specialist",
+      "gpsSpecialistTitle": "GPS Specialist",
+      "gpsSpecialistDescription": "Experts who assist GPS Startups and Lab4GPS members by leveraging their Purpose-Specific Skill Sets. They provide technical and strategic support needed for GPS to achieve their goals, based on diverse expertise.",
+      "operationTeam": "Lab4GPS Operation Team",
+      "operationTeamTitle": "Lab4GPS Operation Team",
+      "operationTeamDescription": "Individuals who manage Lab4GPS through tasks such as organizational operations, human resources, space provision, channel expansion, toolbox installation, and digital transformation. They create an efficient work environment to ensure optimal performance from all team members.",
+      "sharedServiceCenter": "Shared Service Center",
+      "sharedServiceCenterTitle": "Shared Service Center",
+      "sharedServiceCenterDescription": "A future center that will provide specialized services such as startup incubation, legal services, and accounting services to Lab4GPS members. By offering highly specialized services, it helps GPS grow and make a greater impact."
+    },
+    "whoWeServe": "Who We Serve",
+    "serve": {
+      "globalCommunity": "Global Community",
+      "globalCommunityDescription": "Lab4GPS partners with GPS professionals worldwide to address global challenges effectively. This diverse network brings together expertise and innovation, creating sustainable solutions across regions. By sharing knowledge and resources, the GPS network fosters collaboration and solidarity, amplifying its collective impact.",
+      "individualSolutionists": "Individual Solutionists",
+      "individualSolutionistsDescription": "Lab4GPS partners with GPS professionals worldwide to address global challenges effectively. This diverse network brings together expertise and innovation, creating sustainable solutions across regions. By sharing knowledge and resources, the GPS network fosters collaboration and solidarity, amplifying its collective impact.",
+      "stakeholdersAndInvestors": "Stakeholders and Investors",
+      "stakeholdersAndInvestorsDescription": "We serve stakeholders and investors who resonate with our vision and goals and wish to invest their time and resources with love. They not only provide financial support but also strategic advice and networks to ensure successful global problem-solving."
     }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Sorry, the page you're looking for doesn't exist.",
+    "goHome": "Go to Home"
+  }
   }
   

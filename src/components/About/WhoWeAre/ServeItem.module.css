@@ -1,0 +1,43 @@
+/* src/components/ServeItem/ServeItem.module.css */
+
+.serveItem {
+    background-color: #e8f5e9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .serveItem:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #367162;
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .description {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgba(20, 30, 63, 0.7);
+    text-align: center;
+  }
+  

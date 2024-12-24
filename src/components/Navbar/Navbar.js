@@ -1,18 +1,20 @@
+// src/components/Navbar/Navbar.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/Navbar.css';
+import { Link, useLocation } from 'react-router-dom';
+import '../../components/styles/Navbar.css';
 import logo from '../../assets/images/Lab4GPS_Logo_2024-1.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 // Import your language context hook
-import { useLang } from '../Context/LangContext';
+import { useLang } from '../../components/Context/LangContext';
 
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
 
   // Access the global language state and updater
   const { language, changeLanguage, t } = useLang();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,20 +37,22 @@ const Navbar = () => {
 
       <ul className="nav-links">
         <li className="nav-item">
-          <Link to="/" className="nav-link">
+          <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>
             {t("navbar.home")}
           </Link>
         </li>
 
         <li className="nav-item">
           <div className="dropdown">
-            <button className="dropbtn">{t("navbar.about")}</button>
+            <button className="dropbtn">
+              {t("navbar.about")} <FontAwesomeIcon icon={faCaretDown} />
+            </button>
             <div className="dropdown-content">
-              <Link to="/why">{t("navbar.aboutPurpose")}</Link>
-              <Link to="/who">{t("navbar.aboutMission")}</Link>
-              <Link to="/what">{t("navbar.aboutVision")}</Link>
-              <Link to="/where">{t("navbar.aboutCoreValues")}</Link>
-              <Link to="/how">{t("navbar.aboutWhoWeAre")}</Link>
+              <Link to="/about/purpose">{t("navbar.aboutPurpose")}</Link>
+              <Link to="/about/mission">{t("navbar.aboutMission")}</Link>
+              <Link to="/about/vision">{t("navbar.aboutVision")}</Link>
+              <Link to="/about/corevalues">{t("navbar.aboutCoreValues")}</Link>
+              <Link to="/about/whoweare">{t("navbar.aboutWhoWeAre")}</Link>
             </div>
           </div>
         </li>

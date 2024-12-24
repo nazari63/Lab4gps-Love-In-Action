@@ -1,0 +1,77 @@
+.accordionContainer {
+    width: 100%;
+    border-bottom: 1px solid rgba(20, 30, 63, 0.1);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* Header row: Title on left, +/- button on right */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer; /* so user sees clickable area */
+  }
+  
+  .title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  /* +/- Button on the right */
+  .toggleButton {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #000;
+    transition: transform 0.3s ease;
+  }
+  
+  .toggleButton:focus {
+    outline: 2px dashed #ccc; /* or whatever focus style you want */
+  }
+  
+  /*************************************************
+    Description (in the same column)
+  **************************************************/
+  .closedDescription {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+    margin-top: 0.5rem;
+  
+    /* 2-line clamp: */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem; /* ~2 lines (1.5 line-height x 2 lines = 3rem) */
+  }
+  
+  .openDescription {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #444;
+    margin-top: 0.5rem;
+    /* No clamp, fully visible */
+  }
+  
+  /*************************************************
+    Mobile / Smaller Screens
+  **************************************************/
+  @media (max-width: 768px) {
+    .title {
+      font-size: 1.1rem;
+    }
+  
+    .toggleButton {
+      font-size: 1.1rem;
+    }
+  }
+  

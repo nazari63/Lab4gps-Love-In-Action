@@ -38,6 +38,72 @@
     "homePage": {
       "introParagraph": "인터랙티브 지구본에서 실시간 글로벌 문제를 살펴보고, 서로의 문제를 사랑으로 해결하자는 사명에 동참하세요. 예수님의 사랑 가르침에서 영감을 받은 이 메시지: \"새 계명을 너희에게 주노니 서로 사랑하라. 내가 너희를 사랑한 것 같이 너희도 서로 사랑하라.\" (요한복음 13:34)을 실천합시다. 지구본에 깜박이는 \"문제 알림\"에 간단히 클릭하면 해당 장소의 위도와 경도로 확대될 뿐 아니라, 위기에 처한 지역과 구체적인 문제에 대한 자세한 정보를 볼 수 있습니다.",
       "solutionsLink": "글로벌 문제에 대응하는 혁신적인 해결책을 만나보세요."
+    },
+    "about": {
+      "pageTitle": "소개",
+      "purposeTitle": "우리의 목적",
+      "purposeText": {
+        "part1": "Lab4GPS는 교육, 연구 및 실천을 통해 지역 및 글로벌 커뮤니티에 혁신을 가져오는 데 전념하는 커뮤니티입니다.",
+        "part2": "우리는 글로벌 문제 해결을 확장 가능하고 지속 가능한 비즈니스 모델로 전환하고,",
+        "part3": "개인이 기쁘게 이타적 노력에 참여할 수 있도록 합니다."
+      },
+      "sloganSection": {
+        "title": "슬로건",
+        "slogan1": {
+          "title": "우리는 다른 사람들을 위해 글로벌 문제를 해결합니다",
+          "description": "\"우리는 다른 사람들을 위해 글로벌 문제를 해결합니다\"라는 슬로건 아래,"
+        },
+        "slogan2": {
+          "title": "행동으로서의 사랑",
+          "description": "\"행동으로서의 사랑\"은 모든 활동의 핵심 원칙입니다."
+        },
+        "slogan3": {
+          "title": "사랑으로서의 비즈니스",
+          "description": "\"사랑으로서의 비즈니스\"는 Lab4GPS의 비즈니스 철학을 요약합니다. 우리는 비즈니스를 단순히 이익 추구가 아니라 사랑을 실천하는 수단으로 봅니다."
+        }
+      },
+    "imagePlaceholder": "이미지",
+    "whoWeAre": "Who We Are",
+    "whoWeAreDescription": {
+      "part1": "우리는 교육, 연구 및 실천을 통해 글로벌 도전을 해결하는 사명을 공유하는 커뮤니티입니다.",
+      "part2": "\"다른 사람을 돕는 것은 행동으로서의 사랑\"이라는 신념을 바탕으로, 우리는 개별적인 전문 지식과 강점을 결합하여 혼자서는 이룰 수 없는 것을 함께 성취합니다."
+    },
+    "joinUs": "Join Us",
+    "ourTeam": "Our Team",
+    "team": {
+      "iwlPartners": "IWL 파트너",
+      "iwlPartnersTitle": "IWL 파트너",
+      "iwlPartnersDescription": "Lab4GPS의 주요 후원자로서, 그들은 우리의 연구 및 혁신 프로젝트에 필요한 재정적 지원을 제공합니다. 그들은 GPS가 지속 가능한 솔루션을 개발하도록 지원하고 글로벌 문제 해결을 위한 전략적 방향을 제공합니다.",
+      "gpsStartups": "GPS 스타트업",
+      "gpsStartupsTitle": "GPS 스타트업",
+      "gpsStartupsDescription": "GPS가 세계 문제를 해결하는 비밀을 발견하고 이를 비즈니스 모델로 전환한 목적 지향적인 기업입니다. 그들은 사회 문제를 해결하기 위해 혁신적이고 지속 가능한 솔루션을 개발하는 데 앞장섭니다.",
+      "gpsPD": "GPS PD (프로그램 개발자)",
+      "gpsPDTitle": "GPS PD (프로그램 개발자)",
+      "gpsPDDescription": "GPS 프로그램을 개발하고 GPS를 교육하는 전문가 팀입니다. 그들은 GPS가 필요한 기술과 지식을 습득할 수 있도록 교육 프로그램과 훈련 과정을 설계합니다.",
+      "gpsSpecialist": "GPS 전문가",
+      "gpsSpecialistTitle": "GPS 전문가",
+      "gpsSpecialistDescription": "목적별 전문 기술을 활용하여 GPS 스타트업과 Lab4GPS 구성원을 지원하는 전문가들입니다. 그들은 다양한 전문 지식을 바탕으로 GPS가 목표를 달성하는 데 필요한 기술적 및 전략적 지원을 제공합니다.",
+      "operationTeam": "Lab4GPS 운영 팀",
+      "operationTeamTitle": "Lab4GPS 운영 팀",
+      "operationTeamDescription": "조직 운영, 인사, 공간 제공, 채널 확장, 도구 상자 설치 및 디지털 전환과 같은 업무를 통해 Lab4GPS를 관리하는 개인들입니다. 그들은 모든 팀 구성원의 최적의 성과를 보장하기 위해 효율적인 작업 환경을 만듭니다.",
+      "sharedServiceCenter": "공유 서비스 센터",
+      "sharedServiceCenterTitle": "공유 서비스 센터",
+      "sharedServiceCenterDescription": "Lab4GPS 구성원에게 스타트업 인큐베이션, 법률 서비스 및 회계 서비스와 같은 전문화된 서비스를 제공할 미래 센터입니다. 높은 전문성을 갖춘 서비스를 제공함으로써 GPS가 성장하고 더 큰 영향을 미칠 수 있도록 돕습니다."
+    },
+    "whoWeServe": "우리가 섬기는 대상",
+    "serve": {
+      "globalCommunity": "글로벌 커뮤니티",
+      "globalCommunityDescription": "Lab4GPS는 GPS 전문가들과 전 세계적으로 파트너십을 맺어 글로벌 도전을 효과적으로 해결합니다. 이 다양한 네트워크는 전문 지식과 혁신을 결합하여 지역 전반에 걸친 지속 가능한 솔루션을 창출합니다. 지식과 자원을 공유함으로써 GPS 네트워크는 협업과 연대를 촉진하여 그들의 집단적 영향을 확대합니다.",
+      "individualSolutionists": "개인 솔루셔니스트",
+      "individualSolutionistsDescription": "Lab4GPS는 GPS 전문가들과 전 세계적으로 파트너십을 맺어 글로벌 도전을 효과적으로 해결합니다. 이 다양한 네트워크는 전문 지식과 혁신을 결합하여 지역 전반에 걸친 지속 가능한 솔루션을 창출합니다. 지식과 자원을 공유함으로써 GPS 네트워크는 협업과 연대를 촉진하여 그들의 집단적 영향을 확대합니다.",
+      "stakeholdersAndInvestors": "이해관계자 및 투자자",
+      "stakeholdersAndInvestorsDescription": "우리는 우리의 비전과 목표에 공감하고 사랑을 담아 시간과 자원을 투자하고자 하는 이해관계자 및 투자자들을 섬깁니다. 그들은 단순히 재정적 지원을 제공하는 것뿐만 아니라 성공적인 글로벌 문제 해결을 보장하기 위해 전략적 조언과 네트워크도 제공합니다."
+    }
+  },
+    "notFound": {
+      "title": "페이지를 찾을 수 없습니다",
+      "message": "죄송합니다. 찾으시는 페이지가 존재하지 않습니다.",
+      "goHome": "홈으로 이동"
     }
   }
   
