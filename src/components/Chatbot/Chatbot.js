@@ -21,7 +21,10 @@ const Chatbot = () => {
                 switch_to_human: "Switched to Human Support. How can we assist you?",
                 switch_to_ai: "Switched to AI Support. How can I assist you today?",
                 navigation_assistance: "Sure! I can help you navigate. Here are some sections you might be interested in:\n- Introduction to Lab4GPS\n- Collaboration Hub\n- Sponsorship Opportunities\n- Contact Us\nPlease type the name of the section you'd like to visit.",
-                faq_intro: "Here are some frequently asked questions. Please select a question by typing its number:\n1. What is Lab4GPS?\n2. How can I support Lab4GPS initiatives?\n3. What are GPS Projects and Start-ups?"
+                faq_intro: "Here are some frequently asked questions. Please select a question by clicking on it below.",
+                invalid_faq: "Invalid question number. Please try again.",
+                unknown_response: "I'm not sure how to respond to that. Would you like to connect with a human support agent?",
+                back_to_chat: "Back to Chat"
             }
         },
         ko: {
@@ -31,7 +34,10 @@ const Chatbot = () => {
                 switch_to_human: "인간 지원으로 전환되었습니다. 어떻게 도와드릴까요?",
                 switch_to_ai: "AI 지원으로 전환되었습니다. 오늘 무엇을 도와드릴까요?",
                 navigation_assistance: "물론이죠! 네비게이션을 도와드릴 수 있습니다. 관심 있는 섹션은 다음과 같습니다:\n- Lab4GPS 소개\n- 협업 허브\n- 후원 기회\n- 연락처\n방문하고 싶은 섹션의 이름을 입력해주세요.",
-                faq_intro: "여기 자주 묻는 질문들이 있습니다. 번호를 입력하여 질문을 선택해주세요:\n1. Lab4GPS는 무엇인가요?\n2. Lab4GPS의 이니셔티브를 어떻게 지원할 수 있나요?\n3. GPS 프로젝트와 스타트업은 무엇인가요?"
+                faq_intro: "여기 자주 묻는 질문들이 있습니다. 아래에서 클릭하여 질문을 선택해주세요.",
+                invalid_faq: "잘못된 질문 번호입니다. 다시 시도해주세요.",
+                unknown_response: "그에 어떻게 응답해야 할지 모르겠습니다. 인간 지원 담당자와 연결하시겠습니까?",
+                back_to_chat: "챗으로 돌아가기"
             }
         }
     };
@@ -42,11 +48,13 @@ const Chatbot = () => {
         let result = translations[language];
 
         for (const key of keys) {
+            if (result[key] === undefined) {
+                return path; // Fallback to the key path if translation is missing
+            }
             result = result[key];
-            if (!result) break;
         }
 
-        return result || path;
+        return result;
     };
 
     // State management
@@ -57,7 +65,8 @@ const Chatbot = () => {
     ]);
     const [userInput, setUserInput] = useState('');
     const [chatbotSize, setChatbotSize] = useState({ width: 350, height: 500 });
-    const [showingFAQ, setShowingFAQ] = useState(false);
+    const [isFAQMode, setIsFAQMode] = useState(false); // New state for FAQ mode
+    const [openFAQs, setOpenFAQs] = useState([]); // Tracks which FAQs are open
     const messageEndRef = useRef(null);
     const inactivityTimerRef = useRef(null);
 
@@ -74,16 +83,22 @@ const Chatbot = () => {
 
     // Scroll to the bottom of messages container every time messages update
     useEffect(() => {
-        messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+        if (!isFAQMode) { // Only scroll when not in FAQ mode
+            messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [messages, isFAQMode]);
 
     // Proactive assistance and event reminders
     useEffect(() => {
-        if (isAI && isOpen) {
+        if (isAI && isOpen && !isFAQMode) { // Only schedule if not in FAQ mode
             scheduleReminders();
             sendEventReminders();
         }
-    }, [isAI, isOpen, language]);
+        // Cleanup timers when dependencies change
+        return () => {
+            clearInactivityTimer();
+        };
+    }, [isAI, isOpen, language, isFAQMode]);
 
     // Schedule proactive assistance after 30 seconds of inactivity
     const scheduleReminders = () => {
@@ -111,6 +126,8 @@ const Chatbot = () => {
             resetInactivityTimer();
         } else {
             clearInactivityTimer();
+            setIsFAQMode(false); // Exit FAQ mode when closing chat
+            setOpenFAQs([]); // Reset open FAQs
         }
     };
 
@@ -163,30 +180,47 @@ const Chatbot = () => {
         }
         // Show FAQs
         else if (lowerInput === "faq" || lowerInput === "frequently asked questions") {
-            response = t('chatbot.faq_intro');
+            enterFAQMode();
+            return; // Exit the function to prevent sending a bot message
         }
         // Handle FAQ selection
-        else if (showingFAQ && !isNaN(parseInt(input))) {
+        else if (isFAQMode && !isNaN(parseInt(input))) {
             const faqIndex = parseInt(input) - 1;
             if (faqs[faqIndex]) {
-                const answer = faqs[faqIndex].answer[language];
-                response = answer;
-                setShowingFAQ(false);
+                toggleFAQ(faqIndex); // Corrected from 'index' to 'faqIndex'
             } else {
-                response = language === 'en'
-                    ? "Invalid question number. Please try again."
-                    : "잘못된 질문 번호입니다. 다시 시도해주세요.";
+                response = t('chatbot.invalid_faq');
+                sendMessage(response, true);
             }
         }
         else {
-            response = language === 'en'
-                ? `I'm not sure how to respond to that. Would you like to connect with a human support agent?`
-                : `그에 어떻게 응답해야 할지 모르겠습니다. 인간 지원 담당자와 연결하시겠습니까?`;
+            response = t('chatbot.unknown_response');
         }
 
-        setTimeout(() => {
-            sendMessage(response, true);
-        }, 1500); // Simulate a delay for bot response
+        if (response) {
+            setTimeout(() => {
+                sendMessage(response, true);
+            }, 1500); // Simulate a delay for bot response
+        }
+    };
+
+    // Function to enter FAQ mode
+    const enterFAQMode = () => {
+        setIsFAQMode(true);
+        setMessages([]); // Clear existing messages
+        setOpenFAQs([]); // Reset open FAQs
+        // No need to send a bot message since only FAQs are displayed
+    };
+
+    // Function to toggle FAQ answer visibility
+    const toggleFAQ = (index) => {
+        if (openFAQs.includes(index)) {
+            // If already open, close it
+            setOpenFAQs(openFAQs.filter(i => i !== index));
+        } else {
+            // Open the selected FAQ
+            setOpenFAQs([...openFAQs, index]);
+        }
     };
 
     // Function to get personalized recommendations based on user interest
@@ -282,14 +316,17 @@ const Chatbot = () => {
         }
     };
 
-    // Removed handleLanguageChange function since language switching is handled externally
-
     // Handle selecting a FAQ question
     const handleSelectFAQ = (index) => {
-        const answer = faqs[index].answer[language];
-        sendMessage(faqs[index].question[language], false); // User selects question
-        sendMessage(answer, true); // Bot provides answer
-        setShowingFAQ(false);
+        toggleFAQ(index);
+    };
+
+    // Handle exiting FAQ mode
+    const exitFAQMode = () => {
+        setIsFAQMode(false);
+        // Optionally, send a greeting message when exiting FAQ mode
+        sendMessage(t('chatbot.greeting'), true);
+        resetInactivityTimer();
     };
 
     // Reset inactivity timer
@@ -396,7 +433,7 @@ const Chatbot = () => {
                         </div>
 
                         {/* Removed Language Toggle Button */}
-                        {/* 
+                        {/*
                         <button
                             onClick={handleLanguageChange}
                             className="language-toggle"
@@ -407,77 +444,98 @@ const Chatbot = () => {
                         */}
                     </div>
 
-                    {/* Chat Messages */}
-                    <div className="chatbot-messages">
-                        {messages.map((message, index) => (
-                            <div
-                                key={index}
-                                className={`message ${message.isBot ? 'bot' : 'user'}`}
-                            >
-                                {message.text.split('\n').map((str, i) => (
-                                    <React.Fragment key={i}>
-                                        {str}
-                                        <br />
-                                    </React.Fragment>
+                    {/* Chat Messages or FAQs */}
+                    {!isFAQMode ? (
+                        <>
+                            {/* Chat Messages */}
+                            <div className="chatbot-messages">
+                                {messages.map((message, index) => (
+                                    <div
+                                        key={index}
+                                        className={`message ${message.isBot ? 'bot' : 'user'}`}
+                                    >
+                                        {message.text.split('\n').map((str, i) => (
+                                            <React.Fragment key={i}>
+                                                {str}
+                                                <br />
+                                            </React.Fragment>
+                                        ))}
+                                    </div>
+                                ))}
+                                <div ref={messageEndRef} />
+                            </div>
+
+                            {/* Chat Input */}
+                            <div className="chatbot-input">
+                                <input
+                                    type="text"
+                                    value={userInput}
+                                    onChange={handleUserInput}
+                                    onKeyPress={handleKeyPress}
+                                    placeholder={
+                                        language === 'en'
+                                            ? isAI ? "Type here to chat with AI..." : "Type here to chat with support..."
+                                            : isAI ? "AI와 채팅하려면 여기에 입력하세요..." : "지원과 채팅하려면 여기에 입력하세요..."
+                                    }
+                                    aria-label={language === 'en' ? "Chat input" : "채팅 입력"}
+                                />
+                                <button
+                                    onClick={handleSend}
+                                    disabled={!userInput.trim()}
+                                    aria-label={language === 'en' ? "Send Message" : "메시지 보내기"}
+                                >
+                                    <FiSend size={18} />
+                                </button>
+                            </div>
+
+                            {/* FAQ Trigger Button */}
+                            <div className="faq-trigger">
+                                <button
+                                    onClick={() => enterFAQMode()}
+                                    className="faq-button"
+                                    aria-label={language === 'en' ? "View FAQs" : "FAQ 보기"}
+                                >
+                                    {language === 'en' ? "View FAQs" : "FAQ 보기"}
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        /* FAQ Mode Interface */
+                        <div className="faq-mode">
+                            <h2>{language === 'en' ? "Frequently Asked Questions" : "자주 묻는 질문"}</h2>
+                            <div className="faq-list">
+                                {faqs.map((faq, index) => (
+                                    <div key={index} className="faq-item">
+                                        <button
+                                            className="faq-question"
+                                            onClick={() => toggleFAQ(index)}
+                                            aria-label={faq.question[language]}
+                                        >
+                                            {index + 1}. {faq.question[language]}
+                                        </button>
+                                        {openFAQs.includes(index) && (
+                                            <div className="faq-answer">
+                                                {faq.answer[language]}
+                                            </div>
+                                        )}
+                                    </div>
                                 ))}
                             </div>
-                        ))}
-                        <div ref={messageEndRef} />
-                    </div>
-
-                    {/* Display FAQ Section */}
-                    {showingFAQ && (
-                        <div className="faq-section">
-                            {faqs.map((faq, index) => (
-                                <button
-                                    key={index}
-                                    className="faq-question"
-                                    onClick={() => handleSelectFAQ(index)}
-                                    aria-label={faq.question[language]}
-                                >
-                                    {faq.question[language]}
-                                </button>
-                            ))}
+                            {/* Back to Chat Button */}
+                            <button
+                                onClick={exitFAQMode}
+                                className="back-to-chat-button"
+                                aria-label={language === 'en' ? "Back to Chat" : "챗으로 돌아가기"}
+                            >
+                                {t('chatbot.back_to_chat')}
+                            </button>
                         </div>
                     )}
-
-                    {/* Chat Input */}
-                    <div className="chatbot-input">
-                        <input
-                            type="text"
-                            value={userInput}
-                            onChange={handleUserInput}
-                            onKeyPress={handleKeyPress}
-                            placeholder={
-                                language === 'en'
-                                    ? isAI ? "Type here to chat with AI..." : "Type here to chat with support..."
-                                    : isAI ? "AI와 채팅하려면 여기에 입력하세요..." : "지원과 채팅하려면 여기에 입력하세요..."
-                            }
-                            aria-label={language === 'en' ? "Chat input" : "채팅 입력"}
-                        />
-                        <button
-                            onClick={handleSend}
-                            disabled={!userInput.trim()}
-                            aria-label={language === 'en' ? "Send Message" : "메시지 보내기"}
-                        >
-                            <FiSend size={18} />
-                        </button>
-                    </div>
-
-                    {/* FAQ Trigger Button */}
-                    <div className="faq-trigger">
-                        <button
-                            onClick={() => setShowingFAQ(true)}
-                            className="faq-button"
-                            aria-label={language === 'en' ? "View FAQs" : "FAQ 보기"}
-                        >
-                            {language === 'en' ? "View FAQs" : "FAQ 보기"}
-                        </button>
-                    </div>
                 </div>
             )}
         </div>
     );
+
 };
 
 export default Chatbot;
