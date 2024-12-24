@@ -1,0 +1,240 @@
+/* src/components/HomeMenu.css */
+
+/* ===========================================================
+   RESET & BASE STYLES
+   =========================================================== */
+
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* ===========================================================
+     NAVIGATION BAR STYLING
+     =========================================================== */
+  
+  /* Container for the navigation menu */
+  .home-menu {
+    position: absolute; /* Position over the globe */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    backdrop-filter: blur(8px); /* Blur effect for background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    z-index: 1000; /* Ensure it stays above the globe */
+    padding: 10px 15px; /* Inner spacing */
+    display: flex; /* Flex layout */
+    align-items: center; /* Vertically center items */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  }
+  
+  /* ===========================================================
+     MENU BUTTON STYLING
+     =========================================================== */
+  
+  /* Container for Menu label and toggle button */
+  .menu-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  /* "Menu" Label Styling */
+  .menu-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-right: 10px; /* Space between label and hamburger */
+    user-select: none; /* Prevent text selection */
+  }
+  
+  /* ===========================================================
+     HAMBURGER TOGGLE BUTTON STYLING
+     =========================================================== */
+  
+  /* Hamburger toggle button */
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1001; /* Ensure it stays above the dropdown */
+  }
+  
+  /* Hamburger lines */
+  .hamburger {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hamburger active state (cross icon) */
+  .hamburger.active:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  
+  .hamburger.active:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+  
+  /* ===========================================================
+     MENU LIST STYLING
+     =========================================================== */
+  
+  /* Unordered list containing menu items */
+  .menu-list {
+    list-style: none; /* Remove default list styling */
+    position: absolute;
+    top: 50px; /* Position below the menu button */
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    width: 200px; /* Fixed width */
+    display: none; /* Hidden by default */
+    flex-direction: column; /* Vertical layout */
+    padding: 10px 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+    max-height: 0; /* Hide the menu */
+    opacity: 0;
+  }
+  
+  /* Show menu when active */
+  .menu-list.active {
+    display: flex; /* Show the menu */
+    max-height: 1000px; /* Arbitrary high value for transition */
+    opacity: 1;
+  }
+  
+  /* Individual menu items */
+  .menu-item a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Default text color */
+    font-size: 16px; /* Base font size */
+    font-weight: 500; /* Medium weight */
+    padding: 10px 20px; /* Increase touch area */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Hover effect for menu links */
+  .menu-item a:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+    color: #007BFF; /* Accent color on hover */
+  }
+  
+  /* Active link styling */
+  .active-link {
+    color: #007BFF; /* Accent color for active link */
+    background-color: #e6f0ff; /* Light blue background for active link */
+  }
+  
+  /* ===========================================================
+     RESPONSIVE DESIGN FOR SMALL SCREENS
+     =========================================================== */
+  
+  /* Adjust styles for screens 768px wide and below */
+  @media (max-width: 768px) {
+    .home-menu {
+      top: 10px; /* Reduce top spacing */
+      left: 10px; /* Reduce left spacing */
+      padding: 8px 12px; /* Adjust padding */
+    }
+  
+    /* Adjust hamburger toggle size */
+    .menu-toggle {
+      width: 20px;
+      height: 15px;
+    }
+  
+    /* Adjust hamburger lines */
+    .hamburger {
+      height: 2px;
+    }
+  
+    /* Adjust menu list position and width */
+    .menu-list {
+      top: 40px; /* Position below the toggle button */
+      width: 180px; /* Slightly narrower */
+    }
+  
+    .menu-item a {
+      font-size: 14px; /* Slightly smaller text */
+      padding: 8px 16px; /* Adjust padding */
+    }
+  
+    /* "Menu" Label Styling for Smaller Screens */
+    .menu-label {
+      font-size: 14px;
+      margin-right: 8px; /* Reduce space between label and hamburger */
+    }
+  }
+  
+  /* ===========================================================
+     DARK MODE SUPPORT (OPTIONAL)
+     =========================================================== */
+  
+  /* Styles for users with dark mode preferences */
+  @media (prefers-color-scheme: dark) {
+    .home-menu {
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1); /* Light shadow */
+    }
+  
+    .menu-label {
+      color: #f0f0f0; /* Light text color */
+    }
+  
+    .hamburger {
+      background-color: #f0f0f0; /* Light lines in dark mode */
+    }
+  
+    .menu-list {
+      background-color: rgba(0, 0, 0, 0.9); /* Darker background for menu */
+    }
+  
+    .menu-item a {
+      color: #f0f0f0; /* Light text color */
+    }
+  
+    .menu-item a:hover {
+      background-color: #333333; /* Dark gray background on hover */
+      color: #1E90FF; /* Brighter accent on hover */
+    }
+  
+    .active-link {
+      color: #1E90FF; /* Brighter accent for active link */
+      background-color: #264d73; /* Dark blue background for active link */
+    }
+  }
+  
+  /* ===========================================================
+     OPTIONAL: CLOSE MENU WHEN CLICKING OUTSIDE
+     =========================================================== */
+  
+  /* Optional: Add pointer cursor to menu items */
+  .menu-item a {
+    cursor: pointer;
+  }
+  
+  /* Optional: Transition for smooth appearance */
+  .menu-list {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+  }
+  

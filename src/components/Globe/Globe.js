@@ -5,6 +5,7 @@ import '../styles/Globe.css'; // Import the separate style file
 import useLocationInfo from '../hooks/useLocationInfo'; // Adjust the path based on your project structure
 import LocationInfoPanel from './LocationInfoPanel'; // Import the LocationInfoPanel component
 import PropTypes from 'prop-types';
+import HomeMenu from '../HomeMenu/HomeMenu'; // Import HomeMenu component
 
 /**
  * Function to perform reverse geocoding using OpenCage Geocoding API.
@@ -272,6 +273,9 @@ const Globe = () => {
         id="cesiumContainer"
         style={{ height: '100vh', width: '100vw' }}
       >
+        {/* Home Menu */}
+        <HomeMenu /> {/* Mounted on top-left within the globe canvas */}
+
         {/* Controls */}
         <div className="controls-container">
           <div className="tabs" role="tablist" aria-label="Rotation Controls">

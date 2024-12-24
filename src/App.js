@@ -1,10 +1,12 @@
 // src/App.js
+
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LangProvider } from './components/Context/LangContext';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
+import Chatbot from './components/Chatbot/Chatbot'; // Import the Chatbot component
 
 // Lazy-loaded components
 const About = lazy(() => import('./pages/About/About'));
@@ -20,7 +22,10 @@ function App() {
     <LangProvider>
       <Router>
         <div className="App">
+          {/* Navigation Bar */}
           <Navbar />
+
+          {/* Main Content with Suspense for Lazy-Loaded Components */}
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               {/* Home Route */}
@@ -49,7 +54,12 @@ function App() {
               {/* <Route path="*" element={<NotFound />} /> */}
             </Routes>
           </Suspense>
+
+          {/* Footer */}
           <Footer />
+
+          {/* Floating Chatbot */}
+          <Chatbot />
         </div>
       </Router>
     </LangProvider>
