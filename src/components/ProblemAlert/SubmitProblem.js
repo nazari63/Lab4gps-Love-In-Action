@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+// src/components/ProblemAlert/SubmitProblem.js
+
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import '../styles/SubmitProblem.css';
+import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
+import { useLang } from '../Context/LangContext'; // Import useLang from LangContext
 
 const SubmitProblem = () => {
+  // State variables for form fields
   const [problemTitle, setProblemTitle] = useState('');
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
@@ -15,22 +20,52 @@ const SubmitProblem = () => {
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
 
+  // New state variables to handle custom categories
+  const [isCustomCategory, setIsCustomCategory] = useState(false);
+  const [customCategory, setCustomCategory] = useState('');
+
+  // State variables for address search
+  const [addressQuery, setAddressQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [isSuggestionsVisible, setIsSuggestionsVisible] = useState(false);
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
+  const [suggestionsError, setSuggestionsError] = useState('');
+
+  // Reference for debouncing
+  const debounceRef = useRef(null);
+
+  // Access ModalContext to close the modal after submission if needed
+  const { closeSubmitProblem } = useContext(ModalContext);
+
+  // Access LangContext to get the current language
+  const { language } = useLang(); // 'en' for English, 'ko' for Korean
+
+  // Handle changes in the media files input
   const handleMediaChange = (e) => {
     setMediaFiles(e.target.files);
   };
 
+  // Handle changes in the submitter photo input
   const handlePhotoChange = (e) => {
     setSubmitterPhoto(e.target.files[0]);
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Implement form submission logic here
+
+    // If the user selected "Other" in the dropdown, use the customCategory value
+    let finalCategory = category;
+    if (isCustomCategory && customCategory.trim() !== '') {
+      finalCategory = customCategory;
+    }
+
+    // TODO: Implement actual form submission logic here (e.g., send data to backend)
     console.log({
       problemTitle,
       location: { country, city, coordinates },
       description,
-      category,
+      category: finalCategory, // use the final value for category
       urgency,
       mediaFiles,
       submitterPhoto,
@@ -40,13 +75,130 @@ const SubmitProblem = () => {
         phone: contactPhone,
       },
     });
+
+    // Optionally, close the modal after submission
+    // closeSubmitProblem();
   };
 
-  // A placeholder map selector to illustrate capturing coordinates
+  // Handle map selector button click (if still needed)
   const handleMapSelectorClick = () => {
-    // Sample logic: Might open a modal or trigger a map interface
-    // For now, we'll just set some dummy coordinates
+    // Placeholder logic: In a real application, this might open a map interface
+    // For demonstration, we'll set some dummy coordinates
     setCoordinates({ lat: '1.2921', lng: '36.8219' });
+  };
+
+  // Handle changes in the address search input
+  const handleAddressChange = (e) => {
+    const query = e.target.value;
+    setAddressQuery(query);
+  };
+
+  // Handle selection of a suggestion
+  const handleSuggestionSelect = (suggestion) => {
+    setAddressQuery(suggestion.formatted);
+    setCountry(suggestion.components.country || '');
+    setCity(
+      suggestion.components.city ||
+        suggestion.components.town ||
+        suggestion.components.village ||
+        ''
+    );
+    setCoordinates({
+      lat: suggestion.geometry.lat,
+      lng: suggestion.geometry.lng,
+    });
+    setSuggestions([]);
+    setIsSuggestionsVisible(false);
+  };
+
+  // Fetch suggestions from OpenCage Geocoding API
+  useEffect(() => {
+    if (addressQuery.trim() === '') {
+      setSuggestions([]);
+      setIsSuggestionsVisible(false);
+      return;
+    }
+
+    // Debounce the API call by 500ms
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    debounceRef.current = setTimeout(() => {
+      const fetchSuggestions = async () => {
+        setIsLoadingSuggestions(true);
+        setSuggestionsError('');
+        try {
+          const apiKey = process.env.REACT_APP_OPENCAGE_API_KEY; // Ensure this is set in your environment variables
+          const response = await fetch(
+            `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
+              addressQuery
+            )}&key=${apiKey}&limit=5&no_annotations=1&language=${
+              language === 'ko' ? 'ko' : 'en'
+            }`
+          );
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch suggestions');
+          }
+
+          const data = await response.json();
+          if (data.results) {
+            setSuggestions(data.results);
+            setIsSuggestionsVisible(true);
+          } else {
+            setSuggestions([]);
+            setIsSuggestionsVisible(false);
+          }
+        } catch (error) {
+          console.error('Error fetching suggestions:', error);
+          setSuggestionsError('Error fetching address suggestions.');
+          setSuggestions([]);
+          setIsSuggestionsVisible(false);
+        } finally {
+          setIsLoadingSuggestions(false);
+        }
+      };
+
+      fetchSuggestions();
+    }, 500);
+
+    // Cleanup the timeout on unmount or when addressQuery changes
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
+  }, [addressQuery, language]);
+
+  // Close suggestions dropdown when clicking outside
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target)
+      ) {
+        setIsSuggestionsVisible(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Handle category selection (including "Other" option)
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCategory(selectedCategory);
+    if (selectedCategory === 'other') {
+      setIsCustomCategory(true);
+    } else {
+      setIsCustomCategory(false);
+      setCustomCategory(''); // Reset the custom category input when not "Other"
+    }
   };
 
   return (
@@ -66,51 +218,45 @@ const SubmitProblem = () => {
           />
         </div>
 
-        {/* Location Fields */}
-        <div className="form-group location-fields">
-          <label htmlFor="country">Country</label>
-          <select
-            id="country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            required
-          >
-            <option value="">Select a Country</option>
-            <option value="Kenya">Kenya</option>
-            <option value="USA">USA</option>
-            <option value="Brazil">Brazil</option>
-            {/* Add more countries as needed */}
-          </select>
-
-          <label htmlFor="city">City</label>
-          <select
-            id="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          >
-            <option value="">Select a City</option>
-            {/* Filter or list cities based on country selection */}
-            <option value="Nairobi">Nairobi</option>
-            <option value="New York">New York</option>
-            <option value="Rio de Janeiro">Rio de Janeiro</option>
-            {/* Add more cities as needed */}
-          </select>
-
-          {/* Coordinates (set via a map selector for accurate lat/lng) */}
-          <button 
-            type="button"
-            className="map-selector-button"
-            onClick={handleMapSelectorClick}
-          >
-            Select Location on Map
-          </button>
-          <p className="coordinates-display">
-            {coordinates.lat && coordinates.lng
-              ? `Lat: ${coordinates.lat}, Lng: ${coordinates.lng}`
-              : 'Coordinates not set'}
-          </p>
+        {/* Address Search */}
+        <div className="form-group address-search-group" ref={wrapperRef}>
+          <label htmlFor="addressSearch">Address</label>
+          <input
+            type="text"
+            id="addressSearch"
+            placeholder="Search for an address..."
+            value={addressQuery}
+            onChange={handleAddressChange}
+            onFocus={() => {
+              if (suggestions.length > 0) setIsSuggestionsVisible(true);
+            }}
+            autoComplete="off"
+          />
+          {isLoadingSuggestions && <div className="loading">Loading...</div>}
+          {suggestionsError && (
+            <div className="error-message">{suggestionsError}</div>
+          )}
+          {isSuggestionsVisible && suggestions.length > 0 && (
+            <ul className="suggestions-list">
+              {suggestions.map((suggestion, index) => (
+                <li
+                  key={index}
+                  className="suggestion-item"
+                  onClick={() => handleSuggestionSelect(suggestion)}
+                >
+                  {suggestion.formatted}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+
+        {/* Coordinates Display */}
+        {coordinates.lat && coordinates.lng && (
+          <div className="form-group coordinates-display">
+            <strong>Selected Coordinates:</strong> Lat: {coordinates.lat}, Lng: {coordinates.lng}
+          </div>
+        )}
 
         {/* Description */}
         <div className="form-group">
@@ -130,7 +276,7 @@ const SubmitProblem = () => {
           <select
             id="category"
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={handleCategoryChange}
             required
           >
             <option value="">Select a Category</option>
@@ -139,9 +285,24 @@ const SubmitProblem = () => {
             <option value="Education">Education</option>
             <option value="Infrastructure">Infrastructure</option>
             <option value="Environment">Environment</option>
-            {/* Add more categories as needed */}
+            {/* "Other" option to allow custom category */}
+            <option value="other">Other (Please specify)</option>
           </select>
         </div>
+
+        {/* Conditional text input for custom category */}
+        {isCustomCategory && (
+          <div className="form-group">
+            <label htmlFor="customCategory">Custom Category</label>
+            <input
+              type="text"
+              id="customCategory"
+              placeholder="Type your custom category..."
+              value={customCategory}
+              onChange={(e) => setCustomCategory(e.target.value)}
+            />
+          </div>
+        )}
 
         {/* Urgency Level */}
         <div className="form-group">

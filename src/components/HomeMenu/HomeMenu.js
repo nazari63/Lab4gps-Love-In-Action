@@ -1,12 +1,16 @@
 // src/components/HomeMenu.js
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../styles/HomeMenu.css'; // Import the CSS for styling
+import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 
 const HomeMenu = () => {
   // State to manage the visibility of the dropdown menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Access ModalContext
+  const { openSubmitProblem } = useContext(ModalContext);
 
   // Function to toggle the menu's visibility
   const toggleMenu = () => {
@@ -16,6 +20,13 @@ const HomeMenu = () => {
   // Function to close the menu when a link is clicked
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  // Handle 'Submit Problem' click to open SubmitProblem in Globe.js
+  const handleSubmitProblemClick = (e) => {
+    e.preventDefault(); // Prevent default navigation
+    closeMenu();
+    openSubmitProblem(); // Open the SubmitProblem modal
   };
 
   return (
@@ -39,27 +50,32 @@ const HomeMenu = () => {
       <ul className={`menu-list ${isMenuOpen ? 'active' : ''}`}>
         <li className="menu-item">
           <NavLink
-            exact
+            exact="true"  // or "exact" in older versions of react-router-dom
             to="/"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Home
           </NavLink>
         </li>
+
+        {/* Submit Problem Link */}
         <li className="menu-item">
-          <NavLink
-            to="/submit-problem"
-            activeClassName="active-link"
-            onClick={closeMenu}
+          {/* Use a button or anchor tag to trigger modal */}
+          <a
+            href="/submit-problem"
+            className="nav-link"
+            onClick={handleSubmitProblemClick}
           >
             Submit Problem
-          </NavLink>
+          </a>
         </li>
+
+        {/* Remaining Menu Items */}
         <li className="menu-item">
           <NavLink
             to="/solve-problem"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Solve Problem
@@ -68,17 +84,16 @@ const HomeMenu = () => {
         <li className="menu-item">
           <NavLink
             to="/active-problems"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             View Active Problems
           </NavLink>
         </li>
-        {/* Additional Menu Items */}
         <li className="menu-item">
           <NavLink
             to="/dashboard"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Dashboard
@@ -87,7 +102,7 @@ const HomeMenu = () => {
         <li className="menu-item">
           <NavLink
             to="/profile"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Profile
@@ -96,7 +111,7 @@ const HomeMenu = () => {
         <li className="menu-item">
           <NavLink
             to="/settings"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Settings
@@ -105,7 +120,7 @@ const HomeMenu = () => {
         <li className="menu-item">
           <NavLink
             to="/help"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             Help/Support
@@ -114,7 +129,7 @@ const HomeMenu = () => {
         <li className="menu-item">
           <NavLink
             to="/about"
-            activeClassName="active-link"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
             onClick={closeMenu}
           >
             About

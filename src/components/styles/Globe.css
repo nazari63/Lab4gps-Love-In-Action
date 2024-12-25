@@ -31,6 +31,7 @@
   position: relative;
   height: 100vh;
   width: 100vw;
+  overflow: hidden; /* Prevent scrollbars from Cesium elements */
 }
 
 /* Container for Rotation Control Tabs */
@@ -104,9 +105,118 @@
   }
 }
 
-/* Remove or Comment Out the Following if Present */
-/* 
-.location-info-panel {
-  ... // Remove these styles as they are now in LocationInfoPanel.css
+/* Submit Problem Overlay Styles */
+.submit-problem-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000; /* Ensure it's above the globe and other elements */
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
 }
-*/
+
+/* Close Button for Submit Problem Overlay */
+.close-submit-problem {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  transition: color var(--transition-speed);
+}
+
+.close-submit-problem:hover {
+  color: var(--secondary-color);
+}
+
+/* Animation for Modal Appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Optional: Prevent background scrolling when modal is open */
+.submit-problem-overlay:focus {
+  outline: none;
+}
+
+/* Ensuring the SubmitProblem form fits well within the overlay */
+.submit-problem-overlay form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-problem-overlay label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--neutral-dark);
+}
+
+.submit-problem-overlay input,
+.submit-problem-overlay select,
+.submit-problem-overlay textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #DDDDDD; /* Light Gray */
+  border-radius: 5px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+.submit-problem-overlay textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.submit-problem-overlay button.submit-problem-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--secondary-color); /* Earth Green */
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.submit-problem-overlay button.submit-problem-button:hover {
+  background-color: #218838; /* Darker Green on Hover */
+}
+
+/* Ensure the submit-problem-overlay is responsive */
+@media (max-width: 768px) {
+  .submit-problem-overlay {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .submit-problem-overlay button.submit-problem-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .close-submit-problem {
+    font-size: 20px;
+    top: 8px;
+    right: 12px;
+  }
+}

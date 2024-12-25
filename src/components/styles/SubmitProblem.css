@@ -1,4 +1,4 @@
-/* SubmitProblem.css */
+/* src/styles/SubmitProblem.css */
 
 /* Importing Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;600&display=swap');
@@ -20,55 +20,60 @@
 
 /* Global Styles for the Submit Problem Container */
 .submit-problem-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px 30px;
-  background-color: var(--neutral-light);
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: var(--font-body);
+  width: 100%; /* Full width within the overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px; /* Reduced padding to fit within the overlay */
+  box-sizing: border-box;
 }
 
 /* Title Styling */
 .submit-problem-title {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 2rem; /* Reduced font size to fit smaller overlays */
   color: var(--primary-color);
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* Reduced margin */
 }
 
 /* Form Styling */
 .submit-problem-form {
+  width: 100%; /* Full width within the container */
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px; /* Reduced gap */
 }
 
 /* Form Group */
 .form-group {
   display: flex;
   flex-direction: column;
+  position: relative; /* For positioning suggestions dropdown */
 }
 
+/* Labels */
 .form-group label {
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   color: var(--primary-color);
+  font-size: 0.9rem; /* Slightly smaller font size */
 }
 
+/* Input Fields, Selects, and Textareas */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="tel"],
 .form-group input[type="file"],
 .form-group select,
 .form-group textarea {
-  padding: 12px 15px;
+  padding: 10px 12px;
   border: 1px solid #CED4DA;
   border-radius: var(--border-radius);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font size */
   transition: border-color var(--transition-speed);
+  box-sizing: border-box;
 }
 
 .form-group input[type="text"]:focus,
@@ -83,28 +88,29 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 100px; /* Reduced height */
 }
 
 /* Location Fields Styling */
 .location-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 15px; /* Reduced gap */
 }
 
 .location-fields label {
   margin-top: 0;
 }
 
+/* Map Selector Button */
 .map-selector-button {
   grid-column: 1 / -1;
-  padding: 12px 15px;
+  padding: 10px 12px;
   background-color: var(--secondary-color);
   color: #FFFFFF;
   border: none;
   border-radius: var(--border-radius);
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font size */
   cursor: pointer;
   transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
@@ -114,39 +120,82 @@
   transform: translateY(-2px);
 }
 
+/* Coordinates Display */
 .coordinates-display {
   grid-column: 1 / -1;
   font-style: italic;
   color: var(--neutral-dark);
+  font-size: 0.85rem; /* Slightly smaller font size */
+}
+
+/* Address Search Group */
+.address-search-group {
+  position: relative; /* For absolute positioning of suggestions */
+}
+
+/* Suggestions List */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--neutral-light);
+  border: 1px solid #CED4DA;
+  border-top: none;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.suggestion-item:hover {
+  background-color: var(--secondary-color);
+  color: #FFFFFF;
+}
+
+/* Loading and Error Messages */
+.loading {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: var(--neutral-dark);
+}
+
+.error-message {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: red;
 }
 
 /* Contact Information Group */
 .contact-info-group {
-  margin-top: 30px;
-  padding-top: 20px;
+  margin-top: 20px; /* Reduced margin */
+  padding-top: 15px; /* Reduced padding */
   border-top: 1px solid #DEE2E6;
 }
 
 .contact-info-group h2 {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* Reduced font size */
   color: var(--primary-color);
-  margin-bottom: 15px;
-}
-
-.contact-info-group .form-group {
-  flex-direction: column;
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 /* Submit Button */
 .submit-problem-button {
-  padding: 15px 20px;
+  padding: 12px 18px;
   background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
   color: #FFFFFF;
   border: none;
   border-radius: var(--border-radius);
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1rem; /* Slightly smaller font size */
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   align-self: center;
@@ -159,6 +208,13 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Coordinates Display Styling */
+.coordinates-display {
+  font-size: 0.9rem;
+  color: var(--neutral-dark);
+  margin-bottom: 15px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .location-fields {
@@ -168,23 +224,60 @@
   .submit-problem-button {
     width: 100%;
   }
+
+  .submit-problem-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  .contact-info-group h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="file"],
+  .form-group select,
+  .form-group textarea {
+    font-size: 0.85rem;
+  }
+
+  .map-selector-button {
+    font-size: 0.85rem;
+  }
+
+  .coordinates-display {
+    font-size: 0.8rem;
+  }
+
+  .submit-problem-button {
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+
+  /* Adjust suggestions list for smaller screens */
+  .suggestions-list {
+    max-height: 120px;
+  }
 }
 
 /* Additional Enhancements */
 
 /* Input file styling */
 .form-group input[type="file"] {
-  padding: 5px 12px;
+  padding: 5px 10px;
 }
 
 /* Checkbox styling (if any) */
 .form-group input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 /* Radio button styling (if any) */
 .form-group input[type="radio"] {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }

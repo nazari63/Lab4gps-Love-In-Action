@@ -1,11 +1,13 @@
 /* global window */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useLang } from '../Context/LangContext'; // Adjust the path based on your project structure
 import '../styles/Globe.css'; // Import the separate style file
 import useLocationInfo from '../hooks/useLocationInfo'; // Adjust the path based on your project structure
 import LocationInfoPanel from './LocationInfoPanel'; // Import the LocationInfoPanel component
 import PropTypes from 'prop-types';
 import HomeMenu from '../HomeMenu/HomeMenu'; // Import HomeMenu component
+import SubmitProblem from '../ProblemAlert/SubmitProblem'; // Import SubmitProblem component
+import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 
 /**
  * Function to perform reverse geocoding using OpenCage Geocoding API.
@@ -46,6 +48,9 @@ const Globe = () => {
   // Use the global language context to determine if text should be English or Korean
   const { language } = useLang();
 
+  // Access ModalContext to control SubmitProblem modal
+  const { isSubmitProblemOpen, closeSubmitProblem } = useContext(ModalContext);
+
   // Inline dictionary for multi-language support
   const text = {
     en: {
@@ -60,6 +65,7 @@ const Globe = () => {
       unknown: "Unknown",
       loading: "Loading...",
       error: "Error",
+      close: "Close",
     },
     ko: {
       stopRotation: "회전 중지",
@@ -73,6 +79,7 @@ const Globe = () => {
       unknown: "알 수 없음",
       loading: "로딩 중...",
       error: "오류",
+      close: "닫기",
     },
   };
 
@@ -271,7 +278,7 @@ const Globe = () => {
       <div
         ref={globeRef}
         id="cesiumContainer"
-        style={{ height: '100vh', width: '100vw' }}
+        style={{ height: '100vh', width: '100vw', position: 'relative' }} // Ensure relative positioning for overlay
       >
         {/* Home Menu */}
         <HomeMenu /> {/* Mounted on top-left within the globe canvas */}
@@ -309,6 +316,20 @@ const Globe = () => {
           error={error}
           translate={t}
         />
+
+        {/* Conditionally render SubmitProblem when isSubmitProblemOpen is true */}
+        {isSubmitProblemOpen && (
+          <div className="submit-problem-overlay">
+            <SubmitProblem />
+            <button
+              className="close-submit-problem"
+              onClick={closeSubmitProblem}
+              aria-label={t("close")}
+            >
+              &times;
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
