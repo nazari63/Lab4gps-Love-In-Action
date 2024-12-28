@@ -1,4 +1,5 @@
 // src/components/Navbar/Navbar.js
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../components/styles/Navbar.css';
@@ -9,12 +10,18 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 // Import your language context hook
 import { useLang } from '../../components/Context/LangContext';
 
+// Import Auth Context
+import { useAuth } from '../../components/Context/AuthContext';
+
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
 
   // Access the global language state and updater
   const { language, changeLanguage, t } = useLang();
   const location = useLocation();
+
+  // Access authentication state
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,11 +116,16 @@ const Navbar = () => {
           </div>
         </li>
 
-        <li className="nav-item">
-          <Link to="/get-started" className="nav-link button-get-started">
-            {t("navbar.memberFeatures")}
-          </Link>
-        </li>
+        {/* Member Features Link */}
+<li className="nav-item">
+    <Link
+        to="/login"
+        className="nav-link button-get-started"
+    >
+        {t("navbar.memberFeatures")}
+    </Link>
+</li>
+
 
         {/* Language Selector */}
         <li className="nav-item">

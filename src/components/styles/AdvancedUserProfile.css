@@ -1,0 +1,297 @@
+/* General Styles */
+body {
+  font-family: "Helvetica", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Subtle background color */
+  color: #333;
+}
+
+.advanced-profile-container {
+  max-width: 600px; /* Compact layout */
+  margin: 30px auto;
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Profile Header */
+.advanced-profile-header {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.advanced-profile-header h1 {
+  font-size: 28px; /* Increased size */
+  font-weight: bold;
+  color: #141e3f; /* Lab4GPS Blue */
+}
+
+.advanced-profile-header p {
+  font-size: 16px; /* Slightly increased size */
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Profile Sidebar */
+.advanced-profile-sidebar {
+  text-align: center;
+  padding: 10px;
+}
+
+.advanced-profile-picture-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.advanced-profile-picture {
+  width: 100px; /* Compact size */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid #141e3f; /* Highlight border */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advanced-profile-picture:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.advanced-edit-icon-container {
+  position: absolute;
+  top: 70px; /* Adjusted closer to the profile picture */
+  right: -5px;
+  background: #141e3f;
+  color: #ffffff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.advanced-edit-icon-container:hover {
+  background: #265040; /* Accent color for hover */
+  transform: scale(1.1);
+}
+
+.advanced-profile-basic-info {
+  margin-top: 10px; /* Slight spacing below profile picture */
+}
+
+.advanced-profile-basic-info h2 {
+  font-size: 20px; /* Increased size */
+  color: #141e3f;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: center; /* Centered below the photo */
+}
+
+.advanced-profile-basic-info p {
+  font-size: 14px; /* Increased size */
+  color: #666;
+  text-align: center; /* Centered below the photo */
+}
+
+/* Profile Details */
+.advanced-profile-details {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 15px 0;
+}
+
+.advanced-info-group {
+  margin-bottom: 10px;
+}
+
+.advanced-info-group h3 {
+  font-size: 18px; /* Increased size */
+  color: #141e3f;
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-align: left; /* Align to the left */
+}
+
+.advanced-detail-group {
+  margin-bottom: 8px;
+}
+
+.advanced-detail-group label {
+  font-size: 14px; /* Increased size */
+  color: #666;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left; /* Align to the left */
+}
+
+.advanced-detail-group input {
+  width: 100%;
+  padding: 8px; /* Increased padding */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px; /* Increased size */
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.advanced-detail-group input:focus {
+  border-color: #141e3f;
+  outline: none;
+}
+
+.advanced-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.advanced-edit-button,
+.advanced-cancel-button,
+.advanced-save-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px; /* Increased size */
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.advanced-edit-button {
+  background: #141e3f;
+  color: #ffffff;
+}
+
+.advanced-edit-button:hover {
+  background: #265040;
+}
+
+.advanced-cancel-button {
+  background: #ff6666;
+  color: #ffffff;
+}
+
+.advanced-cancel-button:hover {
+  background: #cc0000;
+}
+
+.advanced-save-button {
+  background: #141e3f;
+  color: #ffffff;
+}
+
+.advanced-save-button:hover {
+  background: #265040;
+}
+
+/* Password Section */
+.advanced-password-section {
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.advanced-password-section h2 {
+  font-size: 20px; /* Increased size */
+  color: #141e3f;
+  margin-bottom: 8px;
+  text-align: left; /* Align to the left */
+}
+
+.advanced-password-button {
+  padding: 10px 20px;
+  background: #141e3f;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px; /* Increased size */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.advanced-password-button:hover {
+  background: #265040;
+  transform: scale(1.05);
+}
+
+.advanced-password-form .advanced-detail-group {
+  margin-bottom: 10px;
+}
+
+.advanced-update-password-button {
+  background: #141e3f;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px; /* Increased size */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.advanced-update-password-button:hover {
+  background: #265040;
+  transform: scale(1.05);
+}
+
+/* Logout Button */
+.advanced-logout-button {
+  margin: 10px auto;
+  background: #ff6666;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px; /* Increased size */
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.advanced-logout-button:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .advanced-profile-container {
+    padding: 10px;
+  }
+
+  .advanced-profile-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .advanced-profile-sidebar {
+    margin-bottom: 10px;
+  }
+
+  .advanced-profile-details {
+    padding: 10px;
+  }
+
+  .advanced-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -12,7 +12,6 @@ const Home = () => {
       <Navbar />
       <main className="home-content">
         <section className="intro">
-          <p>{t("homePage.introParagraph")}</p>
         </section>
 
         <Globe />

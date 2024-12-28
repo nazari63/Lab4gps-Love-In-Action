@@ -1,7 +1,7 @@
 // src/components/HomeMenu.js
 
 import React, { useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom'; // Import Link
 import '../styles/HomeMenu.css'; // Import the CSS for styling
 import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 
@@ -22,11 +22,11 @@ const HomeMenu = () => {
     setIsMenuOpen(false);
   };
 
-  // Handle 'Submit Problem' click to open SubmitProblem in Globe.js
+  // Handle 'Submit Problem' click to navigate to the protected route
   const handleSubmitProblemClick = (e) => {
     e.preventDefault(); // Prevent default navigation
     closeMenu();
-    openSubmitProblem(); // Open the SubmitProblem modal
+    openSubmitProblem(); // Open the SubmitProblem modal via routing
   };
 
   return (
@@ -61,14 +61,14 @@ const HomeMenu = () => {
 
         {/* Submit Problem Link */}
         <li className="menu-item">
-          {/* Use a button or anchor tag to trigger modal */}
-          <a
-            href="/submit-problem"
+          {/* Use Link to navigate to the protected route */}
+          <Link
+            to="/submit-problem"
             className="nav-link"
-            onClick={handleSubmitProblemClick}
+            onClick={closeMenu}
           >
             Submit Problem
-          </a>
+          </Link>
         </li>
 
         {/* Remaining Menu Items */}

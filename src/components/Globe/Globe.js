@@ -1,12 +1,13 @@
 /* global window */
 import React, { useEffect, useRef, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useLang } from '../Context/LangContext'; // Adjust the path based on your project structure
 import '../styles/Globe.css'; // Import the separate style file
 import useLocationInfo from '../hooks/useLocationInfo'; // Adjust the path based on your project structure
 import LocationInfoPanel from './LocationInfoPanel'; // Import the LocationInfoPanel component
 import PropTypes from 'prop-types';
 import HomeMenu from '../HomeMenu/HomeMenu'; // Import HomeMenu component
-import SubmitProblem from '../ProblemAlert/SubmitProblem'; // Import SubmitProblem component
+// Removed direct import of SubmitProblem
 import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 
 /**
@@ -49,7 +50,10 @@ const Globe = () => {
   const { language } = useLang();
 
   // Access ModalContext to control SubmitProblem modal
-  const { isSubmitProblemOpen, closeSubmitProblem } = useContext(ModalContext);
+  const { isSubmitProblemOpen, openSubmitProblem, closeSubmitProblem } = useContext(ModalContext);
+
+  // Import useNavigate hook for navigation
+  const navigate = useNavigate();
 
   // Inline dictionary for multi-language support
   const text = {
@@ -66,6 +70,7 @@ const Globe = () => {
       loading: "Loading...",
       error: "Error",
       close: "Close",
+      // Add additional translations if necessary
     },
     ko: {
       stopRotation: "회전 중지",
@@ -80,6 +85,7 @@ const Globe = () => {
       loading: "로딩 중...",
       error: "오류",
       close: "닫기",
+      // Add additional translations if necessary
     },
   };
 
@@ -272,6 +278,14 @@ const Globe = () => {
     language // Pass the selected language
   );
 
+  // Handle navigation when SubmitProblem modal state changes
+  useEffect(() => {
+    if (isSubmitProblemOpen) {
+      // Navigate to the protected route
+      navigate('/submit-problem');
+    }
+  }, [isSubmitProblemOpen, navigate]);
+
   return (
     <>
       {/* Cesium Globe Container */}
@@ -317,19 +331,7 @@ const Globe = () => {
           translate={t}
         />
 
-        {/* Conditionally render SubmitProblem when isSubmitProblemOpen is true */}
-        {isSubmitProblemOpen && (
-          <div className="submit-problem-overlay">
-            <SubmitProblem />
-            <button
-              className="close-submit-problem"
-              onClick={closeSubmitProblem}
-              aria-label={t("close")}
-            >
-              &times;
-            </button>
-          </div>
-        )}
+        {/* The SubmitProblem component is now handled via routing */}
       </div>
     </>
   );

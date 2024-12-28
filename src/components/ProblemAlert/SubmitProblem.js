@@ -1,9 +1,13 @@
 // src/components/ProblemAlert/SubmitProblem.js
 
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../styles/SubmitProblem.css';
 import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 import { useLang } from '../Context/LangContext'; // Import useLang from LangContext
+
+// Import the ProblemService
+import ProblemService from '../../services/ProblemService'; // Adjust the path if needed
 
 const SubmitProblem = () => {
   // State variables for form fields
@@ -14,8 +18,8 @@ const SubmitProblem = () => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [urgency, setUrgency] = useState('');
-  const [mediaFiles, setMediaFiles] = useState([]);
-  const [submitterPhoto, setSubmitterPhoto] = useState(null);
+  const [mediaFiles, setMediaFiles] = useState([]); // FileList
+  const [submitterPhoto, setSubmitterPhoto] = useState(null); // File
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
@@ -40,6 +44,9 @@ const SubmitProblem = () => {
   // Access LangContext to get the current language
   const { language } = useLang(); // 'en' for English, 'ko' for Korean
 
+  // Import useNavigate hook for navigation
+  const navigate = useNavigate();
+
   // Handle changes in the media files input
   const handleMediaChange = (e) => {
     setMediaFiles(e.target.files);
@@ -50,8 +57,31 @@ const SubmitProblem = () => {
     setSubmitterPhoto(e.target.files[0]);
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  // Function to reset the form fields
+  const resetForm = () => {
+    setProblemTitle('');
+    setCountry('');
+    setCity('');
+    setCoordinates({ lat: '', lng: '' });
+    setDescription('');
+    setCategory('');
+    setUrgency('');
+    setMediaFiles([]);
+    setSubmitterPhoto(null);
+    setContactName('');
+    setContactEmail('');
+    setContactPhone('');
+    setIsCustomCategory(false);
+    setCustomCategory('');
+    setAddressQuery('');
+    setSuggestions([]);
+    setIsSuggestionsVisible(false);
+    setIsLoadingSuggestions(false);
+    setSuggestionsError('');
+  };
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // If the user selected "Other" in the dropdown, use the customCategory value
@@ -60,15 +90,14 @@ const SubmitProblem = () => {
       finalCategory = customCategory;
     }
 
-    // TODO: Implement actual form submission logic here (e.g., send data to backend)
+    // Log the data for debugging (files are handled separately)
     console.log({
       problemTitle,
       location: { country, city, coordinates },
       description,
       category: finalCategory, // use the final value for category
       urgency,
-      mediaFiles,
-      submitterPhoto,
+      // Files are handled via FormData
       contactInfo: {
         name: contactName,
         email: contactEmail,
@@ -76,8 +105,40 @@ const SubmitProblem = () => {
       },
     });
 
-    // Optionally, close the modal after submission
-    // closeSubmitProblem();
+    try {
+      // Prepare the data to be submitted to the ProblemService:
+      const submissionData = {
+        problemTitle,
+        country,
+        city,
+        coordinates,
+        description,
+        category: finalCategory,
+        urgency,
+        mediaFiles, // FileList
+        submitterPhoto, // File or null
+        contactName,
+        contactEmail,
+        contactPhone,
+      };
+
+      // Call ProblemService.createProblem(...) to send data to the backend:
+      const response = await ProblemService.createProblem(submissionData);
+      console.log('Problem submitted successfully:', response.data);
+
+      // Optionally, reset the form after successful submission
+      resetForm();
+
+      // Navigate to a confirmation page or home after submission
+      navigate('/'); // Example: Navigate to home
+
+      // Optionally, close the modal after a successful submission:
+      // closeSubmitProblem();
+    } catch (error) {
+      console.error('Error submitting problem:', error);
+      // Handle error UI or notifications here
+      alert('There was an error submitting your problem. Please try again.');
+    }
   };
 
   // Handle map selector button click (if still needed)
@@ -175,10 +236,7 @@ const SubmitProblem = () => {
   const wrapperRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target)
-      ) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsSuggestionsVisible(false);
       }
     };
