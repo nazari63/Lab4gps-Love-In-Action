@@ -1,2 +1,13 @@
-node_modules
-yarn.lock
+# Dependency directories
+node_modules/
+
+# Log files
+*.log
+
+# Environment variables file
+.env
+
+# Other unnecessary files
+*.temp
+*.cache
+dist/
