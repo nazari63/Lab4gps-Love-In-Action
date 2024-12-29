@@ -1,3 +1,5 @@
+// src/components/Auths/Login.js
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext"; // Import AuthContext
@@ -20,7 +22,7 @@ const Login = () => {
 
     try {
       await login(email, password); // Call the login function from AuthContext
-      navigate("/member-portal/dashboard"); // Redirect to the dashboard
+      navigate("/login-header"); // Redirect to the LoginHeader component
     } catch (err) {
       setError(err.message || "Invalid email or password. Please try again.");
     } finally {
@@ -34,24 +36,36 @@ const Login = () => {
         <div className="login-form-container">
           <h1>Login</h1>
           <form onSubmit={handleLogin} className="login-form">
-            <label>Email:</label>
+            <label htmlFor="email">Email:</label>
             <input
+              id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="Enter your email"
             />
-            <label>Password:</label>
+            <label htmlFor="password">Password:</label>
             <div className="password-container">
               <input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                placeholder="Enter your password"
               />
               <span
                 className="toggle-password-icon"
                 onClick={() => setShowPassword((prev) => !prev)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setShowPassword((prev) => !prev);
+                  }
+                }}
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>

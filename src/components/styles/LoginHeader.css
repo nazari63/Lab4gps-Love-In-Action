@@ -1,0 +1,158 @@
+/* src/styles/LoginHeader.css */
+
+/* Import Roboto Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.login-header {
+  background-color: #FFFFFF; /* White background */
+  border-bottom: 1px solid #E1E9EE; /* Light gray border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px; /* Defined fixed height */
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 20px; /* Adjusted padding */
+  height: 100%; /* Ensures nav-bar occupies full header height */
+  font-family: 'Arial', sans-serif;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #434649; /* Slate Gray */
+  text-decoration: none;
+  position: relative;
+  padding: 10px;
+  transition: color 0.3s;
+}
+
+.nav-item:hover {
+  color: #0077B5; /* LinkedIn Blue on hover */
+}
+
+.nav-icon {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.nav-label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.active {
+  color: #0077B5; /* LinkedIn Blue for active links */
+}
+
+.me-section {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-photo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #FFFFFF; /* White background */
+  border: 1px solid #E1E9EE; /* Light gray border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 150px;
+  z-index: 1001;
+}
+
+.me-section:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #434649; /* Slate Gray */
+  display: block;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-item:hover {
+  background-color: #F3F6F8; /* Light Gray on hover */
+  color: #0077B5; /* LinkedIn Blue on hover */
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #434649; /* Slate Gray */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #F3F6F8; /* Light Gray on hover */
+  color: #0077B5; /* LinkedIn Blue on hover */
+}
+
+/* Spacer for Fixed Header */
+.main-content.with-header-padding {
+  padding-top: 60px; /* Same as .login-header height */
+}
+
+.main-content {
+  padding-top: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-bar {
+    justify-content: space-between;
+    padding: 0 10px; /* Reduced padding for smaller screens */
+  }
+
+  .nav-item {
+    padding: 8px;
+  }
+
+  .nav-icon {
+    font-size: 20px;
+  }
+
+  .nav-label {
+    font-size: 10px;
+  }
+
+  .dropdown-menu {
+    width: 120px;
+  }
+
+  .dropdown-item {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .logout-button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

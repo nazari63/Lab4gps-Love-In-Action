@@ -1,20 +1,23 @@
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* General Layout */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #d4d9e1, #c4cbdd); /* Soft gradient background */
-  font-family: "Helvetica", sans-serif;
-  color: #ffffff;
+  background: #F3F6F8; /* Light Gray background as per Neutral Shades */
+  font-family: 'Arial', sans-serif; /* Body Text: Arial */
+  color: #434649; /* Secondary Color: Slate Gray */
   padding: 2rem;
 }
 
 .login-container {
   display: flex;
-  background: #ffffff;
+  background: #FFFFFF; /* White background for content */
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   overflow: hidden;
   max-width: 800px;
   width: 100%;
@@ -24,17 +27,19 @@
 .login-form-container {
   flex: 1;
   padding: 2rem;
-  color: #141e3f;
+  color: #434649; /* Slate Gray for text */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Arial', sans-serif; /* Body Text: Arial */
 }
 
 .login-form-container h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  font-family: "Helvetica75-Bold";
+  font-family: 'Roboto', sans-serif; /* Headings: Roboto */
   text-align: center;
+  color: #0077B5; /* Primary Color: LinkedIn Blue */
 }
 
 .login-form {
@@ -46,31 +51,34 @@
 .login-form label {
   font-size: 1rem;
   font-weight: bold;
+  color: #434649; /* Slate Gray */
 }
 
 .login-form input {
   padding: 0.8rem;
   font-size: 1rem;
-  border: 1px solid #cccccc;
+  border: 1px solid #E1E9EE; /* Light Gray border */
   border-radius: 5px;
+  background-color: #F3F6F8; /* Light Gray background for inputs */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Arial', sans-serif; /* Ensuring consistency */
 }
 
 .login-form input:focus {
-  border: 1px solid #367162;
+  border: 1px solid #0077B5; /* Primary Color on focus */
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 204, 153, 0.5);
+  box-shadow: 0 0 5px rgba(0, 119, 181, 0.5); /* Primary Color shadow */
 }
 
 .error-message {
-  color: #ff9900;
+  color: #ff9900; /* Retaining error color for visibility */
   font-size: 0.9rem;
   text-align: center;
 }
 
 .login-form button {
-  background: #367162;
-  color: #ffffff;
+  background: #0077B5; /* Primary Color: LinkedIn Blue */
+  color: #FFFFFF; /* White text */
   border: none;
   border-radius: 5px;
   padding: 0.8rem 1.5rem;
@@ -78,10 +86,11 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensuring consistency */
 }
 
 .login-form button:hover {
-  background: #367162;
+  background: #005587; /* Darker Blue on hover */
   transform: scale(1.05);
 }
 
@@ -89,24 +98,26 @@
   margin-top: 1rem;
   text-align: center;
   font-size: 1rem;
+  color: #434649; /* Slate Gray */
 }
 
 .login-form-container p a {
-  color: #367162;
+  color: #0077B5; /* Primary Color: LinkedIn Blue */
   font-weight: bold;
   text-decoration: none;
   transition: color 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensuring consistency */
 }
 
 .login-form-container p a:hover {
-  color: #367162;
+  color: #005587; /* Darker Blue on hover */
 }
 
 /* Poster Section */
 .login-poster {
   flex: 1;
-  background: linear-gradient(135deg, #141e3f, #367162); /* Lab4GPS Blue to Green */
-  color: #ffffff;
+  background: #434649; /* Secondary Color: Slate Gray */
+  color: #FFFFFF; /* White text */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -117,41 +128,45 @@
 .login-poster h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  font-family: "Helvetica75-Bold";
+  font-family: 'Roboto', sans-serif; /* Headings: Roboto */
+  color: #0077B5; /* Primary Color: LinkedIn Blue */
 }
 
 .login-poster p {
   font-size: 1rem;
   text-align: center;
   margin-bottom: 1.5rem;
+  font-family: 'Arial', sans-serif; /* Body Text: Arial */
 }
 
 .signup-link {
-  background: #141e3f;
-  color: #ffffff;
+  background: #0077B5; /* Primary Color: LinkedIn Blue */
+  color: #FFFFFF; /* White text */
   border-radius: 5px;
   padding: 0.8rem 1.5rem;
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensuring consistency */
 }
 
 .signup-link:hover {
-  background: #cc7a00;
+  background: #005587; /* Darker Blue on hover */
   transform: scale(1.05);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .login-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .login-poster {
-      display: none;
+    display: none;
   }
 }
+
 .password-container {
   display: flex;
   align-items: center;
@@ -161,6 +176,9 @@
 .password-container input {
   flex: 1;
   padding-right: 30px; /* Space for the icon */
+  background-color: #F3F6F8; /* Light Gray background */
+  border: 1px solid #E1E9EE; /* Light Gray border */
+  font-family: 'Arial', sans-serif; /* Ensuring consistency */
 }
 
 .toggle-password-icon {
@@ -168,9 +186,10 @@
   right: 10px;
   cursor: pointer;
   font-size: 1.2em;
-  color: #888;
+  color: #434649; /* Slate Gray */
+  transition: color 0.3s ease;
 }
 
 .toggle-password-icon:hover {
-  color: #555;
+  color: #0077B5; /* Primary Color on hover */
 }
