@@ -1,0 +1,425 @@
+/* src/styles/MainDashboard.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* CSS Variables for Theme Colors */
+:root {
+  --primary-color: #0077B5;      /* LinkedIn Blue */
+  --primary-hover: #005587;      /* Darker LinkedIn Blue for hover */
+  --secondary-color: #434649;    /* Slate Gray */
+  --accent-color: #86888A;       /* Cool Gray */
+  --neutral-white: #FFFFFF;      /* White */
+  --neutral-light-gray: #F3F6F8; /* Light Gray */
+  --neutral-border: #E1E9EE;     /* Light Gray Border */
+  --text-color: var(--secondary-color);
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Arial', sans-serif;
+}
+
+/* Main Dashboard Layout */
+.main-dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px; /* Left, Middle, Right */
+  gap: 20px;
+  padding: 80px 20px 20px 20px; /* Top padding accounts for fixed header */
+  background-color: var(--neutral-light-gray);
+  min-height: 100vh;
+}
+
+/* Left Sidebar Styling */
+.left-sidebar {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-container {
+  margin-bottom: 20px;
+}
+
+.user-info {
+  position: relative;
+  text-align: center;
+}
+
+.user-info .background-image {
+  width: 100%;
+  height: 80px;
+  background-image: url('https://via.placeholder.com/250x80'); /* Replace with actual background image */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
+}
+
+.profile-section {
+  margin-top: -40px; /* Overlap profile picture on background image */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-picture {
+  width: 80px;
+  height: 80px;
+  border: 3px solid var(--neutral-white);
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--neutral-white);
+}
+
+.user-name {
+  margin-top: 10px;
+  font-family: var(--heading-font);
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+/* Profile Stats Styling */
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-icon {
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.stat-number {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+/* My Startups Styling */
+.my-startups .section-title {
+  font-family: var(--heading-font);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.startup-list {
+  list-style: none;
+  padding: 0;
+}
+
+.startup-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--neutral-border);
+}
+
+.startup-item:last-child {
+  border-bottom: none;
+}
+
+.startup-name {
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Additional Links Styling */
+.additional-links .section-title {
+  font-family: var(--heading-font);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.link-item:hover {
+  background-color: var(--neutral-light-gray);
+}
+
+.link-icon {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.link-item span {
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* Middle Area Styling */
+.middle-area {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: calc(100vh - 120px); /* Adjust based on header and padding */
+}
+
+.feed-title {
+  font-family: var(--heading-font);
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.problems-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.problem-card {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.problem-title {
+  font-family: var(--heading-font);
+  font-size: 16px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.problem-content {
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.problem-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+/* Right Sidebar Styling */
+.right-sidebar {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-solutions .section-title,
+.collaboration-projects .section-title {
+  font-family: var(--heading-font);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.solutions-list,
+.projects-list {
+  list-style: none;
+  padding: 0;
+}
+
+.solution-item,
+.project-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--neutral-border);
+}
+
+.solution-item:last-child,
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.solution-title,
+.project-title {
+  font-family: var(--heading-font);
+  font-size: 14px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.solution-description,
+.project-description {
+  font-family: var(--body-font);
+  font-size: 13px;
+  color: var(--text-color);
+}
+
+/* Scrollbar Styling for Middle Area */
+.middle-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.middle-area::-webkit-scrollbar-track {
+  background: var(--neutral-light-gray);
+  border-radius: 4px;
+}
+
+.middle-area::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .main-dashboard {
+    grid-template-columns: 200px 1fr 200px;
+    gap: 15px;
+    padding: 80px 15px 15px 15px;
+  }
+
+  .left-sidebar,
+  .right-sidebar {
+    padding: 15px;
+  }
+
+  .profile-picture {
+    width: 70px;
+    height: 70px;
+  }
+
+  .user-name {
+    font-size: 16px;
+  }
+
+  .stat-icon {
+    font-size: 20px;
+  }
+
+  .stat-number {
+    font-size: 14px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+
+  .startup-name,
+  .link-item span,
+  .solution-title,
+  .project-title {
+    font-size: 13px;
+  }
+
+  .problem-title {
+    font-size: 15px;
+  }
+
+  .problem-content {
+    font-size: 13px;
+  }
+
+  .problem-footer {
+    font-size: 11px;
+  }
+
+  .solution-description,
+  .project-description {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-dashboard {
+    grid-template-columns: 1fr; /* Stack all sections vertically */
+    gap: 20px;
+    padding: 80px 10px 10px 10px;
+  }
+
+  .left-sidebar,
+  .right-sidebar {
+    display: none; /* Hide sidebars on smaller screens */
+  }
+
+  .middle-area {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-dashboard {
+    padding: 80px 10px 10px 10px;
+  }
+
+  .problem-card {
+    padding: 12px;
+  }
+
+  .problem-title {
+    font-size: 14px;
+  }
+
+  .problem-content {
+    font-size: 12px;
+  }
+
+  .problem-footer {
+    font-size: 10px;
+  }
+}
+
+/* Scrollable Middle Area for Submitted Problems */
+.middle-area {
+  overflow-y: scroll;
+}
+
+/* Additional Styling for Enhancements */
+
+/* Buttons (if any) */
+.button {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-family: var(--heading-font);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}

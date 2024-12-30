@@ -27,6 +27,9 @@ import LoginHeader from './components/Navbar/LoginHeader'; // Import LoginHeader
 // Import ProtectedRoute
 import ProtectedRoute from './protect/ProtectedRoute';
 
+// Import ErrorBoundary
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'; // Adjust the path if necessary
+
 // Lazy-loaded components
 const About = lazy(() => import('./pages/About/About'));
 const Purpose = lazy(() => import('./pages/About/Purpose'));
@@ -38,6 +41,9 @@ const WhoWeAre = lazy(() => import('./pages/About/WhoWeAre'));
 // Import Globe.js as a lazy-loaded component
 const Globe = lazy(() => import('./components/Globe/Globe')); // Ensure the correct path to Globe.js
 
+// Lazy-load MainDashboard
+const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard')); // Import MainDashboard
+
 // const NotFound = lazy(() => import('./pages/NotFound')); // Optional
 
 function App() {
@@ -46,7 +52,9 @@ function App() {
       <LangProvider>
         <ModalProvider> {/* Wrap the application with ModalProvider */}
           <Router>
-            <AppContent /> {/* Separate component to use hooks */}
+            <ErrorBoundary>
+              <AppContent /> {/* Separate component to use hooks */}
+            </ErrorBoundary>
           </Router>
         </ModalProvider>
       </LangProvider>
@@ -58,13 +66,10 @@ function AppContent() {
   const location = useLocation();
 
   // Define routes where Navbar and Footer should be hidden
-  const excludeLayoutRoutes = ['/login-header'];
+  const excludeLayoutRoutes = ['/dashboard', '/globe'];
 
   // Determine if the current path is in the exclude list
-  const shouldHideLayout = excludeLayoutRoutes.includes(location.pathname);
-
-  // Determine if current route is '/login-header' to add padding
-  const isLoginHeader = location.pathname === '/login-header';
+  const shouldHideLayout = excludeLayoutRoutes.some(route => location.pathname.startsWith(route));
 
   return (
     <div className="App">
@@ -73,19 +78,37 @@ function AppContent() {
 
       {/* Main Content with Suspense for Lazy-Loaded Components */}
       <Suspense fallback={<div>Loading...</div>}>
-        <div className={isLoginHeader ? 'main-content with-header-padding' : 'main-content'}>
+        <div className="main-content">
           <Routes>
             {/* Home Route */}
             <Route path="/" element={<Home />} />
 
-            {/* Globe Route (Public) */}
-            <Route path="/globe" element={<Globe />} />
+            {/* Globe Route (Protected) */}
+            <Route
+              path="/globe"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <Globe />
+                </ProtectedRoute>
+              }
+            />
 
-            {/* Auth Routes */}
+            {/* Dashboard Route (Protected) */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <MainDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Auth Routes (Unauthenticated) */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/profile" element={<AdvancedUserProfile />} />
 
             {/* Submit Problem Route (Protected) */}
             <Route

@@ -18,8 +18,8 @@
 /* Container for the navigation menu */
 .home-menu {
   position: absolute; /* Position over the globe */
-  top: 20px; /* Distance from the top */
-  left: 20px; /* Distance from the left */
+  top: 70px; /* Increased from 50px to 70px to lower the menu further */
+  left: 20px; /* Distance from the left remains the same */
   background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
   backdrop-filter: blur(8px); /* Blur effect for background */
   border-radius: 5px; /* Rounded corners */
@@ -101,7 +101,7 @@
 .menu-list {
   list-style: none; /* Remove default list styling */
   position: absolute;
-  top: 35px; /* Adjusted position below the smaller toggle button */
+  top: 95px; /* Increased from 65px to 95px to position below the lowered menu */
   left: 0;
   background-color: rgba(255, 255, 255, 0.95); /* Slightly more opaque */
   border-radius: 8px; /* Rounded corners */
@@ -152,7 +152,7 @@
 /* Adjust styles for screens 768px wide and below */
 @media (max-width: 768px) {
   .home-menu {
-    top: 10px; /* Reduce top spacing */
+    top: 60px; /* Increased from 30px to 60px to lower the menu on smaller screens */
     left: 10px; /* Reduce left spacing */
     padding: 6px 10px; /* Further adjust padding */
   }
@@ -170,7 +170,7 @@
 
   /* Adjust menu list position and width */
   .menu-list {
-    top: 30px; /* Position below the toggle button */
+    top: 100px; /* Increased from 70px to 100px to position below the lowered menu */
     width: 120px; /* Further reduced width */
   }
 

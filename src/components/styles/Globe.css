@@ -37,7 +37,7 @@
 /* Container for Rotation Control Tabs */
 .controls-container {
   position: absolute;
-  top: 20px; /* Align with HomeMenu's top */
+  top: 60px; /* Increased from 30px to 60px to lower the controls further */
   left: 100px; /* Adjusted to sit next to the HomeMenu */
   z-index: 1000; /* Ensure it stays above the globe */
   display: flex;
@@ -91,7 +91,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .controls-container {
-    top: 15px;
+    top: 55px; /* Increased from 25px to 55px for smaller screens */
     left: 80px; /* Adjusted left position for smaller screens */
   }
 
