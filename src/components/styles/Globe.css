@@ -37,8 +37,8 @@
 /* Container for Rotation Control Tabs */
 .controls-container {
   position: absolute;
-  top: 20px;
-  left: 60px; /* Reduced from 80px to provide more space next to HomeMenu */
+  top: 20px; /* Align with HomeMenu's top */
+  left: 100px; /* Adjusted to sit next to the HomeMenu */
   z-index: 1000; /* Ensure it stays above the globe */
   display: flex;
   align-items: center; /* Vertically center the tabs */
@@ -56,13 +56,13 @@
 
 /* Tab Buttons */
 .tab-button {
-  padding: 3px 6px; /* Further reduced padding to make tabs smaller */
+  padding: 2px 4px; /* Further reduced padding to make tabs smaller */
   background-color: var(--tab-background); /* Light Gray */
   color: var(--tab-color); /* Slate Gray */
   border: none;
   cursor: pointer;
   font-family: var(--font-heading);
-  font-size: 0.65rem; /* Further reduced font size (~10.4px) */
+  font-size: 0.6rem; /* Further reduced font size (~9.6px) */
   transition: background-color var(--transition-speed), color var(--transition-speed);
   outline: none;
   flex: 1; /* Equal width tabs */
@@ -92,7 +92,7 @@
 @media (max-width: 768px) {
   .controls-container {
     top: 15px;
-    left: 50px; /* Further adjusted left position for smaller screens */
+    left: 80px; /* Adjusted left position for smaller screens */
   }
 
   .tabs {
@@ -100,8 +100,8 @@
   }
 
   .tab-button {
-    padding: 2px 5px; /* Further reduced padding for smaller screens */
-    font-size: 0.6rem; /* Further reduced font size (~9.6px) */
+    padding: 2px 3px; /* Further reduced padding for smaller screens */
+    font-size: 0.55rem; /* Further reduced font size (~8.8px) */
   }
 }
 

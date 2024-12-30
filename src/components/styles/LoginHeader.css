@@ -12,6 +12,7 @@
   width: 100%;
   height: 60px; /* Defined fixed height */
   z-index: 1000; /* Ensure it stays on top */
+  font-family: 'Roboto', sans-serif; /* Updated to Roboto */
 }
 
 .nav-bar {
@@ -20,7 +21,6 @@
   justify-content: space-between; /* Space between left, central, and right sections */
   padding: 0 20px; /* Adjusted padding */
   height: 100%; /* Ensures nav-bar occupies full header height */
-  font-family: 'Arial', sans-serif;
 }
 
 /* Left Section: Logo and Search Bar */
@@ -51,7 +51,7 @@
   border: 1px solid #E1E9EE; /* Light gray border */
   border-radius: 4px;
   font-size: 14px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   outline: none;
   transition: border-color 0.3s;
 }
@@ -122,7 +122,7 @@
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -152,7 +152,7 @@
   text-decoration: none;
   color: #434649; /* Slate Gray */
   display: block;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -186,6 +186,7 @@
   margin-left: 5px;
 }
 
+/* Dropdown Menu for 'Me' */
 .dropdown-menu {
   display: none;
   position: fixed; /* Changed from absolute to fixed */
@@ -195,7 +196,7 @@
   border: 1px solid #E1E9EE; /* Light gray border */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  width: 150px;
+  width: 220px; /* Increased width to accommodate profile header */
   z-index: 2000; /* Increased z-index to ensure it floats above all content */
   animation: fadeIn 0.3s ease-in-out; /* Optional: Fade-in animation */
 }
@@ -204,12 +205,71 @@
   display: block;
 }
 
-.dropdown-item {
+/* Dropdown Header */
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #E1E9EE;
+}
+
+.dropdown-profile-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.dropdown-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-user-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #434649;
+}
+
+/* View Profile Button */
+.view-profile-button {
+  display: flex;
+  align-items: center;
   padding: 10px 15px;
+  background-color: #F3F6F8;
+  text-decoration: none;
+  color: #0077B5; /* LinkedIn Blue */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-profile-button:hover {
+  background-color: #E1E9EE;
+}
+
+/* Dropdown Sections */
+.dropdown-section {
+  padding: 10px 15px;
+}
+
+.dropdown-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #434649;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  padding: 8px 0;
   text-decoration: none;
   color: #434649; /* Slate Gray */
   display: block;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -219,6 +279,7 @@
   color: #0077B5; /* LinkedIn Blue on hover */
 }
 
+/* Logout Button */
 .logout-button {
   background: none;
   border: none;
@@ -226,7 +287,7 @@
   text-align: left;
   padding: 10px 15px;
   cursor: pointer;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #434649; /* Slate Gray */
   transition: background-color 0.3s, color 0.3s;

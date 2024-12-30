@@ -14,6 +14,9 @@ import {
   faChevronDown,
   faSearch,
   faHandshake, // Imported faHandshake for Sponsorship
+  faArrowLeft,
+  faArrowRight,
+  faPause,
 } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../Context/AuthContext';
 import logo from '../../assets/images/Lab4GPS_Logo_2024-1.jpg'; // Ensure the correct path to your logo image
@@ -26,6 +29,14 @@ const LoginHeader = () => {
   const [isMemberDropdownOpen, setIsMemberDropdownOpen] = useState(false);
   const memberButtonRef = useRef(null);
   const meButtonRef = useRef(null);
+
+  // Define baseUrl for profile pictures
+  const baseUrl = process.env.REACT_APP_API_URL || "http://127.0.0.1:8080";
+
+  // Compute profilePictureUrl similar to AdvancedUserProfile.js
+  const profilePictureUrl = user?.profile_picture?.startsWith("http")
+    ? user.profile_picture
+    : `${baseUrl}${user?.profile_picture || ""}`;
 
   // Function to handle logout
   const handleLogout = () => {
@@ -68,6 +79,22 @@ const LoginHeader = () => {
     };
   }, []);
 
+  // Handle keyboard navigation for 'Me' section
+  const handleMeKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMeDropdown();
+    }
+  };
+
+  // Handle keyboard navigation for 'For Members' button
+  const handleMemberKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMemberDropdown();
+    }
+  };
+
   return (
     <header className="login-header">
       <nav className="nav-bar">
@@ -80,6 +107,7 @@ const LoginHeader = () => {
               type="text"
               placeholder="Search"
               className="search-input"
+              aria-label="Search"
             />
           </div>
         </div>
@@ -155,6 +183,9 @@ const LoginHeader = () => {
             className="member-button"
             onClick={toggleMemberDropdown}
             ref={memberButtonRef}
+            aria-haspopup="true"
+            aria-expanded={isMemberDropdownOpen}
+            onKeyDown={handleMemberKeyDown}
           >
             For Members <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
           </button>
@@ -230,35 +261,120 @@ const LoginHeader = () => {
           )}
 
           {/* 'Me' Section */}
-          <div className="nav-item me-section" onClick={toggleMeDropdown} ref={meButtonRef}>
+          <div
+            className="me-section"
+            onClick={toggleMeDropdown}
+            ref={meButtonRef}
+            role="button"
+            aria-haspopup="true"
+            aria-expanded={isMeDropdownOpen}
+            tabIndex={0}
+            onKeyDown={handleMeKeyDown}
+          >
             <img
-              src={user?.profilePhoto || '/default-profile.png'} // Fallback to a default image
-              alt="Profile"
+              src={profilePictureUrl || '/default-profile.png'} // Fallback to a default image
+              alt={`${user?.first_name || 'User'}'s Profile`}
               className="profile-photo"
             />
             <span className="nav-label">
-              Me <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
+              {user?.first_name || 'User'} {user?.last_name || ''}
+              <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
             </span>
 
             {/* 'Me' Dropdown Menu */}
             {isMeDropdownOpen && (
               <div className="dropdown-menu" role="menu">
+                {/* Profile Header */}
+                <div className="dropdown-header">
+                  <img
+                    src={profilePictureUrl || '/default-profile.png'}
+                    alt={`${user?.first_name || 'User'}'s Profile`}
+                    className="dropdown-profile-photo"
+                  />
+                  <div className="dropdown-user-info">
+                    <span className="dropdown-user-name">
+                      {user?.first_name || 'User'} {user?.last_name || ''}
+                    </span>
+                  </div>
+                </div>
+
+                {/* View Profile Button */}
                 <NavLink
                   to="/profile"
-                  className={({ isActive }) => (isActive ? "dropdown-item active" : "dropdown-item")}
+                  className="view-profile-button"
                   onClick={() => setIsMeDropdownOpen(false)}
                   role="menuitem"
                 >
-                  Profile
+                  View Profile
                 </NavLink>
-                <NavLink
-                  to="/settings"
-                  className={({ isActive }) => (isActive ? "dropdown-item active" : "dropdown-item")}
-                  onClick={() => setIsMeDropdownOpen(false)}
-                  role="menuitem"
-                >
-                  Settings
-                </NavLink>
+
+                {/* Account Section */}
+                <div className="dropdown-section">
+                  <h4 className="dropdown-section-title">Account</h4>
+                  <NavLink
+                    to="/settings"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Settings and Privacy
+                  </NavLink>
+                  <NavLink
+                    to="/help"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Help
+                  </NavLink>
+                  <NavLink
+                    to="/language"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Language
+                  </NavLink>
+                </div>
+
+                {/* Manage Section */}
+                <div className="dropdown-section">
+                  <h4 className="dropdown-section-title">Manage</h4>
+                  <NavLink
+                    to="/submitted-problems"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Submitted Problems
+                  </NavLink>
+                  <NavLink
+                    to="/submitted-solutions"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Submitted Solutions
+                  </NavLink>
+                  <NavLink
+                    to="/startups"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Startups
+                  </NavLink>
+                  <NavLink
+                    to="/collaboration-projects"
+                    className="dropdown-item"
+                    onClick={() => setIsMeDropdownOpen(false)}
+                    role="menuitem"
+                  >
+                    Collaboration Projects
+                  </NavLink>
+                </div>
+
+                {/* Logout Button */}
                 <button
                   className="dropdown-item logout-button"
                   onClick={handleLogout}
