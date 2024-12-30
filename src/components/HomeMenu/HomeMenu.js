@@ -33,7 +33,6 @@ const HomeMenu = () => {
     <nav className="home-menu">
       {/* Menu Label and Hamburger Toggle Button */}
       <div className="menu-button" onClick={toggleMenu}>
-        <span className="menu-label">Menu</span>
         <button
           className="menu-toggle"
           onClick={toggleMenu}

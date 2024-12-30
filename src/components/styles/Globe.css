@@ -5,25 +5,25 @@
 
 /* CSS Variables for Theme Colors */
 :root {
-  --primary-color: #1B263B;      /* Deep Space Blue */
-  --secondary-color: #28A745;    /* Earth Green */
-  --accent-color: #FFD700;       /* Sunrise Gold */
-  --neutral-light: #F8F9FA;      /* Off-white */
-  --neutral-dark: #343A40;       /* Charcoal Gray */
+  --primary-color: #0077B5;      /* LinkedIn Blue */
+  --secondary-color: #434649;    /* Slate Gray */
+  --accent-color: #86888A;       /* Cool Gray */
+  --neutral-light: #F3F6F8;      /* Light Gray */
+  --neutral-dark: #434649;       /* Slate Gray */
 
   /* Additional Variables */
-  --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'Open Sans', sans-serif;
-  --border-radius: 8px;
+  --font-heading: 'Roboto', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --border-radius: 5px;
   --transition-speed: 0.3s;
 
   /* Tab Specific Variables */
-  --tab-background: var(--neutral-light);
-  --tab-active-background: var(--secondary-color);
-  --tab-color: var(--neutral-dark);
-  --tab-active-color: #FFFFFF;
-  --tab-border: 1px solid var(--neutral-dark);
-  --tab-hover-background: #218838;
+  --tab-background: var(--neutral-light); /* Light Gray */
+  --tab-active-background: var(--primary-color); /* LinkedIn Blue */
+  --tab-color: var(--secondary-color); /* Slate Gray */
+  --tab-active-color: #FFFFFF; /* White */
+  --tab-border: 1px solid var(--secondary-color);
+  --tab-hover-background: #005587; /* Darker LinkedIn Blue */
 }
 
 /* Cesium Globe Container */
@@ -38,10 +38,10 @@
 .controls-container {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 60px; /* Reduced from 80px to provide more space next to HomeMenu */
   z-index: 1000; /* Ensure it stays above the globe */
   display: flex;
-  /* Removed flex-direction: column; to accommodate tab layout */
+  align-items: center; /* Vertically center the tabs */
 }
 
 /* Tabs Container */
@@ -56,35 +56,35 @@
 
 /* Tab Buttons */
 .tab-button {
-  padding: 5px 10px; /* Further reduced padding */
-  background-color: var(--tab-background);
-  color: var(--tab-color);
+  padding: 3px 6px; /* Further reduced padding to make tabs smaller */
+  background-color: var(--tab-background); /* Light Gray */
+  color: var(--tab-color); /* Slate Gray */
   border: none;
   cursor: pointer;
   font-family: var(--font-heading);
-  font-size: 0.75rem; /* Further reduced font size */
+  font-size: 0.65rem; /* Further reduced font size (~10.4px) */
   transition: background-color var(--transition-speed), color var(--transition-speed);
   outline: none;
   flex: 1; /* Equal width tabs */
 }
 
 .tab-button:first-child {
-  border-right: 1px solid var(--neutral-dark);
+  border-right: 1px solid var(--secondary-color);
 }
 
 .tab-button:hover {
-  background-color: var(--tab-hover-background);
-  color: #FFFFFF;
+  background-color: var(--tab-hover-background); /* Darker LinkedIn Blue */
+  color: var(--tab-active-color); /* White text on hover */
 }
 
 .tab-button.active {
-  background-color: var(--tab-active-background);
-  color: var(--tab-active-color);
+  background-color: var(--tab-active-background); /* LinkedIn Blue */
+  color: var(--tab-active-color); /* White */
 }
 
 /* Focus State for Accessibility */
 .tab-button:focus {
-  outline: 2px solid var(--accent-color);
+  outline: 2px solid var(--accent-color); /* Cool Gray outline */
   outline-offset: 2px;
 }
 
@@ -92,7 +92,7 @@
 @media (max-width: 768px) {
   .controls-container {
     top: 15px;
-    right: 15px;
+    left: 50px; /* Further adjusted left position for smaller screens */
   }
 
   .tabs {
@@ -100,8 +100,8 @@
   }
 
   .tab-button {
-    padding: 4px 8px; /* Further reduced padding for smaller screens */
-    font-size: 0.7rem; /* Further reduced font size */
+    padding: 2px 5px; /* Further reduced padding for smaller screens */
+    font-size: 0.6rem; /* Further reduced font size (~9.6px) */
   }
 }
 
@@ -164,7 +164,7 @@
 .submit-problem-overlay label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: var(--neutral-dark);
+  color: var(--secondary-color);
 }
 
 .submit-problem-overlay input,
@@ -188,7 +188,7 @@
 .submit-problem-overlay button.submit-problem-button {
   width: 100%;
   padding: 12px;
-  background-color: var(--secondary-color); /* Earth Green */
+  background-color: var(--secondary-color); /* Slate Gray */
   color: #FFFFFF;
   border: none;
   border-radius: 5px;
