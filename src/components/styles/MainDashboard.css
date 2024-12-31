@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: 250px 1fr 250px; /* Left, Middle, Right */
   gap: 20px;
-  padding: 80px 20px 20px 20px; /* Top padding accounts for fixed header */
+  padding: 90px 20px 20px 20px; /* Top padding accounts for fixed header and lowered HomeMenu */
   background-color: var(--neutral-light-gray);
   min-height: 100vh;
 }
@@ -173,13 +173,114 @@
 
 /* Middle Area Styling */
 .middle-area {
-  background-color: var(--neutral-white);
-  border: 1px solid var(--neutral-border);
-  border-radius: 8px;
+  /* Removed background-color, border, border-radius, and box-shadow */
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   overflow-y: auto;
-  max-height: calc(100vh - 120px); /* Adjust based on header and padding */
+  max-height: calc(100vh - 160px); /* Adjust based on header and padding */
+}
+
+/* Submit Container Styling */
+.submit-container {
+  /* Lightweight container without background */
+  padding: 15px;
+  border-bottom: 1px solid var(--neutral-border);
+  margin-bottom: 20px;
+}
+
+/* Header Container for Submit Problem */
+.submit-problem-header {
+  display: flex;
+  align-items: center;
+}
+
+.submit-header-profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.submit-problem-link {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-family: var(--body-font);
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+.submit-problem-link:hover {
+  color: var(--primary-hover);
+}
+
+/* Divider Styling */
+.submit-divider {
+  border: none;
+  border-top: 1px solid var(--neutral-border);
+  margin: 20px 0;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: var(--neutral-white);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Close Button */
+.modal-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--accent-color);
+  transition: color 0.3s ease;
+}
+
+.modal-close-button:hover {
+  color: var(--primary-hover);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .feed-title {
@@ -195,33 +296,110 @@
   gap: 20px;
 }
 
+/* Problem Card Styling */
 .problem-card {
   background-color: var(--neutral-white);
   border: 1px solid var(--neutral-border);
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.problem-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.author-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-family: var(--heading-font);
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+.post-date {
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+.card-content {
+  margin-bottom: 10px;
 }
 
 .problem-title {
   font-family: var(--heading-font);
   font-size: 16px;
   color: var(--primary-color);
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-.problem-content {
+.problem-description {
   font-family: var(--body-font);
   font-size: 14px;
   color: var(--text-color);
-  margin-bottom: 15px;
 }
 
-.problem-footer {
+.card-media {
+  margin-bottom: 10px;
+}
+
+.media-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.media-video {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card-footer {
   display: flex;
-  justify-content: space-between;
-  font-size: 12px;
+  justify-content: space-around;
+  border-top: 1px solid var(--neutral-border);
+  padding-top: 10px;
+}
+
+.engage-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
   color: var(--accent-color);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.engage-button:hover {
+  color: var(--primary-hover);
+}
+
+.engage-button span {
+  margin-left: 5px;
 }
 
 /* Right Sidebar Styling */
@@ -293,7 +471,7 @@
   .main-dashboard {
     grid-template-columns: 200px 1fr 200px;
     gap: 15px;
-    padding: 80px 15px 15px 15px;
+    padding: 90px 15px 20px 15px;
   }
 
   .left-sidebar,
@@ -337,7 +515,7 @@
     font-size: 15px;
   }
 
-  .problem-content {
+  .problem-description {
     font-size: 13px;
   }
 
@@ -355,7 +533,7 @@
   .main-dashboard {
     grid-template-columns: 1fr; /* Stack all sections vertically */
     gap: 20px;
-    padding: 80px 10px 10px 10px;
+    padding: 90px 10px 20px 10px;
   }
 
   .left-sidebar,
@@ -364,13 +542,13 @@
   }
 
   .middle-area {
-    max-height: none;
+    max-height: calc(100vh - 160px);
   }
 }
 
 @media (max-width: 768px) {
   .main-dashboard {
-    padding: 80px 10px 10px 10px;
+    padding: 90px 10px 20px 10px;
   }
 
   .problem-card {
@@ -381,18 +559,60 @@
     font-size: 14px;
   }
 
-  .problem-content {
+  .problem-description {
     font-size: 12px;
   }
 
   .problem-footer {
     font-size: 10px;
   }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .author-picture {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+  }
+
+  .author-info {
+    align-items: flex-start;
+  }
+
+  .engage-button {
+    font-size: 12px;
+  }
+
+  /* Adjust Submit Problem Header on Small Screens */
+  .submit-problem-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submit-header-profile-picture {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .submit-problem-link {
+    font-size: 14px;
+  }
 }
 
 /* Scrollable Middle Area for Submitted Problems */
 .middle-area {
   overflow-y: scroll;
+}
+
+/* Divider Styling */
+.submit-divider {
+  border: none;
+  border-top: 1px solid var(--neutral-border);
+  margin: 20px 0;
 }
 
 /* Additional Styling for Enhancements */

@@ -1,20 +1,21 @@
 // src/components/MainDashboard.js
 
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/MainDashboard.css';
 import { useAuth } from '../Context/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserFriends,
   faChartLine,
-  faRocket,
   faBookmark,
   faUsers,
   faNewspaper,
   faCalendarAlt,
-  faLightbulb,
-  faProjectDiagram,
+  faThumbsUp,
+  faCommentDots,
+  faShare,
 } from '@fortawesome/free-solid-svg-icons';
+import SubmitProblem from '../ProblemAlert/SubmitProblem'; // Import SubmitProblem component
 
 // Placeholder components for demonstration
 // In a real application, these would fetch and display actual data
@@ -100,7 +101,82 @@ const LeftSidebar = ({ user }) => {
   );
 };
 
-const MiddleArea = () => {
+const ProblemCard = ({ problem }) => {
+  // Placeholder for author's profile picture
+  // In a real application, you'd fetch the author's data
+  const authorProfilePic = '/default-profile.png'; // Replace with actual data if available
+
+  // Format the date to a more readable format
+  const formattedDate = new Date(problem.date).toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return (
+    <div className="problem-card">
+      {/* Card Header: Author Info and Date */}
+      <div className="card-header">
+        <img src={authorProfilePic} alt={`${problem.author}'s Profile`} className="author-picture" />
+        <div className="author-info">
+          <span className="author-name">{problem.author}</span>
+          <span className="post-date">{formattedDate}</span>
+        </div>
+      </div>
+
+      {/* Card Content: Title and Description */}
+      <div className="card-content">
+        <h3 className="problem-title">{problem.title}</h3>
+        <p className="problem-description">{problem.content}</p>
+      </div>
+
+      {/* Card Media: Images/Videos (if any) */}
+      {problem.mediaFiles && problem.mediaFiles.length > 0 && (
+        <div className="card-media">
+          {problem.mediaFiles.map((file, index) => {
+            // Assuming mediaFiles are URLs. Adjust accordingly.
+            if (file.type.startsWith('image/')) {
+              return (
+                <img key={index} src={file.url} alt={`Media ${index + 1}`} className="media-image" />
+              );
+            } else if (file.type.startsWith('video/')) {
+              return (
+                <video key={index} controls className="media-video">
+                  <source src={file.url} type={file.type} />
+                  Your browser does not support the video tag.
+                </video>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
+      )}
+
+      {/* Card Footer: Engagement Buttons */}
+      <div className="card-footer">
+        <button className="engage-button">
+          <FontAwesomeIcon icon={faThumbsUp} />
+          <span>Like</span>
+        </button>
+        <button className="engage-button">
+          <FontAwesomeIcon icon={faCommentDots} />
+          <span>Comment</span>
+        </button>
+        <button className="engage-button">
+          <FontAwesomeIcon icon={faShare} />
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+  );
+
+};
+
+const MiddleArea = ({ user }) => {
+  // State to manage modal visibility
+  const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+
   // Placeholder data for submitted problems
   const submittedProblems = [
     {
@@ -109,6 +185,17 @@ const MiddleArea = () => {
       content: "I'm experiencing slow rendering in my React application. Any suggestions?",
       author: "John Doe",
       date: "2024-01-15",
+      mediaFiles: [
+        // Example media files. Replace with actual URLs or file data.
+        {
+          type: 'image/jpeg',
+          url: 'https://via.placeholder.com/600x400',
+        },
+        {
+          type: 'video/mp4',
+          url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        },
+      ],
     },
     {
       id: 2,
@@ -116,27 +203,66 @@ const MiddleArea = () => {
       content: "Looking for best practices in designing RESTful APIs. What should I focus on?",
       author: "Jane Smith",
       date: "2024-01-10",
+      mediaFiles: [], // No media
     },
     // Add more problems as needed
   ];
 
+  // Function to open the SubmitProblem modal
+  const openSubmitModal = () => {
+    setIsSubmitModalOpen(true);
+  };
+
+  // Function to close the SubmitProblem modal
+  const closeSubmitModal = () => {
+    setIsSubmitModalOpen(false);
+  };
+
   return (
     <main className="middle-area">
+      {/* Submit Problem Container */}
+      <div className="submit-container">
+        {/* Header Container for Submit Problem */}
+        <div className="submit-problem-header">
+          <img
+            src={
+              user?.profile_picture?.startsWith("http")
+                ? user.profile_picture
+                : `/default-profile.png`
+            }
+            alt={`${user?.first_name || 'User'}'s Profile`}
+            className="submit-header-profile-picture"
+          />
+          <button className="submit-problem-link" onClick={openSubmitModal}>
+            Submit a Problem
+          </button>
+        </div>
+      </div>
+
+      {/* Divider */}
+      <hr className="submit-divider" />
+
+      {/* Render SubmitProblem Modal */}
+      {isSubmitModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close-button" onClick={closeSubmitModal}>
+              &times;
+            </button>
+            <SubmitProblem onClose={closeSubmitModal} />
+          </div>
+        </div>
+      )}
+
       <h2 className="feed-title">Submitted Problems</h2>
       <div className="problems-feed">
         {submittedProblems.map((problem) => (
-          <div key={problem.id} className="problem-card">
-            <h3 className="problem-title">{problem.title}</h3>
-            <p className="problem-content">{problem.content}</p>
-            <div className="problem-footer">
-              <span className="problem-author">{problem.author}</span>
-              <span className="problem-date">{problem.date}</span>
-            </div>
-          </div>
+          <ProblemCard key={problem.id} problem={problem} />
         ))}
       </div>
     </main>
   );
+
 };
 
 const RightSidebar = () => {
@@ -206,7 +332,7 @@ const MainDashboard = () => {
   return (
     <div className="main-dashboard">
       <LeftSidebar user={user} />
-      <MiddleArea />
+      <MiddleArea user={user} />
       <RightSidebar />
     </div>
   );
