@@ -11,10 +11,11 @@ import {
   faUsers,
   faNewspaper,
   faCalendarAlt,
-  faThumbsUp,
-  faCommentDots,
   faShare,
-  faPlus, // Importing plus icon for better UX
+  faPlus, // Plus icon for better UX
+  faEye, // See Details Icon
+  faTools, // Solve This Problem Icon
+  faMapMarkerAlt, // View on Map Icon
 } from '@fortawesome/free-solid-svg-icons';
 import SubmitProblem from '../ProblemAlert/SubmitProblem'; // Import SubmitProblem component
 
@@ -72,9 +73,29 @@ const LeftSidebar = ({ user }) => {
           </li>
           {/* Add more startups as needed */}
         </ul>
+        <a href="/startups" className="see-more-link">
+          See More
+        </a>
       </div>
 
-      {/* Container 4: Saved Items, Groups, Newsletters, Events */}
+      {/* Container 4: My Submitted Problems */}
+      <div className="sidebar-container my-submitted-problems">
+        <h3 className="section-title">My Submitted Problems</h3>
+        <ul className="submitted-problems-list">
+          <li className="submitted-problem-item">
+            <span className="submitted-problem-name">Water Scarcity in City X</span>
+          </li>
+          <li className="submitted-problem-item">
+            <span className="submitted-problem-name">Air Pollution in City Y</span>
+          </li>
+          {/* Add more submitted problems as needed */}
+        </ul>
+        <a href="/my-submitted-problems" className="see-more-link">
+          See More
+        </a>
+      </div>
+
+      {/* Container 5: Saved Items, Groups, Newsletters, Events */}
       <div className="sidebar-container additional-links">
         <h3 className="section-title">Saved Items</h3>
         <ul className="links-list">
@@ -102,73 +123,119 @@ const LeftSidebar = ({ user }) => {
 
 // ProblemCard Component
 const ProblemCard = ({ problem }) => {
-  // Placeholder for author's profile picture
-  const authorProfilePic = '/default-profile.png'; // Replace with actual data if available
+  // Author's profile picture (could be part of the problem data)
+  const authorProfilePic = problem.submitterPhoto
+    ? URL.createObjectURL(problem.submitterPhoto)
+    : '/default-profile.png';
 
   // Format the date to a more readable format
-  const formattedDate = new Date(problem.date).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const formattedDate = problem.date
+    ? new Date(problem.date).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : 'Unknown Date';
+
+  // State to manage the visibility of problem details
+  const [isDetailsVisible, setIsDetailsVisible] = useState(false);
+
+  // Handler functions for new buttons
+  const handleViewDetails = () => {
+    setIsDetailsVisible(!isDetailsVisible);
+  };
+
+  const handleSolveProblem = () => {
+    // Redirect to solve problem tools/forms
+    // Replace '/solve-problem' with the actual route or functionality
+    window.location.href = '/solve-problem';
+  };
+
+  const handleViewOnMap = () => {
+    // Redirect to map view
+    // Replace '/map-view' with the actual route or functionality
+    window.location.href = '/map-view';
+  };
+
+  const handleShare = () => {
+    // Implement share functionality
+    // For example, copy link to clipboard or open share dialog
+    navigator.clipboard.writeText(window.location.href + `/problems/${problem.id}`);
+    alert('Problem link copied to clipboard!');
+  };
 
   return (
     <div className="problem-card">
       {/* Card Header: Author Info and Date */}
       <div className="card-header">
-        <img src={authorProfilePic} alt={`${problem.author}'s Profile`} className="author-picture" />
+        <img src={authorProfilePic} alt={`${problem.contactInfo.name}'s Profile`} className="author-picture" />
         <div className="author-info">
-          <span className="author-name">{problem.author}</span>
+          <span className="author-name">{problem.contactInfo.name}</span>
           <span className="post-date">{formattedDate}</span>
         </div>
       </div>
 
-      {/* Card Content: Title and Description */}
+      {/* Card Content: Title, Description, and Additional Details */}
       <div className="card-content">
-        <h3 className="problem-title">{problem.title}</h3>
-        <p className="problem-description">{problem.content}</p>
+        <h3 className="problem-title">{problem.problemTitle}</h3>
+        <p className="problem-description">{problem.description}</p>
+
+        {/* Additional Details Toggle */}
+        {isDetailsVisible && (
+          <div className="problem-details">
+            <p><strong>Location:</strong> {problem.city}, {problem.country}</p>
+            <p><strong>Category:</strong> {problem.category}</p>
+            <p><strong>Urgency:</strong> {problem.urgency}</p>
+            <p><strong>Contact:</strong> {problem.contactInfo.email}, {problem.contactInfo.phone}</p>
+          </div>
+        )}
       </div>
 
       {/* Card Media: Images/Videos (if any) */}
       {problem.mediaFiles && problem.mediaFiles.length > 0 && (
         <div className="card-media">
-          {problem.mediaFiles.map((file, index) => {
-            if (file.type.startsWith('image/')) {
-              return (
-                <img key={index} src={file.url} alt={`Media ${index + 1}`} className="media-image" />
-              );
-            } else if (file.type.startsWith('video/')) {
-              return (
-                <video key={index} controls className="media-video">
-                  <source src={file.url} type={file.type} />
-                  Your browser does not support the video tag.
-                </video>
-              );
-            } else {
-              return null;
-            }
-          })}
+          <div className="media-slider">
+            {problem.mediaFiles.map((file, index) => {
+              if (file.type.startsWith('image/')) {
+                return (
+                  <img key={index} src={file.url} alt={`Media ${index + 1}`} className="media-item media-image" />
+                );
+              } else if (file.type.startsWith('video/')) {
+                return (
+                  <video key={index} controls className="media-item media-video">
+                    <source src={file.url} type={file.type} />
+                    Your browser does not support the video tag.
+                  </video>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
         </div>
       )}
 
-      {/* Card Footer: Engagement Buttons */}
+      {/* Card Footer: New Interaction Buttons */}
       <div className="card-footer">
-        <button className="engage-button">
-          <FontAwesomeIcon icon={faThumbsUp} />
-          <span>Like</span>
+        <button className="action-button" onClick={handleViewDetails} aria-label="View Details">
+          <FontAwesomeIcon icon={faEye} />
+          <span>Details</span>
         </button>
-        <button className="engage-button">
-          <FontAwesomeIcon icon={faCommentDots} />
-          <span>Comment</span>
+        <button className="action-button" onClick={handleSolveProblem} aria-label="Solve Problem">
+          <FontAwesomeIcon icon={faTools} />
+          <span>Solve</span>
         </button>
-        <button className="engage-button">
+        <button className="action-button" onClick={handleViewOnMap} aria-label="View on Map">
+          <FontAwesomeIcon icon={faMapMarkerAlt} />
+          <span>Map</span>
+        </button>
+        <button className="action-button" onClick={handleShare} aria-label="Share Problem">
           <FontAwesomeIcon icon={faShare} />
           <span>Share</span>
         </button>
       </div>
     </div>
   );
-
 };
 
 // MiddleArea Component
@@ -176,32 +243,106 @@ const MiddleArea = ({ user }) => {
   // State to manage modal visibility
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
-  // Placeholder data for submitted problems
+  // Dummy data for submitted problems based on SubmitProblem.js structure
   const submittedProblems = [
     {
       id: 1,
-      title: "How to optimize React performance?",
-      content: "I'm experiencing slow rendering in my React application. Any suggestions?",
-      author: "John Doe",
-      date: "2024-01-15",
+      problemTitle: "Critical Water Shortage in Nairobi",
+      country: "Kenya",
+      city: "Nairobi",
+      coordinates: { lat: -1.286389, lng: 36.817223 },
+      description: "Nairobi is facing a severe water shortage due to prolonged droughts. Residents are struggling to access clean water.",
+      category: "Water Scarcity",
+      urgency: "Critical",
+      date: "2024-01-15", // Added date
       mediaFiles: [
         {
           type: 'image/jpeg',
-          url: 'https://via.placeholder.com/600x400',
+          url: 'https://via.placeholder.com/600x400?text=Water+Shortage',
         },
         {
           type: 'video/mp4',
           url: 'https://www.w3schools.com/html/mov_bbb.mp4',
         },
+        {
+          type: 'image/png',
+          url: 'https://via.placeholder.com/600x400?text=Water+Quality',
+        },
       ],
+      submitterPhoto: null, // Assuming no photo provided
+      contactInfo: {
+        name: "John Doe",
+        email: "johndoe@example.com",
+        phone: "+254 700 123456",
+      },
     },
     {
       id: 2,
-      title: "Best practices for RESTful APIs",
-      content: "Looking for best practices in designing RESTful APIs. What should I focus on?",
-      author: "Jane Smith",
-      date: "2024-01-10",
-      mediaFiles: [], // No media
+      problemTitle: "Lack of Educational Resources in Rural Areas",
+      country: "India",
+      city: "Jaipur",
+      coordinates: { lat: 26.912434, lng: 75.787270 },
+      description: "Rural schools in Jaipur are lacking essential educational resources, hindering the learning process of students.",
+      category: "Education",
+      urgency: "High",
+      date: "2024-02-20", // Added date
+      mediaFiles: [
+        {
+          type: 'image/jpeg',
+          url: 'https://via.placeholder.com/600x400?text=Educational+Resources',
+        },
+      ],
+      submitterPhoto: null,
+      contactInfo: {
+        name: "Jane Smith",
+        email: "janesmith@example.com",
+        phone: "+91 98765 43210",
+      },
+    },
+    {
+      id: 3,
+      problemTitle: "Air Pollution in Delhi",
+      country: "India",
+      city: "Delhi",
+      coordinates: { lat: 28.704060, lng: 77.102493 },
+      description: "Delhi is experiencing dangerously high levels of air pollution, affecting the health of its residents.",
+      category: "Environment",
+      urgency: "Critical",
+      date: "2024-03-10", // Added date
+      mediaFiles: [],
+      submitterPhoto: null,
+      contactInfo: {
+        name: "Raj Patel",
+        email: "rajpatel@example.com",
+        phone: "+91 91234 56789",
+      },
+    },
+    {
+      id: 4,
+      problemTitle: "Road Infrastructure Decay in Detroit",
+      country: "USA",
+      city: "Detroit",
+      coordinates: { lat: 42.331427, lng: -83.045754 },
+      description: "Many roads in Detroit have deteriorated, leading to increased accidents and commute times.",
+      category: "Infrastructure",
+      urgency: "Medium",
+      date: "2024-04-05", // Added date
+      mediaFiles: [
+        {
+          type: 'image/jpeg',
+          url: 'https://via.placeholder.com/600x400?text=Infrastructure+Decay',
+        },
+        {
+          type: 'image/jpeg',
+          url: 'https://via.placeholder.com/600x400?text=Road+Damage',
+        },
+      ],
+      submitterPhoto: null,
+      contactInfo: {
+        name: "Emily Johnson",
+        email: "emilyj@example.com",
+        phone: "+1 313 555 7890",
+      },
     },
     // Add more problems as needed
   ];
@@ -261,7 +402,6 @@ const MiddleArea = ({ user }) => {
       </div>
     </main>
   );
-
 };
 
 // RightSidebar Component
@@ -270,13 +410,13 @@ const RightSidebar = () => {
   const recommendedSolutions = [
     {
       id: 1,
-      title: "Solution for React Performance",
-      description: "Implementing memoization and code-splitting to enhance performance.",
+      title: "Implement Rainwater Harvesting",
+      description: "Developing systems to collect and store rainwater to alleviate water scarcity.",
     },
     {
       id: 2,
-      title: "API Design Tips",
-      description: "Utilizing proper HTTP methods and status codes for RESTful APIs.",
+      title: "Renewable Energy Adoption",
+      description: "Transitioning to renewable energy sources to reduce air pollution.",
     },
     // Add more solutions as needed
   ];
@@ -284,13 +424,13 @@ const RightSidebar = () => {
   const collaborationProjects = [
     {
       id: 1,
-      title: "AI Integration Project",
-      description: "Seeking collaborators for integrating AI into our platform.",
+      title: "Clean Air Initiative",
+      description: "Looking for partners to work on reducing industrial emissions in urban areas.",
     },
     {
       id: 2,
-      title: "Mobile App Development",
-      description: "Looking for partners to develop a cross-platform mobile application.",
+      title: "Educational Outreach Program",
+      description: "Seeking volunteers to teach coding and digital skills in underprivileged schools.",
     },
     // Add more projects as needed
   ];
@@ -308,6 +448,9 @@ const RightSidebar = () => {
             </li>
           ))}
         </ul>
+        <a href="/recommended-solutions" className="see-more-link">
+          See More
+        </a>
       </div>
 
       {/* Container 2: Collaboration Projects */}
@@ -321,6 +464,9 @@ const RightSidebar = () => {
             </li>
           ))}
         </ul>
+        <a href="/projects-seeking-collaboration" className="see-more-link">
+          See More
+        </a>
       </div>
     </aside>
   );

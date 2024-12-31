@@ -148,6 +148,50 @@ body {
   color: var(--text-color);
 }
 
+/* My Submitted Problems Styling */
+.my-submitted-problems .section-title {
+  font-family: var(--heading-font);
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.submitted-problems-list {
+  list-style: none;
+  padding: 0;
+}
+
+.submitted-problem-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--neutral-border);
+}
+
+.submitted-problem-item:last-child {
+  border-bottom: none;
+}
+
+.submitted-problem-name {
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* See More Link Styling */
+.see-more-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--primary-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.see-more-link:hover {
+  color: var(--primary-hover);
+}
+
 /* Additional Links Styling */
 .additional-links .section-title {
   font-family: var(--heading-font);
@@ -205,7 +249,9 @@ body {
   padding: 20px; /* Increased padding for better spacing */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  display: block; /* Ensures the container spans the full width available */
+  display: flex; /* Use flex for better alignment */
+  align-items: center; /* Vertically center items */
+  gap: 15px; /* Space between profile picture and button */
 }
 
 /* Header Container for Submit Problem */
@@ -234,7 +280,7 @@ body {
   font-family: var(--body-font);
   font-size: 16px;
   cursor: pointer;
-  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .submit-problem-link:hover {
@@ -384,25 +430,58 @@ body {
   color: var(--text-color);
 }
 
+.problem-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--neutral-light-gray);
+  border-radius: 5px;
+}
+
+/* Card Media Styling */
 .card-media {
   margin-bottom: 10px;
 }
 
-.media-image {
-  width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+.media-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  padding-bottom: 10px; /* Space for scrollbar */
+}
+
+.media-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.media-slider::-webkit-scrollbar-track {
+  background: var(--neutral-light-gray);
+  border-radius: 4px;
+}
+
+.media-slider::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+.media-item {
+  flex: 0 0 auto; /* Prevent flex items from shrinking */
   border-radius: 8px;
-  margin-bottom: 10px;
+}
+
+.media-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .media-video {
-  width: 100%;
-  max-height: 400px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
 }
 
+/* Card Footer: Action Buttons */
 .card-footer {
   display: flex;
   justify-content: space-around;
@@ -410,7 +489,8 @@ body {
   padding-top: 10px;
 }
 
-.engage-button {
+/* Action Button Styling */
+.action-button {
   display: flex;
   align-items: center;
   background: none;
@@ -421,11 +501,11 @@ body {
   transition: color 0.3s ease;
 }
 
-.engage-button:hover {
+.action-button:hover {
   color: var(--primary-hover);
 }
 
-.engage-button span {
+.action-button span {
   margin-left: 5px;
 }
 
@@ -554,6 +634,12 @@ body {
   .project-description {
     font-size: 12px;
   }
+
+  .media-image,
+  .media-video {
+    width: 250px;
+    height: 160px;
+  }
 }
 
 @media (max-width: 992px) {
@@ -570,6 +656,12 @@ body {
 
   .middle-area {
     max-height: calc(100vh - 160px);
+  }
+
+  .media-image,
+  .media-video {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -609,7 +701,7 @@ body {
     align-items: flex-start;
   }
 
-  .engage-button {
+  .action-button {
     font-size: 12px;
   }
 
@@ -627,6 +719,16 @@ body {
 
   .submit-problem-link {
     font-size: 14px;
+  }
+
+  .media-slider {
+    gap: 8px;
+  }
+
+  .media-image,
+  .media-video {
+    width: 250px;
+    height: 160px;
   }
 }
 
