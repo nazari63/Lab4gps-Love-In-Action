@@ -42,6 +42,14 @@ body {
 
 /* Left Sidebar Styling */
 .left-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Removed background-color, border, border-radius, padding, box-shadow */
+}
+
+/* Sidebar Section Styling for Left Sidebar */
+.sidebar-section {
   background-color: var(--neutral-white);
   border: 1px solid var(--neutral-border);
   border-radius: 8px;
@@ -49,10 +57,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar-container {
-  margin-bottom: 20px;
-}
-
+/* User Info Styling */
 .user-info {
   position: relative;
   text-align: center;
@@ -135,11 +140,7 @@ body {
 
 .startup-item {
   padding: 8px 0;
-  border-bottom: 1px solid var(--neutral-border);
-}
-
-.startup-item:last-child {
-  border-bottom: none;
+  /* Removed border-bottom to eliminate separation lines */
 }
 
 .startup-name {
@@ -163,11 +164,7 @@ body {
 
 .submitted-problem-item {
   padding: 8px 0;
-  border-bottom: 1px solid var(--neutral-border);
-}
-
-.submitted-problem-item:last-child {
-  border-bottom: none;
+  /* Removed border-bottom to eliminate separation lines */
 }
 
 .submitted-problem-name {
@@ -511,6 +508,14 @@ body {
 
 /* Right Sidebar Styling */
 .right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Removed background-color, border, border-radius, padding, box-shadow */
+}
+
+/* Sidebar Section Styling for Right Sidebar */
+.right-sidebar-section {
   background-color: var(--neutral-white);
   border: 1px solid var(--neutral-border);
   border-radius: 8px;
@@ -518,6 +523,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Recommended Solutions and Collaboration Projects Styling */
 .recommended-solutions .section-title,
 .collaboration-projects .section-title {
   font-family: var(--heading-font);
@@ -535,12 +541,7 @@ body {
 .solution-item,
 .project-item {
   padding: 10px 0;
-  border-bottom: 1px solid var(--neutral-border);
-}
-
-.solution-item:last-child,
-.project-item:last-child {
-  border-bottom: none;
+  /* Removed border-bottom to eliminate separation lines */
 }
 
 .solution-title,
@@ -581,8 +582,8 @@ body {
     padding: 90px 15px 20px 15px;
   }
 
-  .left-sidebar,
-  .right-sidebar {
+  .left-sidebar-section,
+  .right-sidebar-section {
     padding: 15px;
   }
 

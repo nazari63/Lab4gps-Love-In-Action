@@ -29,7 +29,7 @@ const LeftSidebar = ({ user }) => {
   return (
     <aside className="left-sidebar">
       {/* Container 1: User Info */}
-      <div className="sidebar-container user-info">
+      <div className="sidebar-section user-info">
         <div className="background-image"></div>
         <div className="profile-section">
           <img
@@ -44,7 +44,7 @@ const LeftSidebar = ({ user }) => {
       </div>
 
       {/* Container 2: Profile Views and Impressions */}
-      <div className="sidebar-container profile-stats">
+      <div className="sidebar-section profile-stats">
         <div className="stat-item">
           <FontAwesomeIcon icon={faUserFriends} className="stat-icon" />
           <div>
@@ -62,7 +62,7 @@ const LeftSidebar = ({ user }) => {
       </div>
 
       {/* Container 3: My Startups */}
-      <div className="sidebar-container my-startups">
+      <div className="sidebar-section my-startups">
         <h3 className="section-title">My Startups</h3>
         <ul className="startup-list">
           <li className="startup-item">
@@ -79,7 +79,7 @@ const LeftSidebar = ({ user }) => {
       </div>
 
       {/* Container 4: My Submitted Problems */}
-      <div className="sidebar-container my-submitted-problems">
+      <div className="sidebar-section my-submitted-problems">
         <h3 className="section-title">My Submitted Problems</h3>
         <ul className="submitted-problems-list">
           <li className="submitted-problem-item">
@@ -96,7 +96,7 @@ const LeftSidebar = ({ user }) => {
       </div>
 
       {/* Container 5: Saved Items, Groups, Newsletters, Events */}
-      <div className="sidebar-container additional-links">
+      <div className="sidebar-section additional-links">
         <h3 className="section-title">Saved Items</h3>
         <ul className="links-list">
           <li className="link-item">
@@ -160,7 +160,7 @@ const ProblemCard = ({ problem }) => {
   const handleShare = () => {
     // Implement share functionality
     // For example, copy link to clipboard or open share dialog
-    navigator.clipboard.writeText(window.location.href + `/problems/${problem.id}`);
+    navigator.clipboard.writeText(`${window.location.origin}/problems/${problem.id}`);
     alert('Problem link copied to clipboard!');
   };
 
@@ -198,11 +198,21 @@ const ProblemCard = ({ problem }) => {
             {problem.mediaFiles.map((file, index) => {
               if (file.type.startsWith('image/')) {
                 return (
-                  <img key={index} src={file.url} alt={`Media ${index + 1}`} className="media-item media-image" />
+                  <img
+                    key={index}
+                    src={file.url}
+                    alt={`Media ${index + 1}`}
+                    className="media-item media-image"
+                    loading="lazy"
+                  />
                 );
               } else if (file.type.startsWith('video/')) {
                 return (
-                  <video key={index} controls className="media-item media-video">
+                  <video
+                    key={index}
+                    controls
+                    className="media-item media-video"
+                  >
                     <source src={file.url} type={file.type} />
                     Your browser does not support the video tag.
                   </video>
@@ -438,7 +448,7 @@ const RightSidebar = () => {
   return (
     <aside className="right-sidebar">
       {/* Container 1: Recommended Solutions */}
-      <div className="sidebar-container recommended-solutions">
+      <div className="sidebar-section recommended-solutions">
         <h3 className="section-title">Recommended Solutions</h3>
         <ul className="solutions-list">
           {recommendedSolutions.map((solution) => (
@@ -454,7 +464,7 @@ const RightSidebar = () => {
       </div>
 
       {/* Container 2: Collaboration Projects */}
-      <div className="sidebar-container collaboration-projects">
+      <div className="sidebar-section collaboration-projects">
         <h3 className="section-title">Projects Seeking Collaboration</h3>
         <ul className="projects-list">
           {collaborationProjects.map((project) => (
