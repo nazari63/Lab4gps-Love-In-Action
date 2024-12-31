@@ -208,6 +208,27 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Cancel Button */
+.cancel-button {
+  padding: 10px 16px;
+  background-color: #6c757d; /* Grey color */
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  align-self: center;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}
+
 /* Coordinates Display Styling */
 .coordinates-display {
   font-size: 0.9rem;

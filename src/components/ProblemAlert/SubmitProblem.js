@@ -1,15 +1,13 @@
 // src/components/ProblemAlert/SubmitProblem.js
 
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../styles/SubmitProblem.css';
-import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
-import { useLang } from '../Context/LangContext'; // Import useLang from LangContext
 
 // Import the ProblemService
 import ProblemService from '../../services/ProblemService'; // Adjust the path if needed
 
-const SubmitProblem = () => {
+const SubmitProblem = ({ onClose }) => {
   // State variables for form fields
   const [problemTitle, setProblemTitle] = useState('');
   const [country, setCountry] = useState('');
@@ -37,12 +35,6 @@ const SubmitProblem = () => {
 
   // Reference for debouncing
   const debounceRef = useRef(null);
-
-  // Access ModalContext to close the modal after submission if needed
-  const { closeSubmitProblem } = useContext(ModalContext);
-
-  // Access LangContext to get the current language
-  const { language } = useLang(); // 'en' for English, 'ko' for Korean
 
   // Import useNavigate hook for navigation
   const navigate = useNavigate();
@@ -133,7 +125,7 @@ const SubmitProblem = () => {
       navigate('/'); // Example: Navigate to home
 
       // Optionally, close the modal after a successful submission:
-      // closeSubmitProblem();
+      onClose();
     } catch (error) {
       console.error('Error submitting problem:', error);
       // Handle error UI or notifications here
@@ -194,9 +186,7 @@ const SubmitProblem = () => {
           const response = await fetch(
             `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
               addressQuery
-            )}&key=${apiKey}&limit=5&no_annotations=1&language=${
-              language === 'ko' ? 'ko' : 'en'
-            }`
+            )}&key=${apiKey}&limit=5&no_annotations=1&language=en` // Assuming English language
           );
 
           if (!response.ok) {
@@ -230,7 +220,7 @@ const SubmitProblem = () => {
         clearTimeout(debounceRef.current);
       }
     };
-  }, [addressQuery, language]);
+  }, [addressQuery]);
 
   // Close suggestions dropdown when clicking outside
   const wrapperRef = useRef(null);
@@ -442,9 +432,15 @@ const SubmitProblem = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-problem-button">
-          Submit Problem
-        </button>
+        {/* Form Actions */}
+        <div className="form-actions">
+          <button type="submit" className="submit-problem-button">
+            Submit Problem
+          </button>
+          <button type="button" className="cancel-button" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

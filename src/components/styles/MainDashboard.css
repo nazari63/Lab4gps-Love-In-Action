@@ -17,6 +17,19 @@
   --body-font: 'Arial', sans-serif;
 }
 
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--neutral-light-gray);
+  color: var(--text-color);
+}
+
 /* Main Dashboard Layout */
 .main-dashboard {
   display: grid;
@@ -185,19 +198,21 @@
 
 /* Submit Container Styling */
 .submit-container {
-  /* Lightweight container with subtle styling */
+  /* Reverted to rectangular shape */
   background-color: var(--neutral-white);
   border: 1px solid var(--neutral-border);
-  border-radius: 8px;
-  padding: 15px 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 8px; /* Standard border radius for a smooth rectangle */
+  padding: 20px; /* Increased padding for better spacing */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  display: block; /* Ensures the container spans the full width available */
 }
 
 /* Header Container for Submit Problem */
 .submit-problem-header {
   display: flex;
   align-items: center;
+  gap: 15px; /* Adds space between profile picture and button */
 }
 
 .submit-header-profile-picture {
@@ -209,19 +224,26 @@
 }
 
 .submit-problem-link {
-  background: none;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
   border: none;
-  color: var(--primary-color);
+  border-radius: 50px; /* Oval shape */
+  padding: 10px 20px; /* Maintains oval shape */
   font-family: var(--body-font);
   font-size: 16px;
   cursor: pointer;
-  text-decoration: underline;
-  padding: 0;
-  transition: color 0.3s ease;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 .submit-problem-link:hover {
-  color: var(--primary-hover);
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.submit-problem-link svg {
+  margin-right: 8px; /* Space between icon and text */
 }
 
 /* Divider Styling */
@@ -251,10 +273,12 @@
   border-radius: 8px;
   width: 90%;
   max-width: 600px;
+  max-height: 90vh; /* To ensure the modal doesn't exceed viewport height */
   padding: 20px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
+  overflow-y: auto; /* Make the modal content scrollable if it exceeds height */
 }
 
 /* Close Button */
@@ -264,7 +288,7 @@
   right: 15px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   color: var(--accent-color);
   transition: color 0.3s ease;

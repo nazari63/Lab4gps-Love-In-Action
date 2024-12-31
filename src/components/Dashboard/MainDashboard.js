@@ -14,12 +14,11 @@ import {
   faThumbsUp,
   faCommentDots,
   faShare,
+  faPlus, // Importing plus icon for better UX
 } from '@fortawesome/free-solid-svg-icons';
 import SubmitProblem from '../ProblemAlert/SubmitProblem'; // Import SubmitProblem component
 
-// Placeholder components for demonstration
-// In a real application, these would fetch and display actual data
-
+// LeftSidebar Component
 const LeftSidebar = ({ user }) => {
   const baseUrl = process.env.REACT_APP_API_URL || "http://127.0.0.1:8080";
   const profilePictureUrl = user?.profile_picture?.startsWith("http")
@@ -98,12 +97,12 @@ const LeftSidebar = ({ user }) => {
         </ul>
       </div>
     </aside>
-  );
+  )
 };
 
+// ProblemCard Component
 const ProblemCard = ({ problem }) => {
   // Placeholder for author's profile picture
-  // In a real application, you'd fetch the author's data
   const authorProfilePic = '/default-profile.png'; // Replace with actual data if available
 
   // Format the date to a more readable format
@@ -134,7 +133,6 @@ const ProblemCard = ({ problem }) => {
       {problem.mediaFiles && problem.mediaFiles.length > 0 && (
         <div className="card-media">
           {problem.mediaFiles.map((file, index) => {
-            // Assuming mediaFiles are URLs. Adjust accordingly.
             if (file.type.startsWith('image/')) {
               return (
                 <img key={index} src={file.url} alt={`Media ${index + 1}`} className="media-image" />
@@ -173,6 +171,7 @@ const ProblemCard = ({ problem }) => {
 
 };
 
+// MiddleArea Component
 const MiddleArea = ({ user }) => {
   // State to manage modal visibility
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
@@ -186,7 +185,6 @@ const MiddleArea = ({ user }) => {
       author: "John Doe",
       date: "2024-01-15",
       mediaFiles: [
-        // Example media files. Replace with actual URLs or file data.
         {
           type: 'image/jpeg',
           url: 'https://via.placeholder.com/600x400',
@@ -234,6 +232,7 @@ const MiddleArea = ({ user }) => {
             className="submit-header-profile-picture"
           />
           <button className="submit-problem-link" onClick={openSubmitModal}>
+            <FontAwesomeIcon icon={faPlus} style={{ marginRight: '8px' }} />
             Submit a Problem
           </button>
         </div>
@@ -246,7 +245,7 @@ const MiddleArea = ({ user }) => {
       {isSubmitModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <button className="modal-close-button" onClick={closeSubmitModal}>
+            <button className="modal-close-button" onClick={closeSubmitModal} aria-label="Close Modal">
               &times;
             </button>
             <SubmitProblem onClose={closeSubmitModal} />
@@ -265,6 +264,7 @@ const MiddleArea = ({ user }) => {
 
 };
 
+// RightSidebar Component
 const RightSidebar = () => {
   // Placeholder data for recommended solutions and collaboration projects
   const recommendedSolutions = [
@@ -326,6 +326,7 @@ const RightSidebar = () => {
   );
 };
 
+// MainDashboard Component
 const MainDashboard = () => {
   const { user } = useAuth(); // Assuming useAuth provides user data
 
