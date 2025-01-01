@@ -106,16 +106,17 @@ const Globe = () => {
       setIsRotating(false);
     } else {
       // Start rotation
-      if (!animationIdRef.current && viewerRef.current) {
+      
         const rotateEarth = () => {
-          const spinRate = 0.01;
-          const delta = spinRate / 60; // Assuming 60 FPS
-          // Correctly reference Cesium via window.Cesium
-          viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
-          animationIdRef.current = requestAnimationFrame(rotateEarth);
-        };
-        rotateEarth();
+          if (!animationIdRef.current && viewerRef.current) {
+            const spinRate = 0.01;
+            const delta = spinRate / 60; // Assuming 60 FPS
+            // Correctly reference Cesium via window.Cesium
+            viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
+            animationIdRef.current = requestAnimationFrame(rotateEarth);
+         };
       }
+      rotateEarth();
       setIsRotating(true);
     }
   };
