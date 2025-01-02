@@ -1,0 +1,346 @@
+/* src/components/Notification/Notification.css */
+
+/*
+  Using the theme:
+  --primary-color: #0077B5 (LinkedIn Blue)
+  --primary-hover: #005587
+  --secondary-color: #434649 (Slate Gray)
+  --accent-color: #86888A (Cool Gray)
+  --neutral-white: #FFFFFF
+  --neutral-light-gray: #F3F6F8
+  --neutral-border: #E1E9EE
+  --text-color: var(--secondary-color);
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Arial', sans-serif;
+*/
+
+:root {
+  --primary-color: #0077B5;
+  --primary-hover: #005587;
+  --secondary-color: #434649;
+  --accent-color: #86888A;
+  --neutral-white: #FFFFFF;
+  --neutral-light-gray: #F3F6F8;
+  --neutral-border: #E1E9EE;
+  --text-color: var(--secondary-color);
+
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Arial', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: var(--neutral-light-gray);
+  color: var(--text-color);
+}
+
+/* 
+   Main Container for the entire notifications page
+   Adding margin-top so it's not hidden under the LoginHeader
+*/
+.notifications-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 60px auto 0 auto;  /* Margin-top 60px to avoid being hidden by header */
+  padding: 20px;
+}
+
+/* Header for notifications, containing the title and actions */
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.notifications-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notifications-title h2 {
+  font-family: var(--heading-font);
+  font-size: 24px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.bell-icon {
+  font-size: 24px;
+  color: var(--primary-color);
+}
+
+.notifications-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.settings-btn,
+.mark-all-read-btn {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-family: var(--body-font);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.settings-btn:hover,
+.mark-all-read-btn:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.02);
+}
+
+/* Settings Panel styling */
+.notifications-settings-panel {
+  position: absolute;
+  top: 100px; /* slightly below the header + added margin */
+  right: 20px;
+  width: 300px;
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  z-index: 999;
+}
+
+.settings-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.settings-panel-header h3 {
+  font-family: var(--heading-font);
+  font-size: 18px;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.close-settings {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close-settings:hover {
+  color: var(--primary-hover);
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-item label {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.settings-item input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* The feed that holds pinned and unpinned notifications */
+.notifications-feed {
+  background-color: transparent;
+}
+
+/* Pinned Section */
+.pinned-section {
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--heading-font);
+  font-size: 16px;
+  margin: 0 0 10px 0;
+  color: var(--text-color);
+}
+
+/* Grouping by date */
+.notifications-date-group {
+  margin-bottom: 20px;
+}
+
+.date-label {
+  font-size: 14px;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Individual notification item */
+.notification-item {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.notification-item:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.notification-title {
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.notification-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.notification-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--accent-color);
+  transition: color 0.2s;
+}
+
+.notification-actions button:hover {
+  color: var(--primary-hover);
+}
+
+.pin-icon {
+  font-size: 16px;
+}
+.pin-icon.pinned {
+  color: var(--primary-color);
+}
+
+.notification-body {
+  margin-bottom: 6px;
+}
+
+.notification-message {
+  font-size: 14px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: var(--accent-color);
+}
+
+/* read/unread states */
+.notification-item.read {
+  opacity: 0.8;
+}
+.notification-item.unread {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 8px;
+}
+
+.notification-footer {
+  text-align: right;
+}
+
+.mark-read-btn {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.mark-read-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* If there are no notifications left to show / or disabled all categories */
+.no-notifications {
+  font-size: 14px;
+  color: var(--accent-color);
+  padding: 20px;
+  text-align: center;
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .notifications-container {
+    padding: 10px;
+    margin-top: 50px; /* Slightly smaller top margin for narrower screens */
+  }
+  .notifications-header h2 {
+    font-size: 20px;
+  }
+  .settings-btn,
+  .mark-all-read-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .notification-title {
+    font-size: 14px;
+  }
+  .notification-message {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .notifications-settings-panel {
+    width: 90%;
+    right: 5%;
+  }
+  .notification-item {
+    margin-bottom: 8px;
+  }
+  .mark-read-btn {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .emoji {
+    font-size: 18px;
+  }
+}

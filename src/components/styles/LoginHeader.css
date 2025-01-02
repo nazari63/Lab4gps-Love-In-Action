@@ -6,31 +6,31 @@
 .login-header {
   background-color: #FFFFFF; /* White background */
   border-bottom: 1px solid #E1E9EE; /* Light gray border */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px; /* Defined fixed height */
-  z-index: 1000; /* Ensure it stays on top */
-  font-family: 'Roboto', sans-serif; /* Updated to Roboto */
+  height: 60px;
+  z-index: 1000;
+  font-family: 'Roboto', sans-serif;
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space between left, central, and right sections */
-  padding: 0 20px; /* Adjusted padding */
-  height: 100%; /* Ensures nav-bar occupies full header height */
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 100%;
 }
 
-/* Left Section: Logo and Search Bar */
+/* Left Section: Logo & Search */
 .left-section {
   display: flex;
   align-items: center;
 }
 
 .logo {
-  height: 40px; /* Adjust based on your logo size */
+  height: 40px;
   margin-right: 15px;
 }
 
@@ -47,24 +47,23 @@
 }
 
 .search-input {
-  padding: 8px 8px 8px 35px; /* Padding left to accommodate the search icon */
-  border: 1px solid #E1E9EE; /* Light gray border */
+  padding: 8px 8px 8px 35px;
+  border: 1px solid #E1E9EE;
   border-radius: 4px;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   outline: none;
   transition: border-color 0.3s;
 }
-
 .search-input:focus {
-  border-color: #0077B5; /* LinkedIn Blue on focus */
+  border-color: #0077B5; /* LinkedIn Blue */
 }
 
-/* Central Section: Navigation Items */
+/* Central Section */
 .central-section {
   display: flex;
   align-items: center;
-  flex: 1; /* Takes up remaining space between left and right sections */
+  flex: 1;
   justify-content: center;
 }
 
@@ -72,40 +71,75 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #434649; /* Slate Gray */
+  color: #434649;
   text-decoration: none;
   position: relative;
-  padding: 10px 15px; /* Increased padding for better spacing */
+  padding: 10px 15px;
   transition: color 0.3s;
 }
-
 .nav-item:hover {
-  color: #0077B5; /* LinkedIn Blue on hover */
+  color: #0077B5;
 }
-
 .nav-icon {
-  font-size: 20px; /* Slightly reduced for better fit */
+  font-size: 20px;
   margin-bottom: 5px;
 }
-
 .nav-label {
   font-size: 12px;
   font-weight: 500;
 }
-
 .active {
-  color: #0077B5; /* LinkedIn Blue for active links */
+  color: #0077B5;
 }
 
 /* Separator */
 .separator {
   width: 1px;
   height: 30px;
-  background-color: #E1E9EE; /* Light gray color */
-  margin: 0 20px; /* Space around the separator */
+  background-color: #E1E9EE;
+  margin: 0 20px;
 }
 
-/* Right Section: For Members Button and Me Section */
+/* BADGE for Messages & Notifications */
+.message-icon-container,
+.notification-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* For Unread Count Badge (Messages) */
+.message-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* For Unread Count Badge (Notifications) */
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right Section */
 .right-section {
   display: flex;
   align-items: center;
@@ -115,9 +149,9 @@
 .member-button {
   display: flex;
   align-items: center;
-  border: 1px dotted #0077B5; /* Dotted border with primary color */
+  border: 1px dotted #0077B5;
   background-color: transparent;
-  color: #0077B5; /* LinkedIn Blue text */
+  color: #0077B5;
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 14px;
@@ -125,94 +159,84 @@
   font-family: 'Roboto', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .member-button:hover {
-  background-color: #F3F6F8; /* Light Gray on hover */
+  background-color: #F3F6F8;
 }
-
 .dropdown-icon {
   margin-left: 5px;
 }
 
+/* Member Dropdown */
 .member-dropdown-menu {
-  position: fixed; /* Changed from absolute to fixed */
-  top: 60px; /* Positioned below the header */
-  right: 20px; /* Align with the padding of nav-bar */
-  background-color: #FFFFFF; /* White background */
-  border: 1px solid #E1E9EE; /* Light gray border */
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   width: 200px;
-  z-index: 2000; /* Increased z-index to ensure it floats above all content */
-  animation: fadeIn 0.3s ease-in-out; /* Optional: Fade-in animation */
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
 }
-
 .member-dropdown-item {
   padding: 10px 15px;
   text-decoration: none;
-  color: #434649; /* Slate Gray */
+  color: #434649;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .member-dropdown-item:hover {
-  background-color: #F3F6F8; /* Light Gray on hover */
-  color: #0077B5; /* LinkedIn Blue on hover */
+  background-color: #F3F6F8;
+  color: #0077B5;
 }
 
-/* 'Me' Section */
+/* Me Section */
 .me-section {
   position: relative;
   cursor: pointer;
   margin-left: 15px;
 }
-
 .profile-photo {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
 }
-
 .me-section .nav-label {
   display: flex;
   align-items: center;
   font-size: 14px;
 }
-
 .me-section .dropdown-icon {
   margin-left: 5px;
 }
 
-/* Dropdown Menu for 'Me' */
+/* Me Dropdown Menu */
 .dropdown-menu {
   display: none;
-  position: fixed; /* Changed from absolute to fixed */
-  top: 60px; /* Positioned below the header */
-  right: 20px; /* Align with the padding of nav-bar */
-  background-color: #FFFFFF; /* White background */
-  border: 1px solid #E1E9EE; /* Light gray border */
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #E1E9EE;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  width: 220px; /* Increased width to accommodate profile header */
-  z-index: 2000; /* Increased z-index to ensure it floats above all content */
-  animation: fadeIn 0.3s ease-in-out; /* Optional: Fade-in animation */
+  width: 220px;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
 }
-
 .me-section:hover .dropdown-menu {
   display: block;
 }
-
-/* Dropdown Header */
 .dropdown-header {
   display: flex;
   align-items: center;
   padding: 15px;
   border-bottom: 1px solid #E1E9EE;
 }
-
 .dropdown-profile-photo {
   width: 48px;
   height: 48px;
@@ -220,41 +244,34 @@
   object-fit: cover;
   margin-right: 10px;
 }
-
 .dropdown-user-info {
   display: flex;
   flex-direction: column;
 }
-
 .dropdown-user-name {
   font-size: 16px;
   font-weight: 600;
   color: #434649;
 }
-
-/* View Profile Button */
 .view-profile-button {
   display: flex;
   align-items: center;
   padding: 10px 15px;
   background-color: #F3F6F8;
   text-decoration: none;
-  color: #0077B5; /* LinkedIn Blue */
+  color: #0077B5;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .view-profile-button:hover {
   background-color: #E1E9EE;
 }
-
 /* Dropdown Sections */
 .dropdown-section {
   padding: 10px 15px;
 }
-
 .dropdown-section-title {
   font-size: 13px;
   font-weight: 600;
@@ -262,24 +279,20 @@
   margin-bottom: 8px;
   text-transform: uppercase;
 }
-
-/* Dropdown Items */
 .dropdown-item {
   padding: 8px 0;
   text-decoration: none;
-  color: #434649; /* Slate Gray */
+  color: #434649;
   display: block;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .dropdown-item:hover {
-  background-color: #F3F6F8; /* Light Gray on hover */
-  color: #0077B5; /* LinkedIn Blue on hover */
+  background-color: #F3F6F8;
+  color: #0077B5;
 }
-
-/* Logout Button */
+/* Logout */
 .logout-button {
   background: none;
   border: none;
@@ -289,102 +302,82 @@
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  color: #434649; /* Slate Gray */
+  color: #434649;
   transition: background-color 0.3s, color 0.3s;
 }
-
 .logout-button:hover {
-  background-color: #F3F6F8; /* Light Gray on hover */
-  color: #0077B5; /* LinkedIn Blue on hover */
+  background-color: #F3F6F8;
+  color: #0077B5;
 }
-
-/* Spacer for Fixed Header */
 .main-content.with-header-padding {
-  padding-top: 70px; /* Increased from 60px to add a small space */
+  padding-top: 70px;
 }
-
 .main-content {
   padding-top: 0;
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 1024px) {
   .search-bar {
-    display: none; /* Hide search bar on smaller screens */
+    display: none;
   }
-
   .central-section {
     flex-wrap: wrap;
   }
-
   .separator {
-    display: none; /* Hide separator on smaller screens */
+    display: none;
   }
-
   .member-button {
     padding: 6px 10px;
     font-size: 12px;
   }
-
   .member-dropdown-menu {
     width: 180px;
   }
-
   .member-dropdown-item {
     padding: 8px 12px;
     font-size: 13px;
   }
-
   .me-section .nav-label {
     font-size: 13px;
   }
-
   .me-section .dropdown-icon {
     font-size: 12px;
   }
 }
-
 @media (max-width: 768px) {
   .nav-bar {
-    padding: 0 10px; /* Reduced padding for smaller screens */
+    padding: 0 10px;
   }
-
   .nav-item {
     padding: 8px;
   }
-
   .nav-icon {
     font-size: 18px;
   }
-
   .nav-label {
     font-size: 10px;
   }
-
   .member-button {
     padding: 6px 8px;
     font-size: 12px;
   }
-
   .member-dropdown-menu {
     width: 160px;
   }
-
   .member-dropdown-item {
     padding: 8px 12px;
     font-size: 12px;
   }
-
   .me-section .nav-label {
     font-size: 12px;
   }
-
   .me-section .dropdown-icon {
     font-size: 10px;
   }
 }
 
-/* Optional: Fade-in Animation for Dropdowns */
+/* Fade-in animation for dropdowns */
 @keyframes fadeIn {
   from {
     opacity: 0;

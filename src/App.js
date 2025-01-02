@@ -28,8 +28,11 @@ import LoginHeader from './components/Navbar/LoginHeader';
 import ProtectedRoute from './protect/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'; 
 
-// Import your new Message component (place it at the top with other imports)
-import Message from './components/message/message'; // Adjust path if necessary
+// Existing components
+import Message from './components/message/message'; // Example: adjust path if necessary
+
+// **NEW**: Import the Notification component
+import Notification from './components/Notification/Notification'; // Adjust path if needed
 
 // Lazy-loaded components
 const About = lazy(() => import('./pages/About/About'));
@@ -38,11 +41,7 @@ const Mission = lazy(() => import('./pages/About/Mission'));
 const Vision = lazy(() => import('./pages/About/Vision'));
 const CoreValues = lazy(() => import('./pages/About/CoreValues'));
 const WhoWeAre = lazy(() => import('./pages/About/WhoWeAre'));
-
-// Lazy-loaded Globe.js
 const Globe = lazy(() => import('./components/Globe/Globe'));
-
-// Lazy-load MainDashboard
 const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard'));
 
 function App() {
@@ -65,7 +64,8 @@ function AppContent() {
   const location = useLocation();
 
   // Define routes where Navbar and Footer should be hidden
-  const excludeLayoutRoutes = ['/dashboard', '/globe', '/message'];
+  // Add "/notifications" so Navbar & Footer won't appear there either
+  const excludeLayoutRoutes = ['/dashboard', '/globe', '/message', '/notifications'];
 
   // Determine if the current path is in the exclude list
   const shouldHideLayout = excludeLayoutRoutes.some(route =>
@@ -74,6 +74,7 @@ function AppContent() {
 
   return (
     <div className="App">
+      {/* Conditionally render Navbar */}
       {!shouldHideLayout && <Navbar />}
 
       <Suspense fallback={<div>Loading...</div>}>
@@ -132,14 +133,25 @@ function AppContent() {
               }
             />
 
-            {/* NEW: Message Page (Protected) */}
+            {/* Message Page (Protected) */}
             <Route
               path="/message"
               element={
                 <ProtectedRoute>
-                  {/* Hide default Navbar & Footer, but show a LoginHeader */}
+                  {/* Hide Navbar & Footer, but show LoginHeader */}
                   <LoginHeader />
                   <Message />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* NEW: Notification Page (Protected) */}
+            <Route
+              path="/notifications"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <Notification />
                 </ProtectedRoute>
               }
             />
@@ -157,12 +169,17 @@ function AppContent() {
               <Route path="corevalues" element={<CoreValues />} />
               <Route path="whoweare" element={<WhoWeAre />} />
             </Route>
+
+            {/* Optionally handle Undefined Routes */}
+            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </div>
       </Suspense>
 
+      {/* Conditionally render Footer */}
       {!shouldHideLayout && <Footer />}
 
+      {/* Floating Chatbot */}
       <Chatbot />
     </div>
   );

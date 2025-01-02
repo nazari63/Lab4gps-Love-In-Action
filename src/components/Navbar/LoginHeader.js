@@ -1,6 +1,6 @@
 // src/components/Navbar/LoginHeader.js
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/LoginHeader.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,56 +13,77 @@ import {
   faBell,
   faChevronDown,
   faSearch,
-  faHandshake, // Imported faHandshake for Sponsorship
-  faArrowLeft,
-  faArrowRight,
-  faPause,
+  faHandshake, // For Sponsorship
 } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../Context/AuthContext';
-import logo from '../../assets/images/Lab4GPS_Logo_2024-1.jpg'; // Ensure the correct path to your logo image
+import logo from '../../assets/images/Lab4GPS_Logo_2024-1.jpg'; // Ensure correct path to your logo
 
 const LoginHeader = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [isMeDropdownOpen, setIsMeDropdownOpen] = useState(false);
   const [isMemberDropdownOpen, setIsMemberDropdownOpen] = useState(false);
+
   const memberButtonRef = useRef(null);
   const meButtonRef = useRef(null);
 
-  // Define baseUrl for profile pictures
-  const baseUrl = process.env.REACT_APP_API_URL || "http://127.0.0.1:8080";
-
-  // Compute profilePictureUrl similar to AdvancedUserProfile.js
-  const profilePictureUrl = user?.profile_picture?.startsWith("http")
+  // ------------------------------------------------------
+  // Profile Picture URL
+  // ------------------------------------------------------
+  const baseUrl = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8080';
+  const profilePictureUrl = user?.profile_picture?.startsWith('http')
     ? user.profile_picture
-    : `${baseUrl}${user?.profile_picture || ""}`;
+    : `${baseUrl}${user?.profile_picture || ''}`;
 
-  // Function to handle logout
+  // ------------------------------------------------------
+  // Unread COUNTS for both MESSAGES and NOTIFICATIONS
+  // ------------------------------------------------------
+  const [unreadMessageCount, setUnreadMessageCount] = useState(0);
+  const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
+
+  // On mount, set default unread counts
+  useEffect(() => {
+    setUnreadMessageCount(2);
+    setUnreadNotificationCount(3);
+  }, []);
+
+  // On clicking the /message page, reset messages to 0
+  const handleMessageClick = () => {
+    setUnreadMessageCount(0);
+  };
+
+  // On clicking the /notifications page, reset notifications to 0
+  const handleNotificationsClick = () => {
+    setUnreadNotificationCount(0);
+  };
+
+  // ------------------------------------------------------
+  // Logout
+  // ------------------------------------------------------
   const handleLogout = () => {
     logout();
-    navigate("/login"); // Redirect to login page after logout
+    navigate('/login');
   };
 
-  // Function to toggle 'Me' dropdown menu
+  // ------------------------------------------------------
+  // Dropdown toggles
+  // ------------------------------------------------------
   const toggleMeDropdown = () => {
     setIsMeDropdownOpen(!isMeDropdownOpen);
-    setIsMemberDropdownOpen(false); // Close other dropdown if open
+    setIsMemberDropdownOpen(false);
   };
 
-  // Function to toggle 'For Members' dropdown menu
   const toggleMemberDropdown = () => {
     setIsMemberDropdownOpen(!isMemberDropdownOpen);
-    setIsMeDropdownOpen(false); // Close other dropdown if open
+    setIsMeDropdownOpen(false);
   };
 
-  // Close dropdowns when clicking outside
-  React.useEffect(() => {
+  // Close dropdowns if user clicks outside
+  useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        meButtonRef.current &&
-        !meButtonRef.current.contains(event.target)
-      ) {
+      if (meButtonRef.current && !meButtonRef.current.contains(event.target)) {
         setIsMeDropdownOpen(false);
       }
       if (
@@ -72,14 +93,13 @@ const LoginHeader = () => {
         setIsMemberDropdownOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  // Handle keyboard navigation for 'Me' section
+  // Keyboard nav for 'Me'
   const handleMeKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -87,7 +107,7 @@ const LoginHeader = () => {
     }
   };
 
-  // Handle keyboard navigation for 'For Members' button
+  // Keyboard nav for 'For Members'
   const handleMemberKeyDown = (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -95,10 +115,15 @@ const LoginHeader = () => {
     }
   };
 
+  // ------------------------------------------------------
+  // Render
+  // ------------------------------------------------------
   return (
     <header className="login-header">
       <nav className="nav-bar">
-        {/* Left End Elements: Logo and Search Bar */}
+        {/* -----------------------------
+            Left Section: Logo & Search
+        ----------------------------- */}
         <div className="left-section">
           <img src={logo} alt="Company Logo" className="logo" />
           <div className="search-bar">
@@ -112,12 +137,16 @@ const LoginHeader = () => {
           </div>
         </div>
 
-        {/* Central Grouping: Navigation Items */}
+        {/* -----------------------------
+            Central Section: Nav Items
+        ----------------------------- */}
         <div className="central-section">
           <NavLink
-            to="/globe" // Points to /globe which displays Globe.js
+            to="/globe"
             className={({ isActive }) =>
-              isActive || location.pathname === '/login-header' ? "nav-item active" : "nav-item"
+              isActive || location.pathname === '/login-header'
+                ? 'nav-item active'
+                : 'nav-item'
             }
           >
             <FontAwesomeIcon icon={faHome} className="nav-icon" />
@@ -126,7 +155,7 @@ const LoginHeader = () => {
 
           <NavLink
             to="/dashboard"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
           >
             <FontAwesomeIcon icon={faTachometerAlt} className="nav-icon" />
             <span className="nav-label">Dashboard</span>
@@ -134,7 +163,9 @@ const LoginHeader = () => {
 
           <NavLink
             to="/problem-solver"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) =>
+              isActive ? 'nav-item active' : 'nav-item'
+            }
           >
             <FontAwesomeIcon icon={faLightbulb} className="nav-icon" />
             <span className="nav-label">Problem Solver</span>
@@ -142,7 +173,7 @@ const LoginHeader = () => {
 
           <NavLink
             to="/solutions"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
           >
             <FontAwesomeIcon icon={faPuzzlePiece} className="nav-icon" />
             <span className="nav-label">Solutions</span>
@@ -150,35 +181,52 @@ const LoginHeader = () => {
 
           <NavLink
             to="/sponsorship"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
           >
-            {/* Replaced faEnvelope with faHandshake for Sponsorship */}
             <FontAwesomeIcon icon={faHandshake} className="nav-icon" />
             <span className="nav-label">Sponsorship</span>
           </NavLink>
 
+          {/* MESSAGES with badge */}
           <NavLink
             to="/message"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
+            onClick={handleMessageClick}
           >
-            <FontAwesomeIcon icon={faEnvelope} className="nav-icon" />
+            <div className="message-icon-container">
+              <FontAwesomeIcon icon={faEnvelope} className="nav-icon" />
+              {unreadMessageCount > 0 && (
+                <span className="message-badge">{unreadMessageCount}</span>
+              )}
+            </div>
             <span className="nav-label">Messages</span>
           </NavLink>
 
+          {/* NOTIFICATIONS with badge */}
           <NavLink
             to="/notifications"
-            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
+            className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
+            onClick={handleNotificationsClick}
           >
-            <FontAwesomeIcon icon={faBell} className="nav-icon" />
+            <div className="notification-icon-container">
+              <FontAwesomeIcon icon={faBell} className="nav-icon" />
+              {unreadNotificationCount > 0 && (
+                <span className="notification-badge">
+                  {unreadNotificationCount}
+                </span>
+              )}
+            </div>
             <span className="nav-label">Notifications</span>
           </NavLink>
 
-          {/* Separator */}
-          <div className="separator"></div>
+          <div className="separator" />
         </div>
 
-        {/* Right-End Elements: For Members Button and 'Me' Section */}
+        {/* -----------------------------
+            Right Section
+        ----------------------------- */}
         <div className="right-section">
+          {/* For Members Button */}
           <button
             className="member-button"
             onClick={toggleMemberDropdown}
@@ -187,10 +235,11 @@ const LoginHeader = () => {
             aria-expanded={isMemberDropdownOpen}
             onKeyDown={handleMemberKeyDown}
           >
-            For Members <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
+            For Members
+            <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
           </button>
 
-          {/* Member Dropdown Menu */}
+          {/* For Members Menu */}
           {isMemberDropdownOpen && (
             <div className="member-dropdown-menu" role="menu">
               <NavLink
@@ -272,7 +321,7 @@ const LoginHeader = () => {
             onKeyDown={handleMeKeyDown}
           >
             <img
-              src={profilePictureUrl || '/default-profile.png'} // Fallback to a default image
+              src={profilePictureUrl || '/default-profile.png'}
               alt={`${user?.first_name || 'User'}'s Profile`}
               className="profile-photo"
             />
@@ -281,10 +330,8 @@ const LoginHeader = () => {
               <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
             </span>
 
-            {/* 'Me' Dropdown Menu */}
             {isMeDropdownOpen && (
               <div className="dropdown-menu" role="menu">
-                {/* Profile Header */}
                 <div className="dropdown-header">
                   <img
                     src={profilePictureUrl || '/default-profile.png'}
@@ -298,7 +345,6 @@ const LoginHeader = () => {
                   </div>
                 </div>
 
-                {/* View Profile Button */}
                 <NavLink
                   to="/profile"
                   className="view-profile-button"
@@ -308,7 +354,6 @@ const LoginHeader = () => {
                   View Profile
                 </NavLink>
 
-                {/* Account Section */}
                 <div className="dropdown-section">
                   <h4 className="dropdown-section-title">Account</h4>
                   <NavLink
@@ -337,7 +382,6 @@ const LoginHeader = () => {
                   </NavLink>
                 </div>
 
-                {/* Manage Section */}
                 <div className="dropdown-section">
                   <h4 className="dropdown-section-title">Manage</h4>
                   <NavLink
@@ -374,7 +418,6 @@ const LoginHeader = () => {
                   </NavLink>
                 </div>
 
-                {/* Logout Button */}
                 <button
                   className="dropdown-item logout-button"
                   onClick={handleLogout}

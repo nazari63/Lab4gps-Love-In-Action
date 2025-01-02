@@ -20,6 +20,7 @@ import {
  * Message.js
  *
  * Key Changes:
+ * - Added top margin (or padding) in CSS to ensure the container isn't hidden by LoginHeader.
  * - Edit/Delete icons are hidden behind a three-dots button per message.
  * - Clicking the button opens a small dropdown menu with Edit / Delete options.
  * - Placeholder logic for group creation, message settings, read receipts, etc.
@@ -165,7 +166,10 @@ const Message = () => {
       sender: 'Me',
       senderAvatar: '/default-profile.png',
       content: messageInput,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      timestamp: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       isOwnMessage: true,
     };
     setMessages((prev) => [...prev, newMessage]);
@@ -185,7 +189,7 @@ const Message = () => {
   // Handlers: Message Actions
   // ------------------------------
   const handleToggleMessageMenu = (messageId) => {
-    // If the menu is open for this message, close it, otherwise open it
+    // If the menu is open for this message, close it; otherwise open it
     setOpenMessageMenuId((prevId) => (prevId === messageId ? null : messageId));
   };
 
@@ -207,6 +211,7 @@ const Message = () => {
   };
 
   const handleDeleteMessageForEveryone = (messageId) => {
+    // In a real app, you'd also remove it for everyone
     setMessages((prev) => prev.filter((msg) => msg.id !== messageId));
     setOpenMessageMenuId(null);
   };
