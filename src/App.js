@@ -8,27 +8,28 @@ import {
   Navigate,
   useLocation
 } from 'react-router-dom';
+
+// Context Providers
 import { LangProvider } from './components/Context/LangContext';
-import { ModalProvider } from './components/Context/ModalContext'; // Import ModalProvider
-import { AuthProvider } from './components/Context/AuthContext'; // Import AuthProvider
+import { ModalProvider } from './components/Context/ModalContext';
+import { AuthProvider } from './components/Context/AuthContext';
+
+// Components
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
-import Chatbot from './components/Chatbot/Chatbot'; // Import the Chatbot component
-
-// Import Auth Components
+import Chatbot from './components/Chatbot/Chatbot'; 
 import Login from './components/Auths/Login';
 import Signup from './components/Auths/Signup';
 import ForgotPassword from './components/Auths/ForgotPassword';
 import AdvancedUserProfile from './components/Auths/AdvancedUserProfile';
 import SubmitProblem from './components/ProblemAlert/SubmitProblem';
-import LoginHeader from './components/Navbar/LoginHeader'; // Import LoginHeader
-
-// Import ProtectedRoute
+import LoginHeader from './components/Navbar/LoginHeader';
 import ProtectedRoute from './protect/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'; 
 
-// Import ErrorBoundary
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'; // Adjust the path if necessary
+// Import your new Message component (place it at the top with other imports)
+import Message from './components/message/message'; // Adjust path if necessary
 
 // Lazy-loaded components
 const About = lazy(() => import('./pages/About/About'));
@@ -38,22 +39,20 @@ const Vision = lazy(() => import('./pages/About/Vision'));
 const CoreValues = lazy(() => import('./pages/About/CoreValues'));
 const WhoWeAre = lazy(() => import('./pages/About/WhoWeAre'));
 
-// Import Globe.js as a lazy-loaded component
-const Globe = lazy(() => import('./components/Globe/Globe')); // Ensure the correct path to Globe.js
+// Lazy-loaded Globe.js
+const Globe = lazy(() => import('./components/Globe/Globe'));
 
 // Lazy-load MainDashboard
-const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard')); // Import MainDashboard
-
-// const NotFound = lazy(() => import('./pages/NotFound')); // Optional
+const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard'));
 
 function App() {
   return (
-    <AuthProvider> {/* Wrap with AuthProvider */}
+    <AuthProvider>
       <LangProvider>
-        <ModalProvider> {/* Wrap the application with ModalProvider */}
+        <ModalProvider>
           <Router>
             <ErrorBoundary>
-              <AppContent /> {/* Separate component to use hooks */}
+              <AppContent />
             </ErrorBoundary>
           </Router>
         </ModalProvider>
@@ -66,17 +65,17 @@ function AppContent() {
   const location = useLocation();
 
   // Define routes where Navbar and Footer should be hidden
-  const excludeLayoutRoutes = ['/dashboard', '/globe'];
+  const excludeLayoutRoutes = ['/dashboard', '/globe', '/message'];
 
   // Determine if the current path is in the exclude list
-  const shouldHideLayout = excludeLayoutRoutes.some(route => location.pathname.startsWith(route));
+  const shouldHideLayout = excludeLayoutRoutes.some(route =>
+    location.pathname.startsWith(route)
+  );
 
   return (
     <div className="App">
-      {/* Conditionally render Navbar */}
       {!shouldHideLayout && <Navbar />}
 
-      {/* Main Content with Suspense for Lazy-Loaded Components */}
       <Suspense fallback={<div>Loading...</div>}>
         <div className="main-content">
           <Routes>
@@ -127,8 +126,20 @@ function AppContent() {
                 <ProtectedRoute>
                   <>
                     <LoginHeader />
-                    <Globe /> {/* Render Globe.js below LoginHeader */}
+                    <Globe />
                   </>
+                </ProtectedRoute>
+              }
+            />
+
+            {/* NEW: Message Page (Protected) */}
+            <Route
+              path="/message"
+              element={
+                <ProtectedRoute>
+                  {/* Hide default Navbar & Footer, but show a LoginHeader */}
+                  <LoginHeader />
+                  <Message />
                 </ProtectedRoute>
               }
             />
@@ -138,30 +149,20 @@ function AppContent() {
 
             {/* About Routes with Nested Sub-Routes */}
             <Route path="/about" element={<About />}>
-              {/* Default Sub-Route: Redirect "/about" to "/about/purpose" */}
+              {/* Default Sub-Route */}
               <Route index element={<Navigate to="purpose" replace />} />
-
-              {/* Sub-Pages */}
               <Route path="purpose" element={<Purpose />} />
               <Route path="mission" element={<Mission />} />
               <Route path="vision" element={<Vision />} />
               <Route path="corevalues" element={<CoreValues />} />
               <Route path="whoweare" element={<WhoWeAre />} />
-
-              {/* Optional: Handle Undefined Sub-Routes */}
-              {/* <Route path="*" element={<NotFound />} /> */}
             </Route>
-
-            {/* Optional: Handle Undefined Routes */}
-            {/* <Route path="*" element={<NotFound />} /> */}
           </Routes>
         </div>
       </Suspense>
 
-      {/* Conditionally render Footer */}
       {!shouldHideLayout && <Footer />}
 
-      {/* Floating Chatbot */}
       <Chatbot />
     </div>
   );

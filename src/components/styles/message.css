@@ -1,0 +1,676 @@
+/* src/components/Messages/message.css */
+
+/* 
+  Color Palette and Typography from the provided theme:
+  --primary-color: #0077B5   (LinkedIn Blue)
+  --primary-hover: #005587
+  --secondary-color: #434649 (Slate Gray)
+  --accent-color: #86888A    (Cool Gray)
+  --neutral-white: #FFFFFF
+  --neutral-light-gray: #F3F6F8
+  --neutral-border: #E1E9EE
+  --text-color: var(--secondary-color);
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Arial', sans-serif;
+*/
+
+:root {
+    --primary-color: #0077B5;
+    --primary-hover: #005587;
+    --secondary-color: #434649;
+    --accent-color: #86888A;
+    --neutral-white: #FFFFFF;
+    --neutral-light-gray: #F3F6F8;
+    --neutral-border: #E1E9EE;
+    --text-color: var(--secondary-color);
+
+    --heading-font: 'Roboto', sans-serif;
+    --body-font: 'Arial', sans-serif;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: var(--neutral-light-gray);
+  color: var(--text-color);
+}
+
+/* 
+  The overarching container for the entire message interface.
+  We use flex to separate the sidebar (conversation list) and main chat window.
+*/
+.message-container {
+  display: flex;
+  height: 100vh; /* Fill the viewport height */
+  background: var(--neutral-light-gray);
+}
+
+/* ================================
+   Conversation Sidebar
+   ================================ */
+.conversation-sidebar {
+  width: 300px;
+  background-color: var(--neutral-white);
+  border-right: 1px solid var(--neutral-border);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+/* 
+  Sidebar Header:
+  - Contains title and search
+*/
+.conversation-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--neutral-border);
+  background-color: var(--neutral-white);
+}
+
+.conversation-title {
+  margin: 0 0 10px 0;
+  font-family: var(--heading-font);
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+/* "Create Group" Button (UNCHANGED) */
+.create-group-btn {
+  margin: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: var(--heading-font);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.create-group-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.conversation-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-light-gray);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--accent-color);
+  font-size: 14px;
+}
+
+.conversation-search input {
+  width: 100%;
+  padding: 8px 8px 8px 34px;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+/* 
+  Conversation List
+*/
+.conversation-list {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--neutral-white);
+  padding: 10px 0;
+}
+
+/* 
+  Individual Conversation Items
+*/
+.conversation-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s, padding-left 0.2s;
+  border-radius: 6px;
+  margin: 0 10px;
+}
+
+.conversation-item:hover {
+  background-color: #E6F0F9; /* Slightly tinted hover for a modern feel */
+}
+
+.conversation-item.active {
+  background-color: #E6F0F9;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 11px; /* adjust to accommodate border */
+}
+
+.conversation-avatar img,
+.group-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.group-icon {
+  color: var(--accent-color);
+  font-size: 26px;
+}
+
+/* 
+  Info about conversation: name, last message
+*/
+.conversation-info {
+  margin-left: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.conversation-name {
+  font-family: var(--heading-font);
+  font-size: 14px;
+  color: var(--secondary-color);
+  margin-bottom: 3px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-last-message {
+  font-size: 12px;
+  color: var(--accent-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 8px;
+}
+
+.conversation-time {
+  font-size: 11px;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+}
+
+.conversation-unread {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 2px 6px;
+}
+
+/* 
+  Scrollbar for the conversation list
+*/
+.conversation-list::-webkit-scrollbar {
+  width: 8px;
+}
+.conversation-list::-webkit-scrollbar-track {
+  background: var(--neutral-light-gray);
+  border-radius: 4px;
+}
+.conversation-list::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+/* ================================
+   Main Chat Window
+   ================================ */
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutral-light-gray);
+  transition: all 0.3s ease;
+}
+
+.chat-header {
+  background-color: var(--neutral-white);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--neutral-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-participant {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 18px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.chat-actions .chat-action-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--accent-color);
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+.chat-actions .chat-action-btn:hover {
+  color: var(--primary-hover);
+}
+
+/* Chat Settings Panel */
+.chat-settings-panel {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 220px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 999;
+}
+.chat-settings-panel h3 {
+  margin: 0 0 10px 0;
+  font-family: var(--heading-font);
+  font-size: 16px;
+  color: var(--text-color);
+}
+.settings-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.close-settings-btn {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.close-settings-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.chat-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: var(--neutral-light-gray);
+}
+.chat-body::-webkit-scrollbar {
+  width: 8px;
+}
+.chat-body::-webkit-scrollbar-track {
+  background: var(--neutral-light-gray);
+  border-radius: 4px;
+}
+.chat-body::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+.message-row {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-end;
+  transition: transform 0.2s ease;
+}
+.message-row:hover {
+  transform: scale(1.01);
+}
+.message-row.own-message {
+  justify-content: flex-end;
+}
+
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+/* Slightly larger radius and a soft gradient for a modern look
+   Also extra bottom padding to accommodate the three-dots menu */
+.message-bubble {
+  max-width: 60%;
+  padding: 12px 16px 40px 16px; /* increased bottom padding for the button */
+  border-radius: 16px;
+  background-color: var(--neutral-white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  position: relative;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.message-bubble:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.own-message .message-bubble {
+  /* Subtle gradient for own messages */
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+  color: var(--neutral-white);
+}
+
+.message-content {
+  font-size: 14px;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
+
+.message-time {
+  font-size: 11px;
+  color: var(--accent-color);
+  text-align: right;
+  margin-bottom: 4px; /* slight extra space above the 3-dot button area */
+}
+
+/* Message Action Buttons (edit, delete, etc.) */
+.message-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.message-action-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.message-action-btn:hover {
+  color: var(--primary-hover);
+}
+
+/* 
+  Three-dots button that toggles the message dropdown
+  Placed at the bottom-right of the bubble
+*/
+.message-options-btn {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  color: var(--accent-color);
+  font-size: 14px;
+  cursor: pointer;
+  position: absolute; 
+  bottom: 8px; /* place at the bottom of the bubble */
+  right: 8px; 
+  transition: color 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.message-options-btn:hover {
+  color: var(--primary-hover);
+  background-color: var(--neutral-light-gray);
+}
+
+/* 
+  Dropdown menu that appears when the three-dots button is clicked
+*/
+.message-dropdown {
+  position: absolute;
+  bottom: 44px; /* place just above the 3-dot button */
+  right: 0;
+  min-width: 160px;
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  overflow: hidden;
+}
+
+.message-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: var(--text-color);
+  font-size: 14px;
+  font-family: var(--body-font);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.message-dropdown-item:hover {
+  background-color: var(--neutral-light-gray);
+}
+.message-dropdown-item span {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Chat Footer */
+.chat-footer {
+  padding: 10px 20px;
+  background-color: var(--neutral-white);
+  border-top: 1px solid var(--neutral-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+.footer-btn:hover {
+  color: var(--primary-hover);
+}
+
+.message-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--neutral-border);
+  border-radius: 4px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.message-input:focus {
+  border-color: var(--primary-color);
+}
+
+.send-btn {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.1s;
+}
+.send-btn:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* Emoji Picker */
+.emoji-picker {
+  position: absolute;
+  bottom: 60px;
+  left: 80px;
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.emoji {
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.emoji:hover {
+  transform: scale(1.2);
+}
+
+/* ===============================
+   Create Group Modal
+   (Unchanged from your original)
+   =============================== */
+.group-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.group-modal-content {
+  background-color: var(--neutral-white);
+  border-radius: 8px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+.group-modal-content h2 {
+  margin-top: 0;
+  font-family: var(--heading-font);
+  font-size: 20px;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+.group-modal-content label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+.group-modal-content input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--neutral-border);
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.participants-placeholder {
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: var(--accent-color);
+}
+
+.group-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.group-modal-btn {
+  background-color: var(--primary-color);
+  color: var(--neutral-white);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.group-modal-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Fade-in for modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   Responsive Adjustments
+   =============================== */
+@media (max-width: 1200px) {
+  .conversation-sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 992px) {
+  .message-container {
+    flex-direction: column;
+  }
+  .conversation-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--neutral-border);
+  }
+  .chat-window {
+    width: 100%;
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .conversation-title {
+    font-size: 16px;
+  }
+  .chat-participant {
+    font-size: 16px;
+  }
+  .message-bubble {
+    max-width: 70%;
+    padding: 12px 16px 40px 16px; /* maintain the extra bottom padding on small screens */
+  }
+  .message-content {
+    font-size: 13px;
+  }
+  .message-time {
+    font-size: 10px;
+  }
+  .message-input {
+    font-size: 13px;
+  }
+  .send-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .emoji {
+    font-size: 18px;
+  }
+}

@@ -158,7 +158,7 @@ const LoginHeader = () => {
           </NavLink>
 
           <NavLink
-            to="/messages"
+            to="/message"
             className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
           >
             <FontAwesomeIcon icon={faEnvelope} className="nav-icon" />
