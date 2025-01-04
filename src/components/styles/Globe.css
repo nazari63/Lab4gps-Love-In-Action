@@ -154,7 +154,7 @@
   outline: none;
 }
 
-/* Ensuring the SubmitProblem form fits well within the overlay */
+/* Ensuring the submit-problem-overlay is responsive */
 .submit-problem-overlay form {
   width: 100%;
   display: flex;
@@ -202,21 +202,33 @@
   background-color: #218838; /* Darker Green on Hover */
 }
 
-/* Ensure the submit-problem-overlay is responsive */
-@media (max-width: 768px) {
-  .submit-problem-overlay {
-    width: 90%;
-    padding: 15px;
-  }
+/* Ensure the chatbot container is above other elements */
+#cesiumContainer {
+  z-index: 0;
+}
 
-  .submit-problem-overlay button.submit-problem-button {
-    font-size: 14px;
-    padding: 10px;
-  }
+/* ===========================================================
+   ANIMATIONS
+   =========================================================== */
 
-  .close-submit-problem {
-    font-size: 20px;
-    top: 8px;
-    right: 12px;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

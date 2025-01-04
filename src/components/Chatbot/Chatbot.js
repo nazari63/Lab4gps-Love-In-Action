@@ -22,6 +22,7 @@ import '../styles/Chatbot.css'; // Ensure this path is correct
  * 2. Displays a red badge on the toggle button if the chatbot is closed and unreadBotCount > 0.
  * 3. Clears the unread count when the chatbot opens.
  * 4. Retains your existing code for proactive assistance, event reminders, FAQ mode, resizing, etc.
+ * 5. Chatbot container is raised from the bottom by setting bottom to 70px in Chatbot.css.
  */
 
 const Chatbot = () => {
@@ -120,8 +121,6 @@ const Chatbot = () => {
 
   // ------------------------------
   // On mount, set default unreadBotCount
-  // so each time user visits the site, they see e.g. "2" unread
-  // (You can change to 1 or any number you like)
   // ------------------------------
   useEffect(() => {
     setUnreadBotCount(2);

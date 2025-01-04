@@ -10,6 +10,9 @@ import HomeMenu from '../HomeMenu/HomeMenu'; // Import HomeMenu component
 // Removed direct import of SubmitProblem
 import { ModalContext } from '../Context/ModalContext'; // Import ModalContext
 
+// *** Addition: Import BlinkingBeacon ***
+import BlinkingBeacon from '../Globe/BlinkingBeacon'; // Ensure the path is correct
+
 /**
  * Function to perform reverse geocoding using OpenCage Geocoding API.
  * In production, it's recommended to handle this on the backend to secure the API key.
@@ -92,6 +95,29 @@ const Globe = () => {
   // Helper function to return the correct text based on the current language
   const t = (key) => text[language][key];
 
+  // *** Addition: State to manage beacons with dummy data ***
+  const [beacons, setBeacons] = useState([
+    {
+      id: 'beacon1',
+      longitude: 36.8219, // Nairobi longitude
+      latitude: -1.2921,  // Nairobi latitude
+      stage: 1,           // Initial stage
+    },
+    {
+      id: 'beacon2',
+      longitude: -43.1729, // Rio de Janeiro longitude
+      latitude: -22.9068,  // Rio de Janeiro latitude
+      stage: 5,            // Initial stage
+    },
+    {
+      id: 'beacon3',
+      longitude: 139.6917, // Tokyo longitude
+      latitude: 35.6895,   // Tokyo latitude
+      stage: 10,           // Initial stage
+    },
+    // Add more dummy beacons as needed
+  ]);
+
   /**
    * Function to handle rotation toggle.
    * Starts or stops the Earth's rotation based on current state.
@@ -106,16 +132,14 @@ const Globe = () => {
       setIsRotating(false);
     } else {
       // Start rotation
-      
-        const rotateEarth = () => {
-          if (!animationIdRef.current && viewerRef.current) {
-            const spinRate = 0.01;
-            const delta = spinRate / 60; // Assuming 60 FPS
-            // Correctly reference Cesium via window.Cesium
-            viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
-            animationIdRef.current = requestAnimationFrame(rotateEarth);
-         };
-      }
+      const rotateEarth = () => {
+        if (viewerRef.current) {
+          const spinRate = 0.01;
+          const delta = spinRate / 60; // Assuming 60 FPS
+          viewerRef.current.scene.camera.rotate(window.Cesium.Cartesian3.UNIT_Z, -delta);
+          animationIdRef.current = requestAnimationFrame(rotateEarth);
+        }
+      };
       rotateEarth();
       setIsRotating(true);
     }
@@ -263,7 +287,7 @@ const Globe = () => {
         animationIdRef.current = null;
       }
     };
-  }, []); // Removed 'language' from dependencies to prevent re-initialization
+  }, []); // Empty dependency array ensures this runs once on mount
 
   // Log to verify Cesium and viewer initialization
   useEffect(() => {
@@ -331,6 +355,9 @@ const Globe = () => {
           error={error}
           translate={t}
         />
+
+        {/* *** Addition: BlinkingBeacon Component with Dummy Data *** */}
+        <BlinkingBeacon viewer={viewerRef.current} beacons={beacons} />
 
         {/* The SubmitProblem component is now handled via routing */}
       </div>
