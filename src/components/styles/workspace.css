@@ -1,0 +1,290 @@
+/* src/components/Workspace/workspace.css */
+
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Arial&display=swap');
+
+/* Root Variables for Theme Colors */
+:root {
+  --primary-color: #0077B5; /* LinkedIn Blue */
+  --secondary-color: #434649; /* Slate Gray */
+  --accent-color: #86888A;    /* Cool Gray */
+  --white-color: #FFFFFF;
+  --light-gray-color: #F3F6F8;
+  --hover-blue: #005587;      /* Darker LinkedIn Blue */
+}
+
+/* Workspace Container */
+.workspace-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--light-gray-color);
+
+  /* Prevent overlap with the LoginHeader */
+  padding-top: 80px; /* Adjust as needed */
+}
+
+/* Header Section */
+.workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--white-color);
+  padding: 10px 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 5px; /* Minimal bottom space */
+}
+
+/* Header Left (Welcome Message) */
+.header-left {
+  flex: 1;
+  text-align: left;
+}
+
+.header-left h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+/* Header Center (Description) */
+.header-center {
+  flex: 2;
+  text-align: center;
+}
+
+.header-center p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: var(--accent-color);
+  margin: 0;
+}
+
+/* Header Right (Dashboard Button) */
+.header-right {
+  flex: 1;
+  text-align: right;
+}
+
+.dashboard-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.dashboard-button:hover {
+  background-color: var(--hover-blue);
+}
+
+.dashboard-arrow {
+  margin-left: 8px;
+}
+
+/* Main Canvas Area */
+.workspace-main {
+  display: flex;
+  flex: 1;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden; /* Hide any overflow from dividing line or sections */
+}
+
+/* Thick, Animated Vertical Dividing Line */
+.vertical-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* By default, center the line if 'none' expanded. 
+     We'll override if left or right is expanded. */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  background: linear-gradient(
+    0deg,
+    var(--primary-color),
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+  z-index: 1; /* Above background, behind AI sections */
+}
+
+/* Animate the gradient colors */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* AI Sections (no container background) */
+.ai-section {
+  flex: 1;
+  background: transparent; /* no background color */
+  border: none;            /* remove border */
+  box-shadow: none;        /* remove box-shadow */
+  padding: 40px 20px;      /* “canvas” space */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2; /* Above the vertical line */
+}
+
+/* AI Headers */
+.ai-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative; /* For the expand icon */
+}
+
+.ai-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  border: 2px solid var(--primary-color);
+}
+
+.ai-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+/* Expand Toggle Button Icon */
+.expand-toggle-btn {
+  margin-left: auto; /* push icon to far right of ai-header */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--accent-color);
+  font-size: 20px; /* slightly larger for modern look */
+  transition: color 0.2s ease;
+}
+
+.expand-toggle-btn:hover {
+  color: var(--primary-color);
+}
+
+/* AI Content */
+.ai-content {
+  flex: 1;
+  font-size: 14px;
+  color: var(--secondary-color);
+  line-height: 1.5;
+}
+
+/* Expand/Minimize States */
+.workspace-main.left-expanded .professor-ai {
+  flex: 3; /* Make left side much larger */
+}
+.workspace-main.left-expanded .ta-ai {
+  flex: 0 0 250px; /* Shrink right side to a sidebar */
+}
+/* Move dividing line to the boundary between left (expanded) and right (sidebar) */
+.workspace-main.left-expanded .vertical-line {
+  left: calc(100% - 250px);
+  transform: translateX(-50%);
+}
+
+.workspace-main.right-expanded .professor-ai {
+  flex: 0 0 250px; /* Shrink left side to a sidebar */
+}
+.workspace-main.right-expanded .ta-ai {
+  flex: 3; /* Make right side much larger */
+}
+/* Move dividing line to the boundary between left (sidebar) and right (expanded) */
+.workspace-main.right-expanded .vertical-line {
+  left: 250px;
+  transform: translateX(-50%);
+}
+
+/* On smaller screens, line becomes horizontal if not expanded */
+@media (max-width: 768px) {
+  .workspace-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 5px;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .dashboard-button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .vertical-line {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 8px;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      var(--primary-color),
+      var(--secondary-color),
+      var(--primary-color)
+    );
+    animation: gradientMoveHorizontal 8s ease infinite;
+    transform: none;
+  }
+
+  @keyframes gradientMoveHorizontal {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* If expanded on small screen, we can still do the .left-expanded or .right-expanded logic. */
+  .workspace-main.left-expanded .professor-ai {
+    flex: 1;
+  }
+  .workspace-main.left-expanded .ta-ai {
+    flex: 1;
+    margin-top: 10px;
+  }
+  .workspace-main.right-expanded .professor-ai {
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  .workspace-main.right-expanded .ta-ai {
+    flex: 1;
+  }
+}

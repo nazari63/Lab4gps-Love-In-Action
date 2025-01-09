@@ -8,7 +8,7 @@ import {
   faHome,
   faLightbulb,
   faPuzzlePiece,
-  faTachometerAlt,
+  faBriefcase, // Changed from faTachometerAlt to faBriefcase for Workspace
   faEnvelope,
   faBell,
   faChevronDown,
@@ -154,15 +154,15 @@ const LoginHeader = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard"
+            to="/workspace" // Updated route to '/workspace' assuming route change
             className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
           >
-            <FontAwesomeIcon icon={faTachometerAlt} className="nav-icon" />
-            <span className="nav-label">Dashboard</span>
+            <FontAwesomeIcon icon={faBriefcase} className="nav-icon" /> {/* Changed icon */}
+            <span className="nav-label">Workspace</span> {/* Changed label */}
           </NavLink>
 
           <NavLink
-            to="/problem-solver"
+            to="/dashboard"
             className={({ isActive }) =>
               isActive ? 'nav-item active' : 'nav-item'
             }
@@ -172,7 +172,7 @@ const LoginHeader = () => {
           </NavLink>
 
           <NavLink
-            to="/solutions"
+            to="/solution"
             className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}
           >
             <FontAwesomeIcon icon={faPuzzlePiece} className="nav-icon" />

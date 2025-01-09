@@ -14,17 +14,20 @@ import {
   faCog,          // For Message Settings in the chat window
   faTrash,        // For Delete message icon
   faEdit,         // For Edit message icon
+  faEye,          // For View Details Icon
+  faTools,        // For Solve This Problem Icon
+  faMapMarkerAlt, // For View on Map Icon
 } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Message.js
  *
  * Key Changes:
- * - Added top margin (or padding) in CSS to ensure the container isn't hidden by LoginHeader.
- * - Edit/Delete icons are hidden behind a three-dots button per message.
- * - Clicking the button opens a small dropdown menu with Edit / Delete options.
- * - Placeholder logic for group creation, message settings, read receipts, etc.
- * - UI remains responsive and modern.
+ * - Replaced dummy data with real images and videos.
+ * - Updated message texts to simulate authentic conversations.
+ * - Enhanced media handling with `mediaType` for conditional rendering.
+ * - Improved accessibility with descriptive `alt` texts and `aria-labels`.
+ * - Implemented lazy loading for media elements.
  */
 
 const Message = () => {
@@ -37,21 +40,31 @@ const Message = () => {
     {
       id: 'conv1',
       name: 'John Doe',
-      avatar: '/default-profile.png',
-      lastMessage: 'Hey there! How are you?',
-      unreadCount: 2,
+      avatar: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      lastMessage: 'Are we still on for the meeting tomorrow?',
+      unreadCount: 1,
       timestamp: '10:45 AM',
       isGroup: false,
     },
     {
       id: 'conv2',
-      name: 'Project Team A',
+      name: 'Design Team',
       avatar: '', // Group icon or custom image
-      lastMessage: 'Meeting at 2 PM?',
+      lastMessage: 'Please review the latest design drafts.',
       unreadCount: 0,
       timestamp: '09:15 AM',
       isGroup: true,
     },
+    {
+      id: 'conv3',
+      name: 'Jane Smith',
+      avatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      lastMessage: 'Thanks for the update!',
+      unreadCount: 2,
+      timestamp: 'Yesterday',
+      isGroup: false,
+    },
+    // Add more conversations as needed
   ]);
   const [activeConversationId, setActiveConversationId] = useState('conv1');
 
@@ -60,19 +73,54 @@ const Message = () => {
     {
       id: 'msg1',
       sender: 'John Doe',
-      senderAvatar: '/default-profile.png',
-      content: 'Hello! Can we discuss the water shortage project?',
-      timestamp: '09:00 AM',
+      senderAvatar: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      content: 'Hey! Are we still on for the meeting tomorrow?',
+      timestamp: '10:30 AM',
       isOwnMessage: false,
+      mediaType: null,
+      media: null,
     },
     {
       id: 'msg2',
       sender: 'Me',
-      senderAvatar: '/default-profile.png',
-      content: 'Sure, what do you have in mind?',
-      timestamp: '09:05 AM',
+      senderAvatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      content: 'Yes, absolutely! Looking forward to it.',
+      timestamp: '10:32 AM',
       isOwnMessage: true,
+      mediaType: null,
+      media: null,
     },
+    {
+      id: 'msg3',
+      sender: 'John Doe',
+      senderAvatar: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      content: 'Great! Also, check out the new project diagram.',
+      timestamp: '10:35 AM',
+      isOwnMessage: false,
+      mediaType: 'image',
+      media: 'https://images.unsplash.com/photo-1581091870624-7c75c10c2d55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
+    },
+    {
+      id: 'msg4',
+      sender: 'Me',
+      senderAvatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      content: 'Looks good! Let me know if you need any changes.',
+      timestamp: '10:40 AM',
+      isOwnMessage: true,
+      mediaType: null,
+      media: null,
+    },
+    {
+      id: 'msg5',
+      sender: 'Jane Smith',
+      senderAvatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80',
+      content: 'Check out this video from our last brainstorming session.',
+      timestamp: 'Yesterday',
+      isOwnMessage: false,
+      mediaType: 'video',
+      media: 'https://www.w3schools.com/html/mov_bbb.mp4', // Sample video URL
+    },
+    // Add more messages as needed
   ]);
 
   // Chat input, search, emoji toggles
@@ -113,6 +161,7 @@ const Message = () => {
   const handleConversationClick = (conversationId) => {
     setActiveConversationId(conversationId);
     // In a real app, fetch conversation messages from the backend here
+    // For simulation, you might update the `messages` state based on `conversationId`
   };
 
   const filteredConversations = conversations.filter((conv) =>
@@ -154,6 +203,7 @@ const Message = () => {
     setConversations((prev) => [...prev, newGroup]);
     closeCreateGroupModal();
     setActiveConversationId(newConvId);
+    // In a real app, you'd also update the backend
   };
 
   // ------------------------------
@@ -164,13 +214,15 @@ const Message = () => {
     const newMessage = {
       id: `msg-${Date.now()}`,
       sender: 'Me',
-      senderAvatar: '/default-profile.png',
+      senderAvatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80', // Real image URL
       content: messageInput,
       timestamp: new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
       }),
       isOwnMessage: true,
+      mediaType: null,
+      media: null,
     };
     setMessages((prev) => [...prev, newMessage]);
     setMessageInput('');
@@ -194,7 +246,9 @@ const Message = () => {
   };
 
   const handleEditMessage = (messageId) => {
-    const newContent = prompt('Edit your message:', '');
+    const messageToEdit = messages.find((msg) => msg.id === messageId);
+    if (!messageToEdit) return;
+    const newContent = prompt('Edit your message:', messageToEdit.content);
     if (newContent !== null && newContent.trim() !== '') {
       setMessages((prev) =>
         prev.map((msg) =>
@@ -239,11 +293,12 @@ const Message = () => {
               placeholder="Search messages..."
               value={searchTerm}
               onChange={handleSearch}
+              aria-label="Search Conversations"
             />
           </div>
         </div>
 
-        <button className="create-group-btn" onClick={openCreateGroupModal}>
+        <button className="create-group-btn" onClick={openCreateGroupModal} aria-label="Create Group">
           <FontAwesomeIcon icon={faUsers} style={{ marginRight: '6px' }} />
           Create Group
         </button>
@@ -256,12 +311,18 @@ const Message = () => {
                 conv.id === activeConversationId ? 'active' : ''
               }`}
               onClick={() => handleConversationClick(conv.id)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') handleConversationClick(conv.id);
+              }}
+              aria-label={`Conversation with ${conv.name}`}
             >
               <div className="conversation-avatar">
                 {conv.isGroup ? (
                   <FontAwesomeIcon icon={faUserFriends} className="group-icon" />
                 ) : (
-                  <img src={conv.avatar || '/default-profile.png'} alt={conv.name} />
+                  <img src={conv.avatar || '/default-profile.png'} alt={`${conv.name}'s Avatar`} />
                 )}
               </div>
               <div className="conversation-info">
@@ -271,7 +332,9 @@ const Message = () => {
               <div className="conversation-meta">
                 <span className="conversation-time">{conv.timestamp}</span>
                 {conv.unreadCount > 0 && (
-                  <span className="conversation-unread">{conv.unreadCount}</span>
+                  <span className="conversation-unread" aria-label={`${conv.unreadCount} unread messages`}>
+                    {conv.unreadCount}
+                  </span>
                 )}
               </div>
             </div>
@@ -287,15 +350,15 @@ const Message = () => {
         <div className="chat-header">
           <h2 className="chat-participant">
             {
-              filteredConversations.find((c) => c.id === activeConversationId)?.name ||
-              'Unknown'
+              conversations.find((c) => c.id === activeConversationId)?.name ||
+              'Select a Conversation'
             }
           </h2>
           <div className="chat-actions">
-            <button className="chat-action-btn" onClick={toggleChatSettings}>
+            <button className="chat-action-btn" onClick={toggleChatSettings} aria-label="Chat Settings">
               <FontAwesomeIcon icon={faCog} />
             </button>
-            <button className="chat-action-btn">
+            <button className="chat-action-btn" aria-label="More Options">
               <FontAwesomeIcon icon={faEllipsisH} />
             </button>
           </div>
@@ -341,18 +404,38 @@ const Message = () => {
               {!msg.isOwnMessage && (
                 <img
                   src={msg.senderAvatar || '/default-profile.png'}
-                  alt={msg.sender}
+                  alt={`${msg.sender}'s Avatar`}
                   className="message-avatar"
                 />
               )}
               <div className="message-bubble">
                 <div className="message-content">{msg.content}</div>
+                {msg.media && msg.mediaType === 'image' && (
+                  <img
+                    src={msg.media}
+                    alt="Attached Media"
+                    className="media-item media-image"
+                    loading="lazy"
+                  />
+                )}
+                {msg.media && msg.mediaType === 'video' && (
+                  <video
+                    src={msg.media}
+                    className="media-item media-video"
+                    controls
+                    muted
+                    preload="metadata"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )}
                 <div className="message-time">{msg.timestamp}</div>
 
                 {/* Three-dot button for message menu */}
                 <button
                   className="message-options-btn"
                   onClick={() => handleToggleMessageMenu(msg.id)}
+                  aria-label="Message Options"
                 >
                   <FontAwesomeIcon icon={faEllipsisH} />
                 </button>
@@ -364,6 +447,7 @@ const Message = () => {
                       <button
                         className="message-dropdown-item"
                         onClick={() => handleEditMessage(msg.id)}
+                        aria-label="Edit Message"
                       >
                         <FontAwesomeIcon icon={faEdit} />
                         <span>Edit</span>
@@ -373,6 +457,7 @@ const Message = () => {
                     <button
                       className="message-dropdown-item"
                       onClick={() => handleDeleteMessageForMe(msg.id)}
+                      aria-label="Delete Message for Me"
                     >
                       <FontAwesomeIcon icon={faTrash} />
                       <span>Delete for Me</span>
@@ -382,6 +467,7 @@ const Message = () => {
                       <button
                         className="message-dropdown-item"
                         onClick={() => handleDeleteMessageForEveryone(msg.id)}
+                        aria-label="Delete Message for Everyone"
                       >
                         <FontAwesomeIcon icon={faTrash} />
                         <span>Delete for Everyone</span>
@@ -399,11 +485,17 @@ const Message = () => {
         <div className="chat-footer">
           {isEmojiPickerOpen && (
             <div className="emoji-picker">
-              {['😀', '😂', '😍', '👍', '🎉'].map((emoji) => (
+              {['😀', '😂', '😍', '👍', '🎉', '😢', '😎', '🤔'].map((emoji) => (
                 <span
                   key={emoji}
                   className="emoji"
                   onClick={() => handleAddEmoji(emoji)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') handleAddEmoji(emoji);
+                  }}
+                  aria-label={`Add emoji ${emoji}`}
                 >
                   {emoji}
                 </span>
@@ -411,10 +503,10 @@ const Message = () => {
             </div>
           )}
 
-          <button className="footer-btn" onClick={handleEmojiPickerToggle}>
+          <button className="footer-btn" onClick={handleEmojiPickerToggle} aria-label="Add Emoji">
             <FontAwesomeIcon icon={faSmile} />
           </button>
-          <button className="footer-btn">
+          <button className="footer-btn" aria-label="Attach File">
             <FontAwesomeIcon icon={faPaperclip} />
           </button>
           <input
@@ -426,8 +518,9 @@ const Message = () => {
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSendMessage();
             }}
+            aria-label="Type a message"
           />
-          <button className="footer-btn send-btn" onClick={handleSendMessage}>
+          <button className="footer-btn send-btn" onClick={handleSendMessage} aria-label="Send Message">
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
         </div>
@@ -437,9 +530,9 @@ const Message = () => {
           Create Group Modal
       ----------------------------------------- */}
       {isCreateGroupModalOpen && (
-        <div className="group-modal-overlay">
+        <div className="group-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="create-group-title">
           <div className="group-modal-content">
-            <h2>Create New Group</h2>
+            <h2 id="create-group-title">Create New Group</h2>
             <label htmlFor="group-name-input">Group Name</label>
             <input
               id="group-name-input"
@@ -447,6 +540,7 @@ const Message = () => {
               value={newGroupName}
               onChange={(e) => setNewGroupName(e.target.value)}
               placeholder="Enter group name..."
+              aria-label="Group Name"
             />
 
             <p className="participants-placeholder">
@@ -454,10 +548,19 @@ const Message = () => {
             </p>
 
             <div className="group-modal-actions">
-              <button className="group-modal-btn" onClick={handleCreateGroup}>
+              <button
+                className="group-modal-btn"
+                onClick={handleCreateGroup}
+                disabled={!newGroupName.trim()}
+                aria-label="Create Group"
+              >
                 Create
               </button>
-              <button className="group-modal-btn" onClick={closeCreateGroupModal}>
+              <button
+                className="group-modal-btn"
+                onClick={closeCreateGroupModal}
+                aria-label="Cancel Group Creation"
+              >
                 Cancel
               </button>
             </div>

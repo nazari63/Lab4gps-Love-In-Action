@@ -1,0 +1,99 @@
+/* src/components/Teaching/Teaching.css */
+
+/* Importing Fonts (Roboto for headings, Arial for body) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Arial&display=swap');
+
+/* Theme Variables (from your provided design spec) */
+:root {
+  --primary-color: #0077B5;       /* LinkedIn Blue */
+  --secondary-color: #434649;     /* Slate Gray */
+  --accent-color: #86888A;        /* Cool Gray */
+  --white-color: #FFFFFF;
+  --light-gray-color: #F3F6F8;
+  --hover-blue: #005587;          /* Slightly darker LinkedIn Blue */
+
+  --heading-font: 'Roboto', sans-serif; /* For headings */
+  --body-font: 'Arial', sans-serif;     /* For body text */
+
+  --border-radius: 6px;
+  --transition-speed: 0.3s;
+}
+
+/*
+  Teaching Container:
+  - Removed background, border, and box-shadow so that the content blends with the page background.
+  - Kept spacing, color, and transitions for text and interactive elements.
+*/
+.teaching-container {
+  /* background-color: var(--white-color);  Removed */
+  /* border: 1px solid var(--accent-color); Removed */
+  /* border-radius: var(--border-radius);   Removed */
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); Removed */
+
+  padding: 1.5rem;
+  margin-top: 1rem; /* Some spacing from adjacent elements */
+  font-family: var(--body-font);
+  color: var(--secondary-color);
+  transition: box-shadow var(--transition-speed);
+}
+
+/* Title styling */
+.teaching-title {
+  font-family: var(--heading-font);
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Intro paragraph styling */
+.teaching-intro {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+/* Placeholder text when no SDG is selected */
+.ta-placeholder {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-style: italic;
+  line-height: 1.5;
+  margin: 1rem 0; /* Slight spacing */
+}
+
+/* Display area for the chosen SDG resources */
+.teaching-sdg-display {
+  margin-top: 1rem;
+  border-top: 1px solid var(--light-gray-color);
+  padding-top: 1rem;
+}
+
+/* SDG name in Teaching */
+.teaching-sdg-name {
+  font-family: var(--heading-font);
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin: 0 0 0.5rem 0;
+}
+
+/* Intro text for the TA resources */
+.ta-resources-intro {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Resources list */
+.ta-resources-list {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.ta-resources-list li {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

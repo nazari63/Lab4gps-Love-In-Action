@@ -1,0 +1,447 @@
+/* src/styles/Solution.css */
+
+/* Top Spacer to offset fixed header */
+.solution-top-spacer {
+    height: 80px; /* Adjust based on your header's height */
+  }
+  
+  /* Page Styling */
+  .solution-page {
+    background-color: #f3f6f8; /* Light Gray */
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    position: relative;
+    font-family: "Arial", sans-serif; /* Body Text */
+  }
+  
+  /* Main Container */
+  .solution-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Left, Middle, Right */
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Left Section */
+  .solution-left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Profile Container with Background Image */
+  .solution-profile-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden; /* Prevents content from spilling out */
+    height: 220px; /* Adjusted height */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff; /* Fallback color */
+  }
+  
+  /* Background Image */
+  .solution-profile-background {
+    background-image: url('https://images.unsplash.com/photo-1522199710521-72d69614c702?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'); /* Replace with actual background image URL */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 50%; /* Cover only the top half */
+    filter: brightness(0.7); /* Darken the background for better contrast */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensures background is behind profile info */
+  }
+  
+  /* Profile Info Container */
+  .solution-profile-info {
+    position: absolute;
+    bottom: 10px; /* Slightly above the bottom to create padding */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Above the background image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Adjust height to fit within the bottom half */
+    height: 50%;
+    width: 90%; /* Reduce width slightly for padding */
+  }
+  
+  /* Profile Photo */
+  .solution-profile-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff; /* White border for profile photo */
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* User Name */
+  .solution-user-name {
+    font-family: "Roboto", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0; /* Tighten spacing */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if name is too long */
+    text-align: center;
+    /* Semi-transparent background for better readability */
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+  }
+  
+  /* Lite Container Styling */
+  .solution-lite-container {
+    background-color: #ffffff; /* White */
+    border: 1px solid #e1e9ee; /* Light Gray Border */
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
+  }
+  
+  .solution-lite-container:hover {
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    background-color: #f9fbfc; /* Light Blue Tint */
+  }
+  
+  /* Section Titles */
+  .solution-section-title {
+    font-family: "Roboto", sans-serif;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Lists */
+  .solution-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .solution-list-item {
+    font-family: "Arial", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    padding: 0.4rem;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .solution-list-item:hover {
+    background-color: #f0f4f7; /* Slightly Darker Light Gray */
+    transform: translateY(-2px);
+  }
+  
+  /* Project Titles and Details */
+  .solution-project-title {
+    font-family: "Roboto", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .solution-project-details {
+    font-family: "Arial", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Middle Section */
+  .solution-middle-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Post Button Container with Profile Photo */
+  .solution-post-button-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Profile Photo in Post Button Container */
+  .solution-post-header-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0077b5; /* Primary LinkedIn Blue Border */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Post Button */
+  .solution-post-button {
+    flex: 1;
+    font-family: "Arial", sans-serif;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0077b5; /* Primary LinkedIn Blue */
+    color: #ffffff; /* White */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 8px rgba(0, 119, 181, 0.2);
+    text-align: left;
+    word-wrap: break-word; /* Allow text to wrap within the button */
+  }
+  
+  .solution-post-button:hover {
+    background-color: #005587; /* Slightly Darker Blue */
+    transform: scale(1.05);
+  }
+  
+  /* Posts Feed Styling */
+  .solution-posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-height: 70vh; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 0.5rem; /* For scrollbar spacing */
+  }
+  
+  /* Post Card Styling */
+  .solution-post-card {
+    background-color: #ffffff; /* White */
+    border: 1px solid #e1e9ee; /* Light Gray Border */
+    border-radius: 12px;
+    padding: 1.8rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
+  }
+  
+  .solution-post-card:hover {
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    background-color: #f9fbfc; /* Light Blue Tint */
+  }
+  
+  /* Post Header Styling */
+  .solution-post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .solution-post-user-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+    border: 2px solid #0077b5; /* Primary LinkedIn Blue Border */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .solution-post-user-name {
+    font-family: "Roboto", sans-serif;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  /* Post Content Styling */
+  .solution-post-content p {
+    font-family: "Arial", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .solution-post-media {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-top: 1rem;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
+  
+  .solution-post-media:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Sponsor Video Styling */
+  .solution-post-content video {
+    width: 100%;
+    max-height: 300px;
+    margin-top: 1rem;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  /* Post Actions Styling */
+  .solution-post-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .solution-action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Arial", sans-serif;
+    font-size: 0.9rem;
+    color: #434649; /* Secondary Slate Gray */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .solution-action-button:hover {
+    color: #0077b5; /* Primary LinkedIn Blue */
+  }
+  
+  /* Sponsor Button Specific Styling */
+  .solution-action-button.sponsor-button {
+    color: #28a745; /* Green color for sponsorship */
+  }
+  
+  .solution-action-button.sponsor-button:hover {
+    color: #1e7e34; /* Darker Green on hover */
+  }
+  
+  /* Post Footer Styling */
+  .solution-post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 1rem; /* Add gap between items when wrapped */
+  }
+  
+  /* Collaboration Request Button */
+  .solution-collab-request-button {
+    font-family: "Arial", sans-serif;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0077b5; /* Primary LinkedIn Blue */
+    color: #ffffff; /* White */
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 1 100%; /* Make button take full width on small screens */
+    max-width: 100%; /* Prevent overflow */
+    word-break: break-word; /* Allow breaking words if necessary */
+    text-align: center; /* Center text */
+  }
+  
+  .solution-collab-request-button:hover {
+    background-color: #005587; /* Slightly Darker Blue */
+    transform: scale(1.05);
+  }
+  
+  /* View Details Button */
+  .solution-view-details-button {
+    font-family: "Arial", sans-serif;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0077b5; /* Primary LinkedIn Blue */
+    color: #ffffff; /* White */
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .solution-view-details-button:hover {
+    background-color: #005587; /* Slightly Darker Blue */
+    transform: scale(1.05);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .solution-container {
+      grid-template-columns: 1fr; /* Stack sections vertically */
+    }
+  
+    .solution-left-section,
+    .solution-right-section {
+      display: none; /* Hide left and right sections on smaller screens */
+    }
+  
+    .solution-middle-section {
+      grid-column: 1 / -1;
+    }
+  
+    .solution-posts-feed {
+      max-height: 60vh;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .solution-post-button {
+      width: 100%;
+    }
+  
+    .solution-post-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .solution-action-button {
+      justify-content: flex-start;
+    }
+  
+    .solution-post-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .solution-post-user-name {
+      margin-top: 0.5rem;
+    }
+  
+    /* Ensure the collaboration button fits well */
+    .solution-collab-request-button {
+      font-size: 0.85rem; /* Slightly smaller font for better fit */
+      padding: 0.5rem 1rem;
+    }
+  
+    .solution-post-footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

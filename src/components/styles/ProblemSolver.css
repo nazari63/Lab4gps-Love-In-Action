@@ -1,0 +1,159 @@
+/* src/components/ProblemSolver/ProblemSolver.css */
+
+/* Top Spacer */
+.top-spacer {
+    height: 50px; /* Prevent overlap with the header */
+  }
+  
+  /* Page Styling */
+  .problem-solver-page {
+    background-color: #f3f6f8; /* Light Gray */
+    min-height: 100vh;
+    padding-bottom: 3rem;
+  }
+  
+  /* Header Section */
+  .problem-solver-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .problem-solver-header h1 {
+    font-family: "Roboto", sans-serif;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .problem-solver-tagline {
+    font-family: "Arial", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #86888a; /* Accent Cool Gray */
+  }
+  
+  /* Options Section */
+  .problem-solver-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Option Cards */
+  .option-card {
+    background-color: #ffffff; /* White */
+    border: 1px solid #e1e9ee; /* Light Gray Border */
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  
+  /* Floating Elements (No Container) */
+  .floating {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  
+  /* Lite Container */
+  .lite-container {
+    background-color: #ffffff; /* White */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Option Card Hover Effect */
+  .option-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f9fbfc; /* Light Blue Tint */
+  }
+  
+  /* Dynamic Card Sizes */
+  .option-large {
+    grid-column: span 2;
+  }
+  
+  .option-medium,
+  .option-small {
+    grid-column: span 1;
+  }
+  
+  /* Card Titles */
+  .option-card h2 {
+    font-family: "Roboto", sans-serif;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .option-card p {
+    font-family: "Arial", sans-serif;
+    color: #434649; /* Secondary Slate Gray */
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  /* Icons */
+  .icon-large {
+    font-size: 2.8rem;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    margin-bottom: 0.8rem;
+  }
+  
+  .icon-medium {
+    font-size: 2.4rem;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    margin-bottom: 0.8rem;
+  }
+  
+  .icon-small {
+    font-size: 2rem;
+    color: #0077b5; /* Primary LinkedIn Blue */
+    margin-bottom: 0.8rem;
+  }
+  
+  /* View Options Buttons */
+  .view-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .view-button {
+    font-family: "Arial", sans-serif;
+    padding: 0.5rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #0077b5; /* Primary LinkedIn Blue */
+    color: #ffffff; /* White */
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .view-button:hover {
+    background-color: #005587; /* Slightly Darker Blue */
+    transform: scale(1.05);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

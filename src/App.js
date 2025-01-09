@@ -26,13 +26,15 @@ import AdvancedUserProfile from './components/Auths/AdvancedUserProfile';
 import SubmitProblem from './components/ProblemAlert/SubmitProblem';
 import LoginHeader from './components/Navbar/LoginHeader';
 import ProtectedRoute from './protect/ProtectedRoute';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'; 
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Existing components
-import Message from './components/message/message'; // Example: adjust path if necessary
+import Message from './components/message/message'; 
 
-// **NEW**: Import the Notification component
-import Notification from './components/Notification/Notification'; // Adjust path if needed
+// **NEW**: Import the ProblemSolver, Solution, and Workspace components
+import ProblemSolver from './components/ProblemSolver/ProblemSolver';
+import Solution from './components/Solution/Solution';
+import Workspace from './components/Dashboard/workspace';
 
 // Lazy-loaded components
 const About = lazy(() => import('./pages/About/About'));
@@ -43,6 +45,7 @@ const CoreValues = lazy(() => import('./pages/About/CoreValues'));
 const WhoWeAre = lazy(() => import('./pages/About/WhoWeAre'));
 const Globe = lazy(() => import('./components/Globe/Globe'));
 const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard'));
+const Notification = lazy(() => import('./components/Notification/Notification'));
 
 function App() {
   return (
@@ -64,8 +67,15 @@ function AppContent() {
   const location = useLocation();
 
   // Define routes where Navbar and Footer should be hidden
-  // Add "/notifications" so Navbar & Footer won't appear there either
-  const excludeLayoutRoutes = ['/dashboard', '/globe', '/message', '/notifications'];
+  const excludeLayoutRoutes = [
+    '/dashboard', 
+    '/globe', 
+    '/message', 
+    '/notifications', 
+    '/problem-solver', 
+    '/solution',
+    '/workspace' // Added '/workspace' to exclude Navbar and Footer
+  ];
 
   // Determine if the current path is in the exclude list
   const shouldHideLayout = excludeLayoutRoutes.some(route =>
@@ -101,6 +111,39 @@ function AppContent() {
                 <ProtectedRoute>
                   <LoginHeader />
                   <MainDashboard />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* ProblemSolver Route (Protected) */}
+            <Route
+              path="/problem-solver"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <ProblemSolver />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Solution Route (Protected) */}
+            <Route
+              path="/solution"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <Solution />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* **NEW**: Workspace Route (Protected) */}
+            <Route
+              path="/workspace"
+              element={
+                <ProtectedRoute>
+                  <LoginHeader />
+                  <Workspace />
                 </ProtectedRoute>
               }
             />
@@ -145,7 +188,7 @@ function AppContent() {
               }
             />
 
-            {/* NEW: Notification Page (Protected) */}
+            {/* Notification Page (Protected) */}
             <Route
               path="/notifications"
               element={
@@ -170,8 +213,8 @@ function AppContent() {
               <Route path="whoweare" element={<WhoWeAre />} />
             </Route>
 
-            {/* Optionally handle Undefined Routes */}
-            {/* <Route path="*" element={<NotFound />} /> */}
+            {/* Add a catch-all route for undefined paths */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </Suspense>

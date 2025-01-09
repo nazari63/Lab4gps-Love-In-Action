@@ -126,7 +126,7 @@ const ProblemCard = ({ problem }) => {
   // Author's profile picture (could be part of the problem data)
   const authorProfilePic = problem.submitterPhoto
     ? URL.createObjectURL(problem.submitterPhoto)
-    : '/default-profile.png';
+    : 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80'; // Real image URL
 
   // Format the date to a more readable format
   const formattedDate = problem.date
@@ -210,10 +210,12 @@ const ProblemCard = ({ problem }) => {
                 return (
                   <video
                     key={index}
-                    controls
+                    src={file.url}
                     className="media-item media-video"
+                    controls
+                    muted
+                    preload="metadata"
                   >
-                    <source src={file.url} type={file.type} />
                     Your browser does not support the video tag.
                   </video>
                 );
@@ -253,7 +255,7 @@ const MiddleArea = ({ user }) => {
   // State to manage modal visibility
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
 
-  // Dummy data for submitted problems based on SubmitProblem.js structure
+  // Updated dummy data for submitted problems with real images and videos
   const submittedProblems = [
     {
       id: 1,
@@ -268,15 +270,15 @@ const MiddleArea = ({ user }) => {
       mediaFiles: [
         {
           type: 'image/jpeg',
-          url: 'https://via.placeholder.com/600x400?text=Water+Shortage',
+          url: 'https://images.unsplash.com/photo-1529053350475-923ac5044f0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
         },
         {
           type: 'video/mp4',
-          url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+          url: 'https://www.w3schools.com/html/mov_bbb.mp4', // Sample video URL
         },
         {
           type: 'image/png',
-          url: 'https://via.placeholder.com/600x400?text=Water+Quality',
+          url: 'https://images.unsplash.com/photo-1587502536263-4aef7a2880d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
         },
       ],
       submitterPhoto: null, // Assuming no photo provided
@@ -299,7 +301,7 @@ const MiddleArea = ({ user }) => {
       mediaFiles: [
         {
           type: 'image/jpeg',
-          url: 'https://via.placeholder.com/600x400?text=Educational+Resources',
+          url: 'https://images.unsplash.com/photo-1584697964409-72d83f28f469?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
         },
       ],
       submitterPhoto: null,
@@ -340,11 +342,11 @@ const MiddleArea = ({ user }) => {
       mediaFiles: [
         {
           type: 'image/jpeg',
-          url: 'https://via.placeholder.com/600x400?text=Infrastructure+Decay',
+          url: 'https://images.unsplash.com/photo-1541698444083-023c97d3f4b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
         },
         {
           type: 'image/jpeg',
-          url: 'https://via.placeholder.com/600x400?text=Road+Damage',
+          url: 'https://images.unsplash.com/photo-1581091870624-7c75c10c2d55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', // Real image URL
         },
       ],
       submitterPhoto: null,
@@ -377,7 +379,7 @@ const MiddleArea = ({ user }) => {
             src={
               user?.profile_picture?.startsWith("http")
                 ? user.profile_picture
-                : `/default-profile.png`
+                : `https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80` // Real image URL
             }
             alt={`${user?.first_name || 'User'}'s Profile`}
             className="submit-header-profile-picture"
