@@ -35,7 +35,7 @@
   /* Increased bottom from 30px to 70px for a higher placement. */
   .chatbot-container {
     position: fixed;
-    bottom: 100px;
+    bottom: 50px;
     right: 30px;
     z-index: 1000; /* Ensure it stays above other elements */
     font-family: var(--body-font);

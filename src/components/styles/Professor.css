@@ -21,27 +21,15 @@
   --transition-speed: 0.3s;
 }
 
-/* 
-  Professor Container:
-  - Removed background-color, border, and box-shadow so it blends with the page background.
-  - Kept spacing, color, and typography for text.
-*/
 .professor-container {
-  /* background-color: var(--white-color); */  /* Removed */
-  /* border: 1px solid var(--accent-color); */ /* Removed */
-  /* border-radius: var(--border-radius); */   /* Removed */
-  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); */ /* Removed */
-
+  /* We intentionally keep no container background or shadow 
+     so it blends with the page as per your prior instructions. */
   padding: 1.5rem;
-  margin-top: 1rem; /* Some spacing from top elements */
+  margin-top: 1rem;
   font-family: var(--body-font);
   color: var(--secondary-color);
-
-  /* No container hover effect needed since there's no "card" now */
-  /* transition: box-shadow var(--transition-speed); */
 }
 
-/* Title styling */
 .professor-title {
   font-family: var(--heading-font);
   font-size: 1.4rem;
@@ -49,7 +37,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Intro paragraph styling */
 .professor-intro {
   font-size: 0.95rem;
   line-height: 1.6;
@@ -61,7 +48,7 @@
 .professor-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between button, OR label, and select */
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
@@ -122,31 +109,84 @@
   margin: 0 0 0.5rem 0;
 }
 
-/* Intro text above the question list */
+/* Intro text above the question or question list */
 .sdg-questions-intro {
   font-size: 0.9rem;
   color: var(--accent-color);
   margin-bottom: 0.5rem;
 }
 
-/* Questions list */
-.sdg-questions-list {
-  list-style-type: disc;
-  list-style-position: inside;
-  margin: 0;
-  padding-left: 1rem;
-}
-
-.sdg-questions-list li {
-  margin-bottom: 0.4rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* Placeholder (no SDG selected) */
+/* The placeholder text when no SDG is selected */
 .professor-placeholder {
   font-size: 0.9rem;
   color: var(--accent-color);
   font-style: italic;
   line-height: 1.5;
+}
+
+/* Container for the one-question-at-a-time flow
+   - Removed background color and border to make it appear on the page background directly */
+.question-flow-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  /* Removed the lines below:
+     border: 1px solid var(--accent-color);
+     background-color: var(--white-color);
+  */
+  /* border-radius: var(--border-radius);  <-- optional if you want no corner rounding at all */
+}
+
+/* The question text */
+.question-text {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color);
+}
+
+/* Container for answers (checkboxes) */
+.answers-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* Each label for a checkbox */
+.answer-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.answer-option input[type='checkbox'] {
+  cursor: pointer;
+}
+
+/* "Next" or "Done" button */
+.next-button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-family: var(--body-font);
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.next-button:hover {
+  background-color: var(--hover-blue);
+}
+
+.next-button:disabled {
+  background-color: var(--accent-color);
+  cursor: not-allowed;
+  color: var(--white-color);
+  opacity: 0.6;
 }

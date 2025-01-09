@@ -9,7 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowCircleRight, // For "Go to Dashboard"
   faExpand,           // For expand
-  faCompress          // For minimize
+  faCompress,         // For minimize
+  faPaperclip         // For attaching documents
 } from '@fortawesome/free-solid-svg-icons';
 
 // ***** NEW IMPORTS FOR PROFESSOR AND TEACHING *****
@@ -29,6 +30,10 @@ const Workspace = () => {
   // ***** NEW STATE FOR STORING SELECTED SDG ID *****
   const [sdgId, setSdgId] = useState(null);
 
+  // **** NEW STATE: TEACHING AI "CHATGPT-LIKE" INPUT AND RESPONSES ****
+  const [taInput, setTaInput] = useState('');
+  const [taResponses, setTaResponses] = useState([]);
+
   // Handler to navigate to Dashboard
   const goToDashboard = () => {
     navigate('/workspace'); // Adjust route if necessary
@@ -37,7 +42,6 @@ const Workspace = () => {
   // Toggle expand/minimize for the left (Professor AI) section
   const toggleLeftExpand = () => {
     if (expandedSection === 'left') {
-      // currently expanded => revert to 'none'
       setExpandedSection('none');
     } else {
       setExpandedSection('left');
@@ -56,6 +60,20 @@ const Workspace = () => {
   // ***** onSDGChange callback from Professor -> store chosen SDG ID *****
   const handleSDGChange = (newSDGId) => {
     setSdgId(newSDGId);
+  };
+
+  // **** SIMULATED "CHATGPT-LIKE" BEHAVIOR for Teaching AI ****
+  const handleTaSubmit = (e) => {
+    e.preventDefault();
+    if (!taInput.trim()) return;
+
+    // For demonstration, just echo the user's query as a "response".
+    const userQuery = taInput.trim();
+    const mockAnswer = `TA AI Response (Mock): I'm glad you asked "${userQuery}". 
+    (In a real system, I'd consult an AI model to produce a relevant answer.)`;
+
+    setTaResponses((prev) => [...prev, { query: userQuery, answer: mockAnswer }]);
+    setTaInput('');
   };
 
   return (
@@ -102,7 +120,6 @@ const Workspace = () => {
               className="ai-avatar"
             />
             <h2 className="ai-title">Professor AI</h2>
-            {/* Expand/Minimize Icon */}
             <button
               className="expand-toggle-btn"
               onClick={toggleLeftExpand}
@@ -117,9 +134,7 @@ const Workspace = () => {
           </div>
 
           <div className="ai-content">
-            {/* ***** REMOVED: "Welcome! I am Professor AI..." TEXT ***** */}
-
-            {/* ***** INTEGRATE PROFESSOR COMPONENT ***** */}
+            {/* Integrate Professor component */}
             <Professor onSDGChange={handleSDGChange} />
           </div>
         </section>
@@ -133,7 +148,6 @@ const Workspace = () => {
               className="ai-avatar"
             />
             <h2 className="ai-title">Teaching Assistance AI</h2>
-            {/* Expand/Minimize Icon */}
             <button
               className="expand-toggle-btn"
               onClick={toggleRightExpand}
@@ -148,10 +162,52 @@ const Workspace = () => {
           </div>
 
           <div className="ai-content">
-            {/* ***** REMOVED: "Hello! I am Teaching Assistance AI..." TEXT ***** */}
-
-            {/* ***** INTEGRATE TEACHING COMPONENT (PASS CURRENT SDG) ***** */}
+            {/* Integrate Teaching component (pass current SDG) */}
             <Teaching selectedSDGId={sdgId} />
+
+            {/* TA AI "ChatGPT-like" conversation */}
+            <div className="ta-chat-container">
+              {/* Conversation so far */}
+              {taResponses.length > 0 && (
+                <div className="ta-chat-messages">
+                  {taResponses.map((msg, i) => (
+                    <div key={i} className="ta-chat-message">
+                      <p className="ta-chat-query">
+                        <strong>You:</strong> {msg.query}
+                      </p>
+                      <p className="ta-chat-answer">
+                        <strong>TA AI:</strong> {msg.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Input form to ask TA AI */}
+              <form className="ta-chat-form" onSubmit={handleTaSubmit}>
+                <div className="ta-chat-input-container">
+                  <button 
+                    type="button" 
+                    className="ta-chat-attach"
+                    aria-label="Attach a document"
+                  >
+                    <FontAwesomeIcon icon={faPaperclip} />
+                  </button>
+                  <input
+                    type="text"
+                    className="ta-chat-input"
+                    placeholder="Ask Teaching AI anything..."
+                    value={taInput}
+                    onChange={(e) => setTaInput(e.target.value)}
+                    aria-label="Ask Teaching Assistance AI"
+                  />
+                </div>
+
+                <button type="submit" className="ta-chat-submit">
+                  Send
+                </button>
+              </form>
+            </div>
           </div>
         </section>
       </main>

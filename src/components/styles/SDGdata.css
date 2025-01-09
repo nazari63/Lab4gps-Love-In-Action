@@ -1,0 +1,145 @@
+/* src/components/SDGdata/SDGdata.css */
+
+/* Importing Fonts (Roboto for headings, Arial for body) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Arial&display=swap');
+
+/* Theme Variables */
+:root {
+  --primary-color: #0077B5; /* LinkedIn Blue */
+  --secondary-color: #434649; /* Slate Gray */
+  --accent-color: #86888A;    /* Cool Gray */
+  --white-color: #FFFFFF;
+  --light-gray-color: #F3F6F8;
+  --hover-blue: #005587; /* Slightly darker LinkedIn Blue */
+
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Arial', sans-serif;
+
+  --border-radius: 6px;
+  --transition-speed: 0.3s;
+}
+
+/* Main container for the SDG data */
+.sdgdata-container {
+  /* Removed the background color so the page background shows through */
+  /* background-color: var(--light-gray-color); */
+
+  /* Keep spacing and text styles */
+  padding: 2rem;
+  font-family: var(--body-font);
+  color: var(--secondary-color);
+  line-height: 1.6;
+}
+
+/* Section block styling */
+.sdgdata-section {
+  background-color: var(--white-color);
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  transition: box-shadow var(--transition-speed);
+}
+
+.sdgdata-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+.sdgdata-heading {
+  font-family: var(--heading-font);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--primary-color);
+}
+
+.sdgdata-subheading {
+  font-family: var(--heading-font);
+  font-size: 1.1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.sdgdata-small-heading {
+  font-family: var(--heading-font);
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+  color: var(--secondary-color);
+}
+
+/* Paragraphs and references */
+.sdgdata-paragraph {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.sdgdata-ref {
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+/* For any bullet lists */
+.sdgdata-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sdgdata-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Shared base style for 'images' replaced by divs */
+.sdgdata-image {
+  display: block;
+  width: 100%;
+  height: 300px; /* Adjust as needed for visual clarity */
+  margin: 1rem 0;
+  border: 1px solid var(--accent-color);
+  border-radius: var(--border-radius);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 1) Yarn image => "Graph of Poverty Rates 2024" */
+.sdgdata-image-yarn {
+  background-image: url('../../assets/images/yarn.jpg');
+}
+
+/* 2) EducDist2014 => "Correlation: Education and Poverty" */
+.sdgdata-image-educdist2014 {
+  background-image: url('../../assets/images/educdist2014.jpg');
+}
+
+/* 3) download.jpeg => "China's Targeted Poverty Alleviation" */
+.sdgdata-image-download1 {
+  background-image: url('../../assets/images/download.jpeg');
+}
+
+/* 4) Ehsaas => We'll use a placeholder or actual file if available */
+.sdgdata-image-ehsaas {
+  background-image: url('../../assets/images/Ehsaas_Programme_Logo.webp.png'); /* or update if different */
+}
+
+/* 5) download.webp => "Village Enterprise in East Africa" */
+.sdgdata-image-download2 {
+  background-image: url('../../assets/images/download.webp');
+}
+
+/* 6) nihms577217f1.jpg => "Mexico's Oportunidades Program" */
+.sdgdata-image-nihms {
+  background-image: url('../../assets/images/HerringPhoto.png');
+}
+
+/* 7) download.jpeg => "Sauri Millennium Village Project" */
+.sdgdata-image-download3 {
+  background-image: url('../../assets/images/download.jpeg');
+}

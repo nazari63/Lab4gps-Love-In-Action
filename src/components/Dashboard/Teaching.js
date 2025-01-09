@@ -2,6 +2,8 @@
 
 import React from 'react';
 import '../styles/Teaching.css';
+// --- NEW IMPORT for SDGdata ---
+import SDGdata from '../SDGdata/SDGdata';
 
 /**
  * Teaching.js
@@ -201,6 +203,11 @@ const Teaching = ({ selectedSDGId }) => {
               <li key={index}>{item}</li>
             ))}
           </ul>
+
+          {/* NEW: Show the entire SDGdata page below the resources */}
+          <div className="ta-sdgdata-wrapper">
+            <SDGdata />
+          </div>
         </div>
       )}
     </div>

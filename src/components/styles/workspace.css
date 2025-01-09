@@ -106,8 +106,6 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  /* By default, center the line if 'none' expanded. 
-     We'll override if left or right is expanded. */
   left: 50%;
   transform: translateX(-50%);
   width: 8px;
@@ -122,7 +120,6 @@
   z-index: 1; /* Above background, behind AI sections */
 }
 
-/* Animate the gradient colors */
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
@@ -138,10 +135,10 @@
 /* AI Sections (no container background) */
 .ai-section {
   flex: 1;
-  background: transparent; /* no background color */
-  border: none;            /* remove border */
-  box-shadow: none;        /* remove box-shadow */
-  padding: 40px 20px;      /* “canvas” space */
+  background: transparent; 
+  border: none;  
+  box-shadow: none; 
+  padding: 40px 20px; 
   display: flex;
   flex-direction: column;
   position: relative;
@@ -153,7 +150,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  position: relative; /* For the expand icon */
+  position: relative; 
 }
 
 .ai-avatar {
@@ -174,12 +171,12 @@
 
 /* Expand Toggle Button Icon */
 .expand-toggle-btn {
-  margin-left: auto; /* push icon to far right of ai-header */
+  margin-left: auto; 
   background: none;
   border: none;
   cursor: pointer;
   color: var(--accent-color);
-  font-size: 20px; /* slightly larger for modern look */
+  font-size: 20px; 
   transition: color 0.2s ease;
 }
 
@@ -197,24 +194,22 @@
 
 /* Expand/Minimize States */
 .workspace-main.left-expanded .professor-ai {
-  flex: 3; /* Make left side much larger */
+  flex: 3; 
 }
 .workspace-main.left-expanded .ta-ai {
-  flex: 0 0 250px; /* Shrink right side to a sidebar */
+  flex: 0 0 250px; 
 }
-/* Move dividing line to the boundary between left (expanded) and right (sidebar) */
 .workspace-main.left-expanded .vertical-line {
   left: calc(100% - 250px);
   transform: translateX(-50%);
 }
 
 .workspace-main.right-expanded .professor-ai {
-  flex: 0 0 250px; /* Shrink left side to a sidebar */
+  flex: 0 0 250px; 
 }
 .workspace-main.right-expanded .ta-ai {
-  flex: 3; /* Make right side much larger */
+  flex: 3; 
 }
-/* Move dividing line to the boundary between left (sidebar) and right (expanded) */
 .workspace-main.right-expanded .vertical-line {
   left: 250px;
   transform: translateX(-50%);
@@ -272,7 +267,6 @@
     }
   }
 
-  /* If expanded on small screen, we can still do the .left-expanded or .right-expanded logic. */
   .workspace-main.left-expanded .professor-ai {
     flex: 1;
   }
@@ -287,4 +281,139 @@
   .workspace-main.right-expanded .ta-ai {
     flex: 1;
   }
+}
+
+/* TA AI "ChatGPT-like" input section */
+.ta-chat-container {
+  margin-top: 1rem;
+  border-top: 1px solid var(--accent-color);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ta-chat-messages {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 6px;
+  padding: 0.5rem;
+  background-color: var(--white-color);
+}
+
+/* Each message */
+.ta-chat-message {
+  margin-bottom: 0.75rem;
+}
+
+.ta-chat-query,
+.ta-chat-answer {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0.3rem 0;
+}
+
+.ta-chat-query strong,
+.ta-chat-answer strong {
+  color: var(--primary-color);
+}
+
+/* Input form to submit queries */
+.ta-chat-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ta-chat-input-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  background-color: var(--white-color);
+  padding: 0.4rem;
+  transition: border-color 0.2s ease;
+}
+
+.ta-chat-input-container:hover {
+  border-color: var(--primary-color);
+}
+
+.ta-chat-attach {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 18px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.ta-chat-attach:hover {
+  color: var(--primary-color);
+}
+
+.ta-chat-input {
+  flex: 1;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  border: none;  /* no border, parent container has border */
+  outline: none;
+  padding: 0.3rem;
+}
+
+.ta-chat-input:focus {
+  outline: none; /* parent container highlight is enough */
+}
+
+.ta-chat-submit {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ta-chat-submit:hover {
+  background-color: var(--hover-blue);
+}
+
+/* -------------------------------------------------------
+   NEW CODE FOR INDEPENDENT SCROLLING OF LEFT & RIGHT SECTIONS
+   ------------------------------------------------------- */
+
+/* 
+   Give each AI section its own scrollable area
+   with a set max-height (relative to the viewport).
+   The .workspace-main has overflow hidden, so each child
+   must handle its own overflow for vertical scrolling.
+*/
+
+.professor-ai .ai-content {
+  /* Allow only the left Professor AI content to scroll vertically */
+  overflow-y: auto;
+  max-height: calc(100vh - 180px); 
+  /* 
+     Subtract some height for the header area & padding (adjust as needed).
+     This ensures .ai-header + .ai-content remains fully visible within the viewport.
+  */
+}
+
+.ta-ai .ai-content {
+  /* Allow only the right Teaching Assistance AI content to scroll vertically */
+  overflow-y: auto;
+  max-height: calc(100vh - 180px);
+  /* 
+     Same logic as above, so the right side is independently scrollable.
+  */
 }
