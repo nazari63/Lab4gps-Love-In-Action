@@ -21,6 +21,7 @@ const SubmitProblem = ({ onClose }) => {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
+  const [selectedSDG, setSelectedSDG] = useState(''); // New State for SDG Selection
 
   // New state variables to handle custom categories
   const [isCustomCategory, setIsCustomCategory] = useState(false);
@@ -38,6 +39,27 @@ const SubmitProblem = ({ onClose }) => {
 
   // Import useNavigate hook for navigation
   const navigate = useNavigate();
+
+  // Define the 17 SDGs
+  const SDG_LIST = [
+    { number: 1, title: 'No Poverty' },
+    { number: 2, title: 'Zero Hunger' },
+    { number: 3, title: 'Good Health and Well-being' },
+    { number: 4, title: 'Quality Education' },
+    { number: 5, title: 'Gender Equality' },
+    { number: 6, title: 'Clean Water and Sanitation' },
+    { number: 7, title: 'Affordable and Clean Energy' },
+    { number: 8, title: 'Decent Work and Economic Growth' },
+    { number: 9, title: 'Industry, Innovation, and Infrastructure' },
+    { number: 10, title: 'Reduced Inequalities' },
+    { number: 11, title: 'Sustainable Cities and Communities' },
+    { number: 12, title: 'Responsible Consumption and Production' },
+    { number: 13, title: 'Climate Action' },
+    { number: 14, title: 'Life Below Water' },
+    { number: 15, title: 'Life on Land' },
+    { number: 16, title: 'Peace, Justice, and Strong Institutions' },
+    { number: 17, title: 'Partnerships for the Goals' },
+  ];
 
   // Handle changes in the media files input
   const handleMediaChange = (e) => {
@@ -65,6 +87,7 @@ const SubmitProblem = ({ onClose }) => {
     setContactPhone('');
     setIsCustomCategory(false);
     setCustomCategory('');
+    setSelectedSDG(''); // Reset SDG selection
     setAddressQuery('');
     setSuggestions([]);
     setIsSuggestionsVisible(false);
@@ -82,6 +105,12 @@ const SubmitProblem = ({ onClose }) => {
       finalCategory = customCategory;
     }
 
+    // Validate SDG selection
+    if (!selectedSDG) {
+      alert('Please select a Sustainable Development Goal (SDG) related to your problem.');
+      return;
+    }
+
     // Log the data for debugging (files are handled separately)
     console.log({
       problemTitle,
@@ -89,6 +118,7 @@ const SubmitProblem = ({ onClose }) => {
       description,
       category: finalCategory, // use the final value for category
       urgency,
+      sdg: selectedSDG, // Include SDG in the log
       // Files are handled via FormData
       contactInfo: {
         name: contactName,
@@ -107,6 +137,7 @@ const SubmitProblem = ({ onClose }) => {
         description,
         category: finalCategory,
         urgency,
+        sdg: selectedSDG, // Include SDG in the submission data
         mediaFiles, // FileList
         submitterPhoto, // File or null
         contactName,
@@ -351,6 +382,24 @@ const SubmitProblem = ({ onClose }) => {
             />
           </div>
         )}
+
+        {/* SDG Selection */}
+        <div className="form-group">
+          <label htmlFor="sdg">Sustainable Development Goal (SDG)</label>
+          <select
+            id="sdg"
+            value={selectedSDG}
+            onChange={(e) => setSelectedSDG(e.target.value)}
+            required
+          >
+            <option value="">Select an SDG</option>
+            {SDG_LIST.map((sdg) => (
+              <option key={sdg.number} value={`${sdg.number}. ${sdg.title}`}>
+                {sdg.number}. {sdg.title}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Urgency Level */}
         <div className="form-group">

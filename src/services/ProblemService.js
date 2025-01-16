@@ -5,11 +5,11 @@ import api from './api'; // Import the configured Axios instance (api.js)
 /**
  * A service object providing methods to interact with the Problem endpoints.
  * Endpoints used (relative to `api.js` baseURL):
- *   - GET /problems/problems/
- *   - POST /problems/problems/
- *   - GET /problems/problems/<id>/
- *   - PATCH/PUT /problems/problems/<id>/
- *   - DELETE /problems/problems/<id>/
+ *   - GET /problems/
+ *   - POST /problems/
+ *   - GET /problems/<id>/
+ *   - PATCH/PUT /problems/<id>/
+ *   - DELETE /problems/<id>/
  * Optionally filter by ?contact_email=<user_email> on listing.
  */
 const ProblemService = {
@@ -40,6 +40,7 @@ const ProblemService = {
       formData.append('contact_name', problemData.contactName);
       formData.append('contact_email', problemData.contactEmail);
       formData.append('contact_phone', problemData.contactPhone);
+      formData.append('sdg', problemData.sdg); // Include SDG
 
       // Handle media_files_upload (multiple files)
       if (problemData.mediaFiles && problemData.mediaFiles.length > 0) {
@@ -53,8 +54,8 @@ const ProblemService = {
         formData.append('submitter_photo', problemData.submitterPhoto);
       }
 
-      // POST to /problems/problems/
-      const response = await api.post('/problems/problems/', formData, {
+      // POST to /problems/
+      const response = await api.post('/problems/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -75,8 +76,8 @@ const ProblemService = {
    */
   async getAllProblems() {
     try {
-      // GET /problems/problems/
-      const response = await api.get('/problems/problems/');
+      // GET /problems/
+      const response = await api.get('/problems/');
       return response;
     } catch (error) {
       console.error('Error fetching all problems:', error);
@@ -93,8 +94,8 @@ const ProblemService = {
    */
   async getProblemsByContactEmail(email) {
     try {
-      // GET /problems/problems/?contact_email=<email>
-      const response = await api.get('/problems/problems/', {
+      // GET /problems/?contact_email=<email>
+      const response = await api.get('/problems/', {
         params: { contact_email: email },
       });
       return response;
@@ -113,8 +114,8 @@ const ProblemService = {
    */
   async getProblemById(problemId) {
     try {
-      // GET /problems/problems/<problemId>/
-      const response = await api.get(`/problems/problems/${problemId}/`);
+      // GET /problems/<problemId>/
+      const response = await api.get(`/problems/${problemId}/`);
       return response;
     } catch (error) {
       console.error(`Error fetching problem ID=${problemId}:`, error);
@@ -140,32 +141,35 @@ const ProblemService = {
       let data;
       let headers = {};
 
-      if (updatedData.media_files_upload || updatedData.submitter_photo) {
+      // Determine if any file fields are being updated
+      const hasFiles =
+        updatedData.media_files_upload &&
+        updatedData.media_files_upload.length > 0 ||
+        updatedData.submitter_photo;
+
+      if (hasFiles) {
         data = new FormData();
+        // Append fields
         for (const key in updatedData) {
-          if (key === 'media_files_upload') {
+          if (key === 'media_files_upload' && updatedData.media_files_upload.length > 0) {
             Array.from(updatedData.media_files_upload).forEach((file) => {
               data.append('media_files_upload', file);
             });
-          } else if (key === 'submitter_photo') {
-            if (updatedData.submitter_photo) {
-              data.append('submitter_photo', updatedData.submitter_photo);
-            }
+          } else if (key === 'submitter_photo' && updatedData.submitter_photo) {
+            data.append('submitter_photo', updatedData.submitter_photo);
           } else {
             data.append(key, updatedData[key]);
           }
         }
         headers['Content-Type'] = 'multipart/form-data';
       } else {
+        // If no files are being updated, send JSON
         data = updatedData;
         headers['Content-Type'] = 'application/json';
       }
 
-      const response = await api[method](
-        `/problems/problems/${problemId}/`,
-        data,
-        { headers }
-      );
+      // Make the request using the appropriate method
+      const response = await api[method](`/problems/${problemId}/`, data, { headers });
       return response;
     } catch (error) {
       console.error(`Error updating problem ID=${problemId}:`, error);
@@ -182,8 +186,8 @@ const ProblemService = {
    */
   async deleteProblem(problemId) {
     try {
-      // DELETE /problems/problems/<problemId>/
-      const response = await api.delete(`/problems/problems/${problemId}/`);
+      // DELETE /problems/<problemId>/
+      const response = await api.delete(`/problems/${problemId}/`);
       return response;
     } catch (error) {
       console.error(`Error deleting problem ID=${problemId}:`, error);
