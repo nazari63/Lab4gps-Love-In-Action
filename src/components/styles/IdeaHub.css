@@ -1,0 +1,77 @@
+/* src/components/styles/IdeaHub.css */
+
+.idea-hub {
+    padding: 20px;
+  }
+  
+  .idea-hub h2 {
+    margin-bottom: 20px;
+  }
+  
+  .submit-idea-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .submit-idea-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .ideas-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .idea-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .idea-item h3 {
+    margin-bottom: 10px;
+  }
+  
+  .idea-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .upvote-button,
+  .downvote-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .upvote-button {
+    background-color: #2ecc71;
+  }
+  
+  .upvote-button:hover {
+    background-color: #27ae60;
+  }
+  
+  .downvote-button {
+    background-color: #e74c3c;
+  }
+  
+  .downvote-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .comments-section {
+    margin-top: 15px;
+    /* Implement nested comments styling */
+  }
+  

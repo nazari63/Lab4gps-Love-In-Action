@@ -1,0 +1,15 @@
+/* src/components/styles/DecisionMaking.css */
+
+.decision-making {
+    padding: 20px;
+  }
+  
+  .decision-making h2 {
+    margin-bottom: 20px;
+  }
+  
+  .decision-making p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  

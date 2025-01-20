@@ -1,0 +1,15 @@
+/* src/components/styles/AIChatbot.css */
+
+.ai-chatbot {
+    padding: 20px;
+  }
+  
+  .ai-chatbot h2 {
+    margin-bottom: 20px;
+  }
+  
+  .ai-chatbot p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  

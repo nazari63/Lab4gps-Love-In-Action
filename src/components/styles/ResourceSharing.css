@@ -1,0 +1,15 @@
+/* src/components/styles/ResourceSharing.css */
+
+.resource-sharing {
+    padding: 20px;
+  }
+  
+  .resource-sharing h2 {
+    margin-bottom: 20px;
+  }
+  
+  .resource-sharing p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  

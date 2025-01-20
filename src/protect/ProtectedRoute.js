@@ -1,20 +1,20 @@
 // src/protect/ProtectedRoute.js
 
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../components/Context/AuthContext'; // Adjust the path as necessary
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../components/Context/AuthContext';
 
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  const location = useLocation();
+const ProtectedRoute = ({ children, adminOnly = false }) => {
+  const { user, isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    // Redirect unauthenticated users to the login page
-    // Preserve the location they were trying to go to
-    return <Navigate to="/login" replace state={{ from: location }} />;
+    return <Navigate to="/login" replace />;
   }
 
-  // Render the protected component for authenticated users
+  if (adminOnly && user?.role !== 'admin') {
+    return <Navigate to="/not-authorized" replace />;
+  }
+
   return children;
 };
 

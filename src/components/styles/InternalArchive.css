@@ -1,0 +1,45 @@
+/* src/components/styles/InternalArchive.css */
+
+.internal-archive {
+    padding: 20px;
+  }
+  
+  .internal-archive h2 {
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .document-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .document-item h3 {
+    margin-bottom: 10px;
+  }
+  
+  .document-item a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .document-item a:hover {
+    text-decoration: underline;
+  }
+  

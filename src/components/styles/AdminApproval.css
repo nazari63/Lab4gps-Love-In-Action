@@ -1,0 +1,58 @@
+/* src/components/styles/AdminApproval.css */
+
+.admin-approval {
+    padding: 20px;
+  }
+  
+  .admin-approval h2 {
+    margin-bottom: 20px;
+  }
+  
+  .pending-posts-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pending-post-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .pending-post-item h3 {
+    margin-bottom: 10px;
+  }
+  
+  .approval-actions {
+    margin-top: 10px;
+  }
+  
+  .approve-button,
+  .reject-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .approve-button {
+    background-color: #2ecc71;
+  }
+  
+  .approve-button:hover {
+    background-color: #27ae60;
+  }
+  
+  .reject-button {
+    background-color: #e74c3c;
+  }
+  
+  .reject-button:hover {
+    background-color: #c0392b;
+  }
+  

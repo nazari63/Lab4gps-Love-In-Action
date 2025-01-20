@@ -1,0 +1,15 @@
+/* src/components/styles/MemberNews.css */
+
+.member-news {
+    padding: 20px;
+  }
+  
+  .member-news h2 {
+    margin-bottom: 20px;
+  }
+  
+  .member-news p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  

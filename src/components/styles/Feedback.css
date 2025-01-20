@@ -1,0 +1,15 @@
+/* src/components/styles/Feedback.css */
+
+.feedback {
+    padding: 20px;
+  }
+  
+  .feedback h2 {
+    margin-bottom: 20px;
+  }
+  
+  .feedback p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  
