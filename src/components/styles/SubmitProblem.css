@@ -187,6 +187,42 @@
   margin-bottom: 10px; /* Reduced margin */
 }
 
+/* SDG Selection Styles */
+.form-group#sdg-group,
+.form-group select#sdg {
+  /* Additional Styles for SDG Selection */
+}
+
+.form-group#sdg-group label[for="sdg"] {
+  /* Specific label styles if needed */
+}
+
+.form-group select#sdg {
+  /* Ensure consistent styling with other selects */
+  background-color: #FFFFFF;
+  /* Optional: Add an arrow icon or custom background */
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="10" height="7"%3E%3Cpath fill="%231B263B" d="M0 0l5 5 5-5H0z"/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  padding-right: 30px; /* Space for the custom arrow */
+}
+
+.form-group select#sdg:hover {
+  border-color: var(--secondary-color);
+}
+
+.form-group select#sdg:focus {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); /* Optional: Add a subtle shadow */
+}
+
+/* Conditional text input for custom category */
+.form-group#custom-category-group {
+  /* Specific styles if needed */
+}
+
 /* Submit Button */
 .submit-problem-button {
   padding: 12px 18px;
@@ -281,6 +317,13 @@
   /* Adjust suggestions list for smaller screens */
   .suggestions-list {
     max-height: 120px;
+  }
+
+  /* SDG Select Adjustments for Smaller Screens */
+  .form-group select#sdg {
+    padding-right: 25px; /* Reduce padding for smaller screens */
+    background-position: right 8px center;
+    background-size: 8px 5px;
   }
 }
 
