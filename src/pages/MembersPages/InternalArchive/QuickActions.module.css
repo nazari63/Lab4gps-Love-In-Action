@@ -1,0 +1,54 @@
+/* src/components/MembersPages/InternalArchive/QuickActions.module.css */
+
+.quickActions {
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .actionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .actionButton {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: transparent;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 11px 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actionButton:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .actionIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    font-size: 1.2em; /* Adjust size as needed */
+  }
+  
+  .actionLabel {
+    font-size: 16px;
+    color: #0077B5;
+  }
+  

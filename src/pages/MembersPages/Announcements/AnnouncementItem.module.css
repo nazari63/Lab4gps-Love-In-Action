@@ -1,0 +1,82 @@
+/* src/pages/MembersPages/Announcements/AnnouncementItem.module.css */
+
+.item {
+  background-color: #fff;
+  border: 1px solid #e1e9ee;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.date {
+  color: #86888a;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #434649;
+  margin: 0 0 8px 0;
+}
+
+.description {
+  font-size: 16px;
+  color: #434649;
+  margin: 0 0 16px 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0077b5;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+.readMoreButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #0077b5;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.chevron {
+  font-size: 12px;
+}

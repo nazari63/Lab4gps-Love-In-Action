@@ -1,0 +1,48 @@
+/* src/pages/MembersPages/IdeaHub/IdeaHub.module.css */
+
+.container {
+  width: 100%;
+  padding: 32px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: 'Inter', sans-serif;
+  color: #434649;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+}
+
+.main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+}

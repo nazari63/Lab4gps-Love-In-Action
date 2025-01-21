@@ -1,0 +1,63 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  
+  .title {
+    font-size: 24px;
+    color: #434649;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .icon {
+    color: #86888A;
+  }
+  
+  .select {
+    padding: 6px 12px;
+    border: 1px solid #E1E9EE;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #434649;
+    background-color: #fff;
+  }
+  
+  .uploadButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0077B5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .uploadButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .uploadIcon {
+    font-size: 16px;
+  }
+  

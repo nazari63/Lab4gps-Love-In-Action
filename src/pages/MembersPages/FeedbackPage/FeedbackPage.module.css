@@ -1,0 +1,57 @@
+/* src/pages/MembersPages/FeedbackPage/FeedbackPage.module.css */
+
+.container {
+    width: 100%;
+    padding: 32px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+  }
+  
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 1024px) {
+    .container {
+      padding: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 16px;
+    }
+  
+    .main {
+      gap: 24px;
+    }
+  
+    .feedbackHeader .title {
+      font-size: 24px;
+    }
+  
+    .feedbackHeader .uploadButton {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  
+    .dashboardStats {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .filters {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .paginationNav {
+      flex-direction: column;
+      align-items: center;
+    }
+  }

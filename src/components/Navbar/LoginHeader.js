@@ -226,20 +226,12 @@ const LoginHeader = () => {
             Right Section
         ----------------------------- */}
         <div className="right-section">
-          {/* For Members Button */}
-          <button
-            className="member-button"
-            onClick={toggleMemberDropdown}
-            ref={memberButtonRef}
-            aria-haspopup="true"
-            aria-expanded={isMemberDropdownOpen}
-            onKeyDown={handleMemberKeyDown}
+          <NavLink
+            to="/members"
+            className={({ isActive }) => (isActive ? "nav-item active" : "nav-item")}
           >
             For Members
-            <FontAwesomeIcon icon={faChevronDown} className="dropdown-icon" />
-          </button>
-
-          {/* For Members Menu */}
+          </NavLink>
           {isMemberDropdownOpen && (
             <div className="member-dropdown-menu" role="menu">
               <NavLink

@@ -1,0 +1,322 @@
+/* src/components/MembersPages/Dashboard.module.css */
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #434649;
+  background-color: transparent;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  height: 56px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #434649;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 20px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+  background: transparent;
+  gap: 8px;
+}
+
+.breadcrumbIcon {
+  width: 15.75px;
+  height: 14px;
+  color: #86888a; /* Changed from background to color for better icon rendering */
+}
+
+/* Statistics Section */
+.statistics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.statCard {
+  background-color: white;
+  border: 1px solid #e1e9ee;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statTitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #86888a;
+  word-wrap: break-word;
+}
+
+.statIcon {
+  width: 16px;
+  height: 16px;
+  color: #0077b5;
+}
+
+.statBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statCount {
+  font-size: 24px;
+  font-weight: 700;
+  color: black;
+  word-wrap: break-word;
+}
+
+.statPercentageContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrowIcon {
+  color: #22c55e;
+  font-size: 10.5px;
+}
+
+.statPercentage {
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #22c55e;
+  word-wrap: break-word;
+}
+
+/* Info Sections Container */
+.infoSections {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Recent Activities Section */
+.activities {
+  flex: 1;
+  background-color: white;
+  border: 1px solid #E1E9EE;
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.activitiesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #434649;
+  word-wrap: break-word;
+}
+
+.viewAllButton {
+  background: none;
+  border: none;
+  color: #0077b5;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+.activitiesList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Latest Announcements Section */
+.announcements {
+  flex: 1;
+  background-color: white;
+  border: 1px solid #E1E9EE;
+  border-radius: 8px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.announcementsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.announcementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Upcoming Events Section */
+.upcomingEventsSection {
+  margin: 0;
+}
+
+.upcomingEventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.upcomingEvent {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.eventDate {
+  background-color: #eff6ff;
+  border-radius: 8px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventDay {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0077b5;
+  word-wrap: break-word;
+}
+
+.eventMonth {
+  font-size: 14px;
+  color: #4b5563;
+  word-wrap: break-word;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+  word-wrap: break-word;
+}
+
+.eventTime {
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .infoSections {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .statistics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .statCard {
+    padding: 16px;
+  }
+
+  .statTitle {
+    font-size: 14px;
+  }
+
+  .statCount {
+    font-size: 20px;
+  }
+
+  .statPercentage {
+    font-size: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+
+  .viewAllButton {
+    font-size: 12px;
+  }
+
+  .activityDescription {
+    font-size: 14px;
+  }
+
+  .announcementTitle {
+    font-size: 14px;
+  }
+
+  .announcementDescription {
+    font-size: 12px;
+  }
+
+  .announcementMeta {
+    font-size: 10px;
+  }
+
+  .eventDay {
+    font-size: 14px;
+  }
+
+  .eventMonth {
+    font-size: 12px;
+  }
+
+  .eventTitle {
+    font-size: 14px;
+  }
+
+  .eventTime {
+    font-size: 12px;
+  }
+}

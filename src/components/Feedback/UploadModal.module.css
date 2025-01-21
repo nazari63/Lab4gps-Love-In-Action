@@ -1,0 +1,97 @@
+/* src/components/Feedback/UploadModal.module.css */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    padding: 24px;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+    outline: none;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #6b7280;
+  }
+  
+  .closeButton:hover {
+    color: #434649;
+  }
+  
+  .modalTitle {
+    margin: 0 0 16px 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #434649;
+  }
+  
+  .input,
+  .textarea,
+  .select {
+    padding: 8px 12px;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #434649;
+    background-color: #fff;
+  }
+  
+  .textarea {
+    resize: vertical;
+    height: 80px;
+  }
+  
+  .submitButton {
+    align-self: flex-end;
+    padding: 8px 16px;
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .select {
+    cursor: pointer;
+  }
+  

@@ -27,6 +27,8 @@ import SubmitProblem from './components/ProblemAlert/SubmitProblem';
 import LoginHeader from './components/Navbar/LoginHeader';
 import ProtectedRoute from './protect/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import Dashboard from './pages/MembersPages/dashboard';
+import Resource  from './pages/MembersPages/Resources/Resources';
 
 // Existing components
 import Message from './components/message/message'; 
@@ -46,6 +48,19 @@ const WhoWeAre = lazy(() => import('./pages/About/WhoWeAre'));
 const Globe = lazy(() => import('./components/Globe/Globe'));
 const MainDashboard = lazy(() => import('./components/Dashboard/MainDashboard'));
 const Notification = lazy(() => import('./components/Notification/Notification'));
+
+
+// -- MEMBERS PAGES --
+const MemberLanding = lazy(() => import('./pages/MembersPages/MemberLanding'));
+const MemberHome = lazy(() => import('./pages/MembersPages/MemberHome'));
+const InternalArchive = lazy(() => import('./pages/MembersPages/InternalArchive/InternalArchive'));
+const IdeaHub = lazy(() => import('./pages/MembersPages/IdeaHub/IdeaHub'));
+const MemberNews = lazy(() => import('./pages/MembersPages/MemberNews'));
+const Announcements = lazy(() => import('./pages/MembersPages/Announcements/Announcements'));
+const DecisionMakingSystem = lazy(() => import('./pages/MembersPages/DecisionPage/DecisionPage'));
+const Feedback = lazy(() => import('./pages/MembersPages/FeedbackPage/FeedbackPage'));
+const CommunityNews = lazy(() => import('./pages/MembersPages/CommunityNewsPage/CommunityNewsPage'));
+
 
 function App() {
   return (
@@ -212,7 +227,31 @@ function AppContent() {
               <Route path="corevalues" element={<CoreValues />} />
               <Route path="whoweare" element={<WhoWeAre />} />
             </Route>
+      
+               {/* -- MEMBERS ROUTES -- */}
+            <Route
+              path="/members"
+              element={
+                <ProtectedRoute>
+                  <MemberLanding />
+                </ProtectedRoute>
+              }
+            >
+              {/* Default sub-route: /members -> MemberHome */}
+              <Route index element={<MemberHome />} />
 
+              {/* Other sub-pages nested under /members/... */}
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="internal-archive" element={<InternalArchive />} />
+              <Route path="idea-hub" element={<IdeaHub />} />
+              <Route path="member-news" element={<MemberNews />} />
+              <Route path="resources" element={<Resource />} />
+              <Route path="announcements" element={<Announcements />} />
+              <Route path="decisions" element={<DecisionMakingSystem />} />
+              <Route path="feedback" element={<Feedback />} />
+              <Route path="community-news" element={<CommunityNews />} />
+            </Route>
+            {/* ===================================== */}
             {/* Add a catch-all route for undefined paths */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

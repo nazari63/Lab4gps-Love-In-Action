@@ -1,0 +1,35 @@
+.breadcrumbs {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 16px;
+  }
+  
+  .breadcrumbList {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .breadcrumbLink {
+    text-decoration: none;
+    color: #6B7280;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbLink:hover {
+    color: #0077B5;
+  }
+  
+  .current {
+    color: #0077B5;
+    font-weight: 600;
+  }
+  
+  .icon {
+    margin: 0 8px;
+    color: #6B7280;
+  }
+  

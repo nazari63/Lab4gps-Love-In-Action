@@ -1,0 +1,7 @@
+/* src/pages/MembersPages/Announcements/AnnouncementList.module.css */
+
+.list {
+    display: flex;
+    flex-direction: column;
+  }
+  

@@ -1,0 +1,47 @@
+/* src/components/CommunityNews/FeaturedNews.module.css */
+
+.featuredNews {
+    background-color: #f3f6f8;
+    border-radius: 12px;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 1px solid #e1e9ee;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .viewAll {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #0077b5;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  
+  .viewAll:hover {
+    text-decoration: underline;
+  }
+  
+  .newsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  

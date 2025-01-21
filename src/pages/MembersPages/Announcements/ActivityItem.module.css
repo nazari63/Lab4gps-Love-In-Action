@@ -1,0 +1,30 @@
+/* src/pages/MembersPages/ActivityItem.module.css */
+
+.activityItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #e1e9ee;
+  }
+  
+  .icon {
+    font-size: 20px;
+    color: #0077b5;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message {
+    font-size: 16px;
+    color: #434649;
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  

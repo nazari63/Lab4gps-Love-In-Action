@@ -1,0 +1,29 @@
+/* src/pages/MembersPages/Resources/Breadcrumbs.module.css */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #6b7280;
+    cursor: pointer;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .separator {
+    margin: 0 8px;
+  }
+  
+  .current {
+    color: #434649;
+    font-weight: 600;
+  }
+  

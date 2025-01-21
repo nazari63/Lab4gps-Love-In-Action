@@ -1,0 +1,36 @@
+/* src/components/Feedback/Comment/Comment.module.css */
+
+.comment {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e1e9ee;
+  }
+  
+  .avatar {
+    color: #6b7280;
+    font-size: 24px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .author {
+    font-size: 14px;
+    font-weight: 600;
+    color: #434649;
+  }
+  
+  .text {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 4px 0;
+  }
+  
+  .date {
+    font-size: 12px;
+    color: #a1a1aa;
+  }
+  

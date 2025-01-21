@@ -1,0 +1,48 @@
+/* src/components/Decision/DashboardStats.module.css */
+
+.dashboard {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background-color: #fff;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    padding: 24px;
+    width: 236px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .value {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .change {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 4px 0 0 0;
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  

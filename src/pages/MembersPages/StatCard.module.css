@@ -1,0 +1,63 @@
+/* src/components/MembersPages/StatCard.module.css */
+
+.statCard {
+    background-color: white;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .statHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .statTitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #86888a;
+    word-wrap: break-word;
+  }
+  
+  .statIcon {
+    width: 16px;
+    height: 16px;
+    color: #0077b5;
+  }
+  
+  .statBody {
+    display: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .statCount {
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    word-wrap: break-word;
+  }
+  
+  .statPercentageContainer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .arrowIcon {
+    color: #22c55e;
+    font-size: 10.5px;
+  }
+  
+  .statPercentage {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #22c55e;
+    word-wrap: break-word;
+  }
+  

@@ -1,0 +1,89 @@
+/* src/components/Decision/DecisionCard.module.css */
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .status {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  
+  .proposer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  
+  .icon {
+    font-size: 14px;
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #4b5563;
+    margin-bottom: 16px;
+  }
+  
+  .votingSection {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .voteButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .voteButton:hover {
+    color: #0077b5;
+  }
+  
+  .active {
+    color: #0077b5;
+  }
+  
+  .voteCount {
+    font-size: 16px;
+    color: #434649;
+  }
+  
+  .comments {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #6b7280;
+    font-size: 14px;
+  }
+  

@@ -1,0 +1,16 @@
+/* src/components/Feedback/FeedbackList.module.css */
+
+.feedbackList {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  
+  .noFeedback {
+    font-size: 16px;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 40px;
+  }
+  

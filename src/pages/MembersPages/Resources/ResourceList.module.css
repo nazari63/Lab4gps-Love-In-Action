@@ -1,0 +1,15 @@
+/* src/pages/MembersPages/Resources/ResourceList.module.css */
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 100%;
+  }
+  
+  .noResources {
+    font-size: 16px;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+  }
+  

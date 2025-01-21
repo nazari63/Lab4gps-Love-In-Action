@@ -1,0 +1,86 @@
+/* src/pages/MembersPages/Resources/Filters.module.css */
+
+.filters {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .filterGroup {
+    position: relative;
+    width: 200px;
+  }
+  
+  .filterLabel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  
+  .icon {
+    margin-left: 8px;
+    color: #434649;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .dropdownItem {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #434649;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #f3f6f8;
+  }
+  
+  .clearFilter {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  
+  .clearFilter:hover {
+    background-color: #f3f6f8;
+  }
+  
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    .filterGroup {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,122 @@
+/* src/components/Idea/IdeaCard.module.css */
+
+.card {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #e1e9ee;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: 'Inter', sans-serif;
+  color: #434649;
+  gap: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.voteSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.voteButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #86888a;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.voteButton:hover {
+  color: #0077B5;
+}
+
+.voteCount {
+  font-size: 16px;
+  font-weight: 600;
+  color: #434649;
+}
+
+.contentSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusBadge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.in-progress {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.proposed {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.implemented {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+.postInfo {
+  font-size: 14px;
+  color: #86888A;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.description {
+  font-size: 16px;
+  color: #86888A;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: transparent;
+  border: none;
+  color: #0077B5;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.actionButton:hover {
+  color: #005f8e;
+}
+
+.commentsSection {
+  margin-top: 16px;
+  border-top: 1px solid #e1e9ee;
+  padding-top: 16px;
+  font-size: 14px;
+  color: #6B7280;
+}

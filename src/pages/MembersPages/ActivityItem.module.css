@@ -1,0 +1,45 @@
+/* src/components/MembersPages/ActivityItem.module.css */
+
+.activityItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .activityIcon {
+    width: 28px;
+    height: 32px;
+    padding: 6px 8px;
+    background: #F3F6F8;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0077B5; /* Icon color */
+    font-size: 16px; /* Icon size */
+  }
+  
+  .activityContent {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .activityDescription {
+    color: #434649;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 16px;
+    word-wrap: break-word;
+  }
+  
+  .activityMeta {
+    color: #86888A;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 14px;
+    word-wrap: break-word;
+  }
+  

@@ -1,0 +1,47 @@
+/* src/components/MembersPages/InternalArchive/Header.module.css */
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .titleSection {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .uploadButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0077B5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .uploadButton:hover {
+    background-color: #005f8d;
+  }
+  
+  .uploadIcon {
+    font-size: 16px;
+  }
+  

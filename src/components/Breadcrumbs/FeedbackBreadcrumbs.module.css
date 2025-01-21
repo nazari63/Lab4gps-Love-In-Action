@@ -1,0 +1,38 @@
+/* src/components/Breadcrumbs/Breadcrumbs.module.css */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #6b7280;
+    font-size: 14px;
+  }
+  
+  .breadcrumbList {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .breadcrumbItem {
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumbLink {
+    text-decoration: none;
+    color: #6b7280;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbLink:hover {
+    color: #0077b5;
+  }
+  
+  .separator {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+  

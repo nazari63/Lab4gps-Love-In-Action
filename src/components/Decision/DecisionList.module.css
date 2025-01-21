@@ -1,0 +1,15 @@
+/* src/components/Decision/DecisionList.module.css */
+
+.decisionList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .noDecisions {
+    text-align: center;
+    color: #6b7280;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  

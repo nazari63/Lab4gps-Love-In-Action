@@ -1,0 +1,38 @@
+/* src/pages/MembersPages/Announcements/Pagination.module.css */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  
+  .navButton,
+  .pageButton {
+    background-color: #fff;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #434649;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navButton:hover:not(:disabled),
+  .pageButton:hover:not(.active) {
+    background-color: #f3f4f6;
+  }
+  
+  .navButton:disabled,
+  .pageButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .active {
+    background-color: #0077b5;
+    color: #fff;
+    border-color: #0077b5;
+  }
+  

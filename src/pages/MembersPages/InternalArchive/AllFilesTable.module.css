@@ -1,0 +1,82 @@
+/* src/components/MembersPages/InternalArchive/AllFilesTable.module.css */
+
+.tableContainer {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #434649;
+    margin-bottom: 16px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #434649;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e1e9ee;
+  }
+  
+  .table th {
+    color: #86888a;
+    font-weight: 500;
+  }
+  
+  .fileName {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .fileIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .owner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .actionButton,
+  .moreButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0077B5;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .actionButton:hover,
+  .moreButton:hover {
+    color: #005f8d;
+  }
+  

@@ -1,0 +1,47 @@
+/* src/components/Feedback/CommentForm/CommentForm.module.css */
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .input,
+  .textarea {
+    padding: 8px 12px;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #434649;
+    background-color: #fff;
+  }
+  
+  .textarea {
+    resize: vertical;
+    height: 80px;
+  }
+  
+  .submitButton {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #0077b5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+  

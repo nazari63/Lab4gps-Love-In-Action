@@ -1,0 +1,40 @@
+/* src/components/Feedback/Pagination.module.css */
+
+.paginationNav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationList {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .pageButton {
+    padding: 8px 16px;
+    border: 1px solid #e1e9ee;
+    border-radius: 6px;
+    background-color: white;
+    color: #434649;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .pageButton:hover:not(:disabled) {
+    background-color: #0077b5;
+    color: white;
+  }
+  
+  .pageButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  .active {
+    background-color: #0077b5;
+    color: white;
+  }
+  

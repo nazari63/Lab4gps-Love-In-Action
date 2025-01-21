@@ -1,0 +1,84 @@
+/* src/pages/MembersPages/Resources/UploadModal.module.css */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #434649;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  
+  input[type='text'],
+  textarea,
+  select,
+  input[type='file'] {
+    padding: 8px;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    margin-top: 4px;
+    font-size: 14px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  .submitButton {
+    background-color: #0077b5;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .cancelButton {
+    background-color: #e1e9ee;
+    color: #434649;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .submitButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .cancelButton:hover {
+    background-color: #c1cfd3;
+  }
+  

@@ -1,0 +1,91 @@
+/* src/components/Feedback/FeedbackCard.module.css */
+
+.card {
+    background-color: white;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    padding: 24px;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .expandButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .chevron {
+    color: #6b7280;
+    font-size: 16px;
+  }
+  
+  .rotate {
+    transform: rotate(180deg);
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #86888a;
+    margin: 16px 0;
+  }
+  
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #86888a;
+  }
+  
+  .category {
+    background-color: #dbeafe;
+    color: #0077b5;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    font-weight: 400;
+  }
+  
+  .date {
+    /* Additional styling if needed */
+  }
+  
+  .comments {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .commentsIcon {
+    color: #6b7280;
+  }
+  
+  .details {
+    margin-top: 24px;
+    border-top: 1px solid #e1e9ee;
+    padding-top: 24px;
+  }
+  
+  .details > * + * {
+    margin-top: 16px;
+  }

@@ -1,0 +1,41 @@
+/* src/components/Feedback/Filters.module.css */
+
+.filters {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .icon {
+    color: #86888a;
+    font-size: 16px;
+  }
+  
+  .label {
+    font-size: 14px;
+    color: #434649;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+  }
+  
+  .select {
+    padding: 6px 12px;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #434649;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .select:hover {
+    border-color: #0077b5;
+  }
+  

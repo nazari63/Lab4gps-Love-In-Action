@@ -1,0 +1,42 @@
+.member-landing-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F3F6F8;
+  padding-top: 60px;
+  position: relative;
+}
+
+/* The hamburger button initially hidden on large screens */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  /* etc... */
+}
+
+.member-content-wrapper {
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  /* etc... */
+}
+
+/* Mobile breakpoints */
+@media (max-width: 768px) {
+  .member-landing-container {
+    /* Possibly flex-direction: column; 
+       but typically you'd let the sidebar be fixed
+       so you don't need to reorder here. */
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  /* Because the sidebar is now fixed, the content wrapper
+     won't need margin-left. We'll override it: */
+  .member-content-wrapper {
+    margin-left: 0 !important;
+  }
+}

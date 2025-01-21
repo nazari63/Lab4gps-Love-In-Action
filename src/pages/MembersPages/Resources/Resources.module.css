@@ -1,0 +1,25 @@
+/* src/pages/MembersPages/Resources/Resources.module.css */
+
+.container {
+    width: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+  }
+  
+  @media (max-width: 1024px) {
+    .container {
+      padding: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 16px;
+      gap: 20px;
+    }
+  }
+  

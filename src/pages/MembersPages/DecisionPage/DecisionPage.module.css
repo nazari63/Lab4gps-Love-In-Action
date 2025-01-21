@@ -1,0 +1,16 @@
+/* src/pages/DecisionPage/DecisionPage.module.css */
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f9fafb;
+    font-family: 'Inter', sans-serif;
+    color: #6b7280;
+  }
+  
+  .mainContent {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  

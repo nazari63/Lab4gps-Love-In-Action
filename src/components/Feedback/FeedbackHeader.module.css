@@ -1,0 +1,39 @@
+/* src/components/Feedback/FeedbackHeader.module.css */
+
+.feedbackHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .uploadButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0077b5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .uploadButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .uploadIcon {
+    font-size: 16px;
+  }
+  

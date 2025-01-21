@@ -1,0 +1,42 @@
+/* src/components/CommunityNews/NavigationBar.module.css */
+
+.navbar {
+    width: 100%;
+    background-color: #fff;
+    padding: 16px 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navList {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navItem {}
+  
+  .navLink {
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color: #0077b5;
+  }
+  
+  .active {
+    color: #0077b5;
+    font-weight: 600;
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+  

@@ -1,0 +1,45 @@
+/* src/pages/MembersPages/Announcements/Header.module.css */
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  
+  .titleSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #434649;
+    margin: 0;
+  }
+  
+  .newAnnouncementButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #0077b5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newAnnouncementButton:hover {
+    background-color: #005f8d;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }
+  

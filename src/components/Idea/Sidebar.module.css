@@ -1,0 +1,70 @@
+/* src/components/Idea/Sidebar.module.css */
+
+.sidebar {
+  width: 256px;
+  background-color: #fff;
+  border: 1px solid #e1e9ee;
+  border-radius: 8px;
+  padding: 17px;
+  font-family: 'Inter', sans-serif;
+  color: #434649;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listItem:hover {
+  background-color: #f3f6f8;
+}
+
+.listText {
+  font-size: 16px;
+  color: #86888a;
+}
+
+.icon {
+  color: #86888a;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag {
+  background-color: #f3f6f8;
+  color: #86888a;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tag:hover {
+  background-color: #0077B5;
+  color: #fff;
+}

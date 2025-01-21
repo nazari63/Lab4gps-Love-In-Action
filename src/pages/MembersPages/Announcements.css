@@ -1,0 +1,199 @@
+/* src/pages/MembersPages/Announcements.css */
+
+/* Global container spacing */
+.announcements-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;  /* center the page on large screens */
+    padding: 20px;
+    font-family: 'Roboto', sans-serif; /* Example: consistent brand font */
+  }
+  
+  /* HEADER (title + tagline) */
+  .announcements-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .announcements-header .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #0077B5; /* Example "GPSLab" brand color (LinkedIn Blue) */
+  }
+  .announcements-header .tagline {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 400;
+  }
+  
+  /* INTRO / DESCRIPTION PARAGRAPHS */
+  .announcements-description {
+    background-color: #fff;
+    border: 1px solid #e1e9ee;
+    border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* FILTERS / SEARCH */
+  .announcements-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .search-input {
+    flex: 1 1 200px;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .category-select {
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .subscribe-button {
+    background-color: #0077B5;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .subscribe-button:hover {
+    background-color: #005c8a;
+  }
+  
+  /* ANNOUNCEMENTS GRID / LAYOUT */
+  .announcements-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  /* CARD STYLING */
+  .announcement-card {
+    background-color: #fff;
+    border: 1px solid #e1e9ee;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+  }
+  
+  /* Different background or border for unread vs read */
+  .announcement-card.unread {
+    border-left: 4px solid #ffcc00; /* bright color for emphasis */
+  }
+  .announcement-card.read {
+    opacity: 0.9;
+  }
+  
+  .announcement-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Card header with icon, title, and important star */
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .category-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    color: #0077B5;
+  }
+  .announcement-title {
+    flex: 1;
+    font-weight: 600;
+    color: #333;
+  }
+  .important-star {
+    color: #f5c518;
+    margin-left: 5px;
+    font-size: 1.2rem;
+  }
+  
+  /* Card body */
+  .card-body {
+    flex-grow: 1;
+  }
+  .announcement-content {
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  /* Card footer: date + action buttons */
+  .card-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .date {
+    font-size: 0.85rem;
+    color: #999;
+  }
+  .footer-actions button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #0077B5;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .footer-actions button:hover {
+    text-decoration: underline;
+  }
+  
+  /* CTA / FOOTER */
+  .announcements-footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #333;
+  }
+  .announcements-footer .archive-link {
+    background: none;
+    border: none;
+    color: #0077B5;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  .manage-notifications-cta {
+    background-color: #0077B5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .manage-notifications-cta:hover {
+    background-color: #005c8a;
+  }
+  
+  /* MOBILE RESPONSIVENESS */
+  @media (max-width: 768px) {
+    .announcements-filters {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .announcements-list {
+      grid-template-columns: 1fr; /* single column on smaller screens */
+    }
+  }
+  

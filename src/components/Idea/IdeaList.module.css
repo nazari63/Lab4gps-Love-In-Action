@@ -1,0 +1,23 @@
+/* src/components/Idea/IdeaList.module.css */
+
+.listContainer {
+    width: 100%;
+    overflow-y: auto;
+    height: 80vh; /* Adjust as needed */
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .noIdeas {
+    font-size: 16px;
+    color: #6B7280;
+    text-align: center;
+    margin-top: 40px;
+  }
+  

@@ -1,0 +1,24 @@
+/* src/components/MembersPages/InternalArchive/Breadcrumbs.module.css */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #6B7280;
+    gap: 8px;
+  }
+  
+  .breadcrumbItem {
+    cursor: pointer;
+  }
+  
+  .current {
+    color: #0077B5;
+    font-weight: 500;
+  }
+  
+  .icon {
+    font-size: 10px;
+    color: #6B7280;
+  }
+  

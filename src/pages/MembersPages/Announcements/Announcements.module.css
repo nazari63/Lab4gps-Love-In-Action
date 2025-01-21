@@ -1,0 +1,22 @@
+/* src/pages/MembersPages/Announcements/Announcements.module.css */
+
+.announcementsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 32px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .announcementsContainer {
+      padding: 16px;
+      gap: 16px;
+    }
+  }
+  

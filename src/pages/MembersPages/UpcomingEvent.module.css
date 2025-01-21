@@ -1,0 +1,53 @@
+/* src/components/MembersPages/UpcomingEvent.module.css */
+
+.upcomingEvent {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .eventDate {
+    background-color: #eff6ff;
+    border-radius: 8px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .eventDay {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0077B5;
+    word-wrap: break-word;
+  }
+  
+  .eventMonth {
+    font-size: 14px;
+    color: #4b5563;
+    word-wrap: break-word;
+  }
+  
+  .eventDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .eventTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+    word-wrap: break-word;
+  }
+  
+  .eventTime {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4b5563;
+    margin: 0;
+    word-wrap: break-word;
+  }
+  

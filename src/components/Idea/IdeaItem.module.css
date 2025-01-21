@@ -1,0 +1,149 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #e1e9ee;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    color: #434649;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .in-progress {
+    background-color: #dcfce7;
+    color: #16a34a;
+  }
+  
+  .proposed {
+    background-color: #fef3c7;
+    color: #d97706;
+  }
+  
+  .implemented {
+    background-color: #f3f4f6;
+    color: #6b7280;
+  }
+  
+  .author {
+    font-size: 14px;
+    color: #86888a;
+    margin: 0;
+  }
+  
+  .description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    background-color: #f3f6f8;
+    color: #86888a;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .tag:hover {
+    background-color: #0077B5;
+    color: #fff;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  .actionButton {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: transparent;
+    border: none;
+    color: #0077B5;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  
+  .actionButton:hover {
+    color: #005f8e;
+  }
+  
+  .commentsSection {
+    margin-top: 16px;
+    border-top: 1px solid #e1e9ee;
+    padding-top: 16px;
+  }
+  
+  .addComment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .commentInput {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #e1e9ee;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #434649;
+  }
+  
+  .commentButton {
+    align-self: flex-end;
+    padding: 6px 12px;
+    background-color: #0077B5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .commentButton:hover {
+    background-color: #005f8e;
+  }
+  
+  .commentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
